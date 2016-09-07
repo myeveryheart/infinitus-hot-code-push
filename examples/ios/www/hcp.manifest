@@ -1,0 +1,146 @@
+[
+  {
+    "file": "build/app.html",
+    "hash": "2e41e0813abb512977eae812866be5ed"
+  },
+  {
+    "file": "build/css/app.ios.css",
+    "hash": "b5dd581685e9212d162c30db13e8fa07"
+  },
+  {
+    "file": "build/css/app.md.css",
+    "hash": "a7f7027146fa4f3d10659b97dd9a3a81"
+  },
+  {
+    "file": "build/css/app.wp.css",
+    "hash": "f47d471b9d09d38aff1a2ec97dcca9af"
+  },
+  {
+    "file": "build/fonts/ionicons.ttf",
+    "hash": "74c652671225d6ded874a648502e5f0a"
+  },
+  {
+    "file": "build/fonts/ionicons.woff",
+    "hash": "81414686e99c00d2921e03dd53c0ab04"
+  },
+  {
+    "file": "build/fonts/ionicons.woff2",
+    "hash": "311d81961c5880647fec7eaca1221b2a"
+  },
+  {
+    "file": "build/fonts/noto-sans-bold.ttf",
+    "hash": "a165a42685795361b25593effb32fdb1"
+  },
+  {
+    "file": "build/fonts/noto-sans-regular.ttf",
+    "hash": "2fd9c16b805724d590c0cff96da070a4"
+  },
+  {
+    "file": "build/fonts/roboto-bold.ttf",
+    "hash": "1f4fd7e4df65487f07ba9148f7ca095d"
+  },
+  {
+    "file": "build/fonts/roboto-bold.woff",
+    "hash": "43183beef21370d8a4b0d64152287eba"
+  },
+  {
+    "file": "build/fonts/roboto-light.ttf",
+    "hash": "9ff15bd34ea83e4dd3f23c20c7f5090e"
+  },
+  {
+    "file": "build/fonts/roboto-light.woff",
+    "hash": "7e2d32e7141050d758a38b4ec96390c0"
+  },
+  {
+    "file": "build/fonts/roboto-medium.ttf",
+    "hash": "a937e2cae14e68262a45aa91204c2fdf"
+  },
+  {
+    "file": "build/fonts/roboto-medium.woff",
+    "hash": "0f3b7101a8adc1afe1fbe89775553c32"
+  },
+  {
+    "file": "build/fonts/roboto-regular.ttf",
+    "hash": "07f8fb6acbabeb10d3fad9ab02d65e0b"
+  },
+  {
+    "file": "build/fonts/roboto-regular.woff",
+    "hash": "f94d5e5102359961c44a1da1b58d37c9"
+  },
+  {
+    "file": "build/js/app.bundle.js",
+    "hash": "df5e9e5a7ce7c20255f15045864aa552"
+  },
+  {
+    "file": "build/js/app.bundle.js.map",
+    "hash": "5f7913e965d9930ac524e1f0157c3629"
+  },
+  {
+    "file": "build/js/es6-shim.min.js",
+    "hash": "9d4304d9f51104986bc088e39fdf5d0d"
+  },
+  {
+    "file": "build/js/Reflect.js",
+    "hash": "bd69ecf1d6948c182f15c79ef60cad4c"
+  },
+  {
+    "file": "build/js/zone.js",
+    "hash": "2222385d52aafe3cf4568d0173483fc6"
+  },
+  {
+    "file": "build/pages/kehuguanli/kehuguanli.html",
+    "hash": "43c361cf93aa3191fbca6b9660978de5"
+  },
+  {
+    "file": "build/pages/news/news.html",
+    "hash": "e3ec2a6ae46e688c5b9b0ced3408a67d"
+  },
+  {
+    "file": "build/pages/page1/page1.html",
+    "hash": "d9db1bb555a0c9cc24417d819ec8be4e"
+  },
+  {
+    "file": "build/pages/page2/page2.html",
+    "hash": "7edc6d215704b6fe33db8835726735e7"
+  },
+  {
+    "file": "build/pages/page3/page3.html",
+    "hash": "5db3acd6bd8cdd1314e08accee1e86c1"
+  },
+  {
+    "file": "build/pages/page4/page4.html",
+    "hash": "b8c4755c81c587dcb6d2213528016888"
+  },
+  {
+    "file": "build/pages/tabs/tabs.html",
+    "hash": "ada9b35be6f7ee7a35c71164830b1be0"
+  },
+  {
+    "file": "build/pages/zaixiantuijian/zaixiantuijian.html",
+    "hash": "a5106377a5d2c05a821de2dada5cef80"
+  },
+  {
+    "file": "img/slide1.jpeg",
+    "hash": "3ea253879c655fbb7ae44b8c84422bc5"
+  },
+  {
+    "file": "img/slide2.jpeg",
+    "hash": "46dbd26593a2078d71e5ed847eb3e4cc"
+  },
+  {
+    "file": "img/slide3.jpeg",
+    "hash": "14ac4c67af0463da40cff53bbc07246e"
+  },
+  {
+    "file": "img/slide4.jpeg",
+    "hash": "efac691fd2d37f106ef7fb1472f77c72"
+  },
+  {
+    "file": "img/slide5.jpeg",
+    "hash": "d7e694c4e10c95c71a3fdc4818ee8d46"
+  },
+  {
+    "file": "index.html",
+    "hash": "b269fa41692b196635eca7dfa384116c"
+  }
+]

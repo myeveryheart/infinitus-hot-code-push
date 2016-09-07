@@ -1,0 +1,8 @@
+{
+  "name": "HotCodePush",
+  "ios_identifier": "",
+  "android_identifier": "",
+  "update": "start",
+  "content_url": "http://172.20.70.80/poc",
+  "release": "2016.08.23-15.51.29"
+}
