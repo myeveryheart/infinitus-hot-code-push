@@ -202,11 +202,11 @@
  */
 - (void)doLocalInit
 {
-    // init plugin config from xml
+    // 初始化config
     _hcpConfig = [[HCPConfig alloc] init];
     _hcpConfig.webUrl = self.webUrl;
     
-    // load plugin internal preferences
+    // 加载internal preferences
     _hcpInternalPrefs = [HCPInternalPreferences loadFromUserDefaults];
     if (_hcpInternalPrefs == nil || _hcpInternalPrefs.currentReleaseVersionName.length == 0)
     {
