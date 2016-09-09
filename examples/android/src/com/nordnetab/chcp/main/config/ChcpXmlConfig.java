@@ -14,12 +14,14 @@ import org.json.JSONObject;
 public class ChcpXmlConfig {
 
     private String configUrl;
+    private String webUrl;
     private boolean allowUpdatesAutoDownload;
     private boolean allowUpdatesAutoInstall;
     private int nativeInterfaceVersion;
 
     private ChcpXmlConfig() {
         configUrl = "";
+        webUrl = "";
         allowUpdatesAutoDownload = true;
         allowUpdatesAutoInstall = true;
         nativeInterfaceVersion = 1;
@@ -42,6 +44,15 @@ public class ChcpXmlConfig {
      */
     public void setConfigUrl(String configUrl) {
         this.configUrl = configUrl;
+    }
+
+    /**
+     * Setter for web url on server.
+     *
+     * @param webUrl url to application config
+     */
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
     }
 
     /**
@@ -110,6 +121,19 @@ public class ChcpXmlConfig {
         ChcpXmlConfig chcpConfig = new ChcpXmlConfig();
 
         new ChcpXmlConfigParser().parse(context, chcpConfig);
+
+        return chcpConfig;
+    }
+
+    /**
+     * Load plugins specific preferences from Cordova's config.xml.
+     *
+     * @param context current context of the activity
+     * @return hot-code-push plugin preferences
+     */
+    public static ChcpXmlConfig loadFromConfig() {
+        ChcpXmlConfig chcpConfig = new ChcpXmlConfig();
+
 
         return chcpConfig;
     }

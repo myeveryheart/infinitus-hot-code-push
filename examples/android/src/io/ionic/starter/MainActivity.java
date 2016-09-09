@@ -19,16 +19,29 @@
 
 package io.ionic.starter;
 
+import android.app.Activity;
 import android.os.Bundle;
-import org.apache.cordova.*;
 
-public class MainActivity extends CordovaActivity
+import com.nordnetab.chcp.main.HCPHelper;
+
+import java.net.URL;
+
+
+public class MainActivity extends Activity
 {
+    HCPHelper helper;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        // Set by <content src="index.html" /> in config.xml
-        loadUrl(launchUrl);
+
+
+        helper = HCPHelper.instance(this);
+        URL url = new URL("");
+        helper.initWithWebUrl(new URL(""));
+
     }
+
+
 }
