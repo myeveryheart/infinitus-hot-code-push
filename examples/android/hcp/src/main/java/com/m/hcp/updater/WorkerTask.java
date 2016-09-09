@@ -1,6 +1,6 @@
-package com.nordnetab.chcp.main.updater;
+package com.m.hcp.updater;
 
-import com.nordnetab.chcp.main.events.WorkerEvent;
+import com.m.hcp.events.WorkerEvent;
 
 /**
  * Created by Nikolay Demyankov on 29.12.15.

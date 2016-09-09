@@ -1,9 +1,9 @@
-package com.nordnetab.chcp.main.config;
+package com.m.hcp.config;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nordnetab.chcp.main.model.UpdateTime;
+import com.m.hcp.model.UpdateTime;
 
 /**
  * Created by Nikolay Demyankov on 22.07.15.

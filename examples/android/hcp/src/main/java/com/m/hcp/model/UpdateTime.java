@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.model;
+package com.m.hcp.model;
 
 /**
  * Created by Nikolay Demyankov on 27.08.15.

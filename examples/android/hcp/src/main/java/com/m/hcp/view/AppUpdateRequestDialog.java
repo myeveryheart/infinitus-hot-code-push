@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.view;
+package com.m.hcp.view;
 
 import android.app.AlertDialog;
 import android.content.Context;

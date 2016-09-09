@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.utils;
+package com.m.hcp.utils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

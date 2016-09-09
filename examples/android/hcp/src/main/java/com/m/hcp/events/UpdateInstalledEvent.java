@@ -1,6 +1,6 @@
-package com.nordnetab.chcp.main.events;
+package com.m.hcp.events;
 
-import com.nordnetab.chcp.main.config.ApplicationConfig;
+import com.m.hcp.config.ApplicationConfig;
 
 /**
  * Created by Nikolay Demyankov on 25.08.15.

@@ -1,7 +1,7 @@
-package com.nordnetab.chcp.main.network;
+package com.m.hcp.network;
 
-import com.nordnetab.chcp.main.utils.URLConnectionHelper;
-import com.nordnetab.chcp.main.utils.URLUtility;
+import com.m.hcp.utils.URLConnectionHelper;
+import com.m.hcp.utils.URLUtility;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.utils;
+package com.m.hcp.utils;
 
 /**
  * Created by Nikolay Demyankov on 21.07.15.

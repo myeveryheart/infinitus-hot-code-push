@@ -1,8 +1,8 @@
-package com.nordnetab.chcp.main.storage;
+package com.m.hcp.storage;
 
-import com.nordnetab.chcp.main.config.ContentManifest;
-import com.nordnetab.chcp.main.model.PluginFilesStructure;
-import com.nordnetab.chcp.main.utils.Paths;
+import com.m.hcp.config.ContentManifest;
+import com.m.hcp.model.PluginFilesStructure;
+import com.m.hcp.utils.Paths;
 
 /**
  * Created by Nikolay Demyankov on 23.07.15.

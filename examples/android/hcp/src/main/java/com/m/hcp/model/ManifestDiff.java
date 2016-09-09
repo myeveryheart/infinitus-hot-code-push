@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.model;
+package com.m.hcp.model;
 
 import java.util.ArrayList;
 import java.util.List;

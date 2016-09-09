@@ -1,11 +1,11 @@
-package com.nordnetab.chcp.main.updater;
+package com.m.hcp.updater;
 
 import android.content.Context;
 
-import com.nordnetab.chcp.main.events.BeforeInstallEvent;
-import com.nordnetab.chcp.main.events.NothingToInstallEvent;
-import com.nordnetab.chcp.main.model.ChcpError;
-import com.nordnetab.chcp.main.model.PluginFilesStructure;
+import com.m.hcp.events.BeforeInstallEvent;
+import com.m.hcp.events.NothingToInstallEvent;
+import com.m.hcp.model.ChcpError;
+import com.m.hcp.model.PluginFilesStructure;
 
 import org.greenrobot.eventbus.EventBus;
 import java.io.File;
@@ -37,8 +37,8 @@ public class UpdatesInstaller {
      * @param currentVersion current content version
      * @return <code>ChcpError.NONE</code> if installation started; otherwise - error details
      * @see NothingToInstallEvent
-     * @see com.nordnetab.chcp.main.events.UpdateInstallationErrorEvent
-     * @see com.nordnetab.chcp.main.events.UpdateInstalledEvent
+     * @see com.m.hcp.events.UpdateInstallationErrorEvent
+     * @see com.m.hcp.events.UpdateInstalledEvent
      */
     public static ChcpError install(final Context context, final String newVersion, final String currentVersion) {
         // if we already installing - exit

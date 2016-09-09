@@ -1,8 +1,8 @@
-package com.nordnetab.chcp.main.updater;
+package com.m.hcp.updater;
 
 import android.content.Context;
 
-import com.nordnetab.chcp.main.model.PluginFilesStructure;
+import com.m.hcp.model.PluginFilesStructure;
 
 import java.util.Map;
 

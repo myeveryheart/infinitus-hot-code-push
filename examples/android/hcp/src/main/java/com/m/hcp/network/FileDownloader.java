@@ -1,13 +1,13 @@
-package com.nordnetab.chcp.main.network;
+package com.m.hcp.network;
 
 import android.util.Log;
 
-import com.nordnetab.chcp.main.model.ManifestFile;
-import com.nordnetab.chcp.main.utils.FilesUtility;
-import com.nordnetab.chcp.main.utils.MD5;
-import com.nordnetab.chcp.main.utils.Paths;
-import com.nordnetab.chcp.main.utils.URLConnectionHelper;
-import com.nordnetab.chcp.main.utils.URLUtility;
+import com.m.hcp.model.ManifestFile;
+import com.m.hcp.utils.FilesUtility;
+import com.m.hcp.utils.MD5;
+import com.m.hcp.utils.Paths;
+import com.m.hcp.utils.URLConnectionHelper;
+import com.m.hcp.utils.URLUtility;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.storage;
+package com.m.hcp.storage;
 
 /**
  * Created by Nikolay Demyankov on 25.08.15.

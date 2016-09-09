@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.events;
+package com.m.hcp.events;
 
 /**
  * Created by Nikolay Demyankov on 28.08.15.

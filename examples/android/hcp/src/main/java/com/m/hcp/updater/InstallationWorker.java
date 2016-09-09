@@ -1,21 +1,21 @@
-package com.nordnetab.chcp.main.updater;
+package com.m.hcp.updater;
 
 import android.content.Context;
 
-import com.nordnetab.chcp.main.config.ApplicationConfig;
-import com.nordnetab.chcp.main.config.ContentManifest;
-import com.nordnetab.chcp.main.events.NothingToInstallEvent;
-import com.nordnetab.chcp.main.events.UpdateInstallationErrorEvent;
-import com.nordnetab.chcp.main.events.UpdateInstalledEvent;
-import com.nordnetab.chcp.main.events.WorkerEvent;
-import com.nordnetab.chcp.main.model.ChcpError;
-import com.nordnetab.chcp.main.model.ManifestDiff;
-import com.nordnetab.chcp.main.model.ManifestFile;
-import com.nordnetab.chcp.main.model.PluginFilesStructure;
-import com.nordnetab.chcp.main.storage.ApplicationConfigStorage;
-import com.nordnetab.chcp.main.storage.ContentManifestStorage;
-import com.nordnetab.chcp.main.storage.IObjectFileStorage;
-import com.nordnetab.chcp.main.utils.FilesUtility;
+import com.m.hcp.config.ApplicationConfig;
+import com.m.hcp.config.ContentManifest;
+import com.m.hcp.events.NothingToInstallEvent;
+import com.m.hcp.events.UpdateInstallationErrorEvent;
+import com.m.hcp.events.UpdateInstalledEvent;
+import com.m.hcp.events.WorkerEvent;
+import com.m.hcp.model.ChcpError;
+import com.m.hcp.model.ManifestDiff;
+import com.m.hcp.model.ManifestFile;
+import com.m.hcp.model.PluginFilesStructure;
+import com.m.hcp.storage.ApplicationConfigStorage;
+import com.m.hcp.storage.ContentManifestStorage;
+import com.m.hcp.storage.IObjectFileStorage;
+import com.m.hcp.utils.FilesUtility;
 
 import java.io.File;
 import java.io.IOException;

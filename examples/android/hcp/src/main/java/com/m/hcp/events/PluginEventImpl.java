@@ -1,6 +1,6 @@
-package com.nordnetab.chcp.main.events;
+package com.m.hcp.events;
 
-import com.nordnetab.chcp.main.model.ChcpError;
+import com.m.hcp.model.ChcpError;
 
 import java.util.HashMap;
 import java.util.Map;

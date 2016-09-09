@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.network;
+package com.m.hcp.network;
 
 /**
  * Created by Nikolay Demyankov on 28.08.15.

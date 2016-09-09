@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.config;
+package com.m.hcp.config;
 
 import android.text.TextUtils;
 
@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nordnetab.chcp.main.model.ManifestDiff;
-import com.nordnetab.chcp.main.model.ManifestFile;
+import com.m.hcp.model.ManifestDiff;
+import com.m.hcp.model.ManifestFile;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.config;
+package com.m.hcp.config;
 
 /**
  * Created by Nikolay Demyankov on 03.09.15.

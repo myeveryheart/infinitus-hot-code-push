@@ -1,8 +1,8 @@
-package com.nordnetab.chcp.main.model;
+package com.m.hcp.model;
 
 import android.content.Context;
 
-import com.nordnetab.chcp.main.utils.Paths;
+import com.m.hcp.utils.Paths;
 
 /**
  * Created by Nikolay Demyankov on 21.08.15.

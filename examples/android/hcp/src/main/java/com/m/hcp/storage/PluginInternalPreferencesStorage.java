@@ -1,9 +1,9 @@
-package com.nordnetab.chcp.main.storage;
+package com.m.hcp.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.nordnetab.chcp.main.config.PluginInternalPreferences;
+import com.m.hcp.config.PluginInternalPreferences;
 
 /**
  * Created by Nikolay Demyankov on 28.07.15.

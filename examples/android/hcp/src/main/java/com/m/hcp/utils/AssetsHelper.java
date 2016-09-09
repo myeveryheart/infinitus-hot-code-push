@@ -1,10 +1,10 @@
-package com.nordnetab.chcp.main.utils;
+package com.m.hcp.utils;
 
 import android.content.Context;
 
-import com.nordnetab.chcp.main.events.AssetsInstallationErrorEvent;
-import com.nordnetab.chcp.main.events.AssetsInstalledEvent;
-import com.nordnetab.chcp.main.events.BeforeAssetsInstalledEvent;
+import com.m.hcp.events.AssetsInstallationErrorEvent;
+import com.m.hcp.events.AssetsInstalledEvent;
+import com.m.hcp.events.BeforeAssetsInstalledEvent;
 
 import org.greenrobot.eventbus.EventBus;
 

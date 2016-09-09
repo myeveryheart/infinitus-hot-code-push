@@ -1,10 +1,10 @@
-package com.nordnetab.chcp.main.js;
+package com.m.hcp.js;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nordnetab.chcp.main.events.IPluginEvent;
-import com.nordnetab.chcp.main.model.ChcpError;
+import com.m.hcp.events.IPluginEvent;
+import com.m.hcp.model.ChcpError;
 
 import org.apache.cordova.PluginResult;
 

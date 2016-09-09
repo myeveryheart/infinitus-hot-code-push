@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.js;
+package com.m.hcp.js;
 
 /**
  * Created by Nikolay Demyankov on 28.08.15.

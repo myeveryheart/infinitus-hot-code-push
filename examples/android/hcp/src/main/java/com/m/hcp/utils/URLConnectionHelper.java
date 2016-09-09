@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.utils;
+package com.m.hcp.utils;
 
 import java.io.IOException;
 import java.net.URL;

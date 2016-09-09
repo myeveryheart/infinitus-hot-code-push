@@ -1,6 +1,6 @@
-package com.nordnetab.chcp.main.config;
+package com.m.hcp.config;
 
-import com.nordnetab.chcp.main.utils.JSONUtils;
+import com.m.hcp.utils.JSONUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

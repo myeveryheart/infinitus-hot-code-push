@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.config;
+package com.m.hcp.config;
 
 import android.content.Context;
 

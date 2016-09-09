@@ -1,8 +1,8 @@
-package com.nordnetab.chcp.main.storage;
+package com.m.hcp.storage;
 
 import android.text.TextUtils;
 
-import com.nordnetab.chcp.main.utils.FilesUtility;
+import com.m.hcp.utils.FilesUtility;
 
 import java.io.IOException;
 

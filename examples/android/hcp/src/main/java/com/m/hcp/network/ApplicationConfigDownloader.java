@@ -1,6 +1,6 @@
-package com.nordnetab.chcp.main.network;
+package com.m.hcp.network;
 
-import com.nordnetab.chcp.main.config.ApplicationConfig;
+import com.m.hcp.config.ApplicationConfig;
 
 import java.util.Map;
 

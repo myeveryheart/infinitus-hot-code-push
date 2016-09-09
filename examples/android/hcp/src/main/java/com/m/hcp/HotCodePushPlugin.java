@@ -1,50 +1,43 @@
-package com.nordnetab.chcp.main;
+package com.m.hcp;
 
 import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.nordnetab.chcp.main.config.ApplicationConfig;
-import com.nordnetab.chcp.main.config.ChcpXmlConfig;
-import com.nordnetab.chcp.main.config.ContentConfig;
-import com.nordnetab.chcp.main.config.FetchUpdateOptions;
-import com.nordnetab.chcp.main.config.PluginInternalPreferences;
-import com.nordnetab.chcp.main.events.AssetsInstallationErrorEvent;
-import com.nordnetab.chcp.main.events.AssetsInstalledEvent;
-import com.nordnetab.chcp.main.events.BeforeAssetsInstalledEvent;
-import com.nordnetab.chcp.main.events.BeforeInstallEvent;
-import com.nordnetab.chcp.main.events.NothingToInstallEvent;
-import com.nordnetab.chcp.main.events.NothingToUpdateEvent;
-import com.nordnetab.chcp.main.events.UpdateDownloadErrorEvent;
-import com.nordnetab.chcp.main.events.UpdateInstallationErrorEvent;
-import com.nordnetab.chcp.main.events.UpdateInstalledEvent;
-import com.nordnetab.chcp.main.events.UpdateIsReadyToInstallEvent;
-import com.nordnetab.chcp.main.js.JSAction;
-import com.nordnetab.chcp.main.js.PluginResultHelper;
-import com.nordnetab.chcp.main.model.ChcpError;
-import com.nordnetab.chcp.main.model.PluginFilesStructure;
-import com.nordnetab.chcp.main.model.UpdateTime;
-import com.nordnetab.chcp.main.storage.ApplicationConfigStorage;
-import com.nordnetab.chcp.main.storage.IObjectFileStorage;
-import com.nordnetab.chcp.main.storage.IObjectPreferenceStorage;
-import com.nordnetab.chcp.main.storage.PluginInternalPreferencesStorage;
-import com.nordnetab.chcp.main.updater.UpdateDownloadRequest;
-import com.nordnetab.chcp.main.updater.UpdatesInstaller;
-import com.nordnetab.chcp.main.updater.UpdatesLoader;
-import com.nordnetab.chcp.main.utils.AssetsHelper;
-import com.nordnetab.chcp.main.utils.CleanUpHelper;
-import com.nordnetab.chcp.main.utils.Paths;
-import com.nordnetab.chcp.main.utils.VersionHelper;
-import com.nordnetab.chcp.main.view.AppUpdateRequestDialog;
+import com.m.hcp.config.ApplicationConfig;
+import com.m.hcp.config.ChcpXmlConfig;
+import com.m.hcp.config.ContentConfig;
+import com.m.hcp.config.FetchUpdateOptions;
+import com.m.hcp.config.PluginInternalPreferences;
+import com.m.hcp.events.AssetsInstallationErrorEvent;
+import com.m.hcp.events.AssetsInstalledEvent;
+import com.m.hcp.events.BeforeAssetsInstalledEvent;
+import com.m.hcp.events.BeforeInstallEvent;
+import com.m.hcp.events.NothingToInstallEvent;
+import com.m.hcp.events.NothingToUpdateEvent;
+import com.m.hcp.events.UpdateDownloadErrorEvent;
+import com.m.hcp.events.UpdateInstallationErrorEvent;
+import com.m.hcp.events.UpdateInstalledEvent;
+import com.m.hcp.events.UpdateIsReadyToInstallEvent;
+import com.m.hcp.js.JSAction;
+import com.m.hcp.js.PluginResultHelper;
+import com.m.hcp.model.ChcpError;
+import com.m.hcp.model.PluginFilesStructure;
+import com.m.hcp.model.UpdateTime;
+import com.m.hcp.storage.ApplicationConfigStorage;
+import com.m.hcp.storage.IObjectFileStorage;
+import com.m.hcp.storage.IObjectPreferenceStorage;
+import com.m.hcp.storage.PluginInternalPreferencesStorage;
+import com.m.hcp.updater.UpdateDownloadRequest;
+import com.m.hcp.updater.UpdatesInstaller;
+import com.m.hcp.updater.UpdatesLoader;
+import com.m.hcp.utils.AssetsHelper;
+import com.m.hcp.utils.CleanUpHelper;
+import com.m.hcp.utils.Paths;
+import com.m.hcp.utils.VersionHelper;
+import com.m.hcp.view.AppUpdateRequestDialog;
 
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.ConfigXmlParser;
-import org.apache.cordova.CordovaArgs;
-import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
-import org.apache.cordova.PluginResult;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
@@ -61,7 +54,7 @@ import java.util.Map;
  * <p/>
  * Plugin main class.
  */
-public class HotCodePushPlugin extends CordovaPlugin {
+public class HotCodePush {
 
     private static final String FILE_PREFIX = "file://";
     private static final String WWW_FOLDER = "www";
@@ -74,15 +67,9 @@ public class HotCodePushPlugin extends CordovaPlugin {
     private ChcpXmlConfig chcpXmlConfig;
     private PluginFilesStructure fileStructure;
 
-    private CallbackContext installJsCallback;
-    private CallbackContext jsDefaultCallback;
-    private CallbackContext downloadJsCallback;
-
     private Handler handler;
-    private boolean isPluginReadyForWork;
     private boolean dontReloadOnStart;
 
-    private List<PluginResult> defaultCallbackStoredResults;
     private FetchUpdateOptions defaultFetchUpdateOptions;
 
     // region Plugin lifecycle

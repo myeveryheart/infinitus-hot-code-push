@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.config;
+package com.m.hcp.config;
 
 import android.content.Context;
 
@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nordnetab.chcp.main.model.PluginFilesStructure;
-import com.nordnetab.chcp.main.utils.VersionHelper;
+import com.m.hcp.model.PluginFilesStructure;
+import com.m.hcp.utils.VersionHelper;
 
 import java.io.IOException;
 

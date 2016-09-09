@@ -1,10 +1,10 @@
-package com.nordnetab.chcp.main.utils;
+package com.m.hcp.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.nordnetab.chcp.main.model.PluginFilesStructure;
+import com.m.hcp.model.PluginFilesStructure;
 
 import java.io.File;
 

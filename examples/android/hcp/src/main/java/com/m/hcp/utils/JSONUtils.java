@@ -1,4 +1,4 @@
-package com.nordnetab.chcp.main.utils;
+package com.m.hcp.utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

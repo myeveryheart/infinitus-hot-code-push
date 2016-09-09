@@ -1,7 +1,7 @@
-package com.nordnetab.chcp.main.updater;
+package com.m.hcp.updater;
 
-import com.nordnetab.chcp.main.model.ChcpError;
-import com.nordnetab.chcp.main.model.PluginFilesStructure;
+import com.m.hcp.model.ChcpError;
+import com.m.hcp.model.PluginFilesStructure;
 
 import org.greenrobot.eventbus.EventBus;
 
