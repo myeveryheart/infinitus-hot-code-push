@@ -1,15 +1,15 @@
 # Infitinus Hot Code Push
 
-This tool provides functionality to perform automatic updates of the web based content in your application. Basically, everything that is stored in `www` folder of your Infitinus project can be updated using this tool.
+This library provides functionality to perform automatic updates of the web based content in your application. Basically, everything that is stored in `www` folder of your Infitinus project can be updated using this library.
 
 When you publish your application on the store - you pack in it all your web content: html files, JavaScript code, images and so on. There are two ways how you can update it:
 
 1. Publish new version of the app on the store. But it takes time, especially with the App Store.
 2. Sacrifice the offline feature and load all the pages online. But as soon as Internet connection goes down - application won't work.
 
-This tool is intended to fix all that. When user starts the app for the first time - it copies all the web files onto the external storage. From this moment all pages are loaded from the external folder and not from the packed bundle. On every launch tool connects to your server (with optional authentication, see fetchUpdate() below) and checks if the new version of web project is available for download. If so - it loads it on the device and installs on the next launch.
+This library is intended to fix all that. When user starts the app for the first time - it copies all the web files onto the external storage. From this moment all pages are loaded from the external folder and not from the packed bundle. On every launch library connects to your server (with optional authentication, see fetchUpdate() below) and checks if the new version of web project is available for download. If so - it loads it on the device and installs on the next launch.
 
-As a result, your application receives updates of the web content as soon as possible, and still can work in offline mode. Also, tool allows you to specify dependency between the web release and the native version to make sure, that new release will work on the older versions of the application.
+As a result, your application receives updates of the web content as soon as possible, and still can work in offline mode. Also, library allows you to specify dependency between the web release and the native version to make sure, that new release will work on the older versions of the application.
 
 **Is it fine with App Store?** Yes, it is... as long as your content corresponds to what application is intended for and you don't ask user to click some button to update the web content. For more details please refer to [this wiki page](https://github.com/myeveryheart/infitinus-hot-code-push/wiki/App-Store-FAQ).
 
@@ -18,85 +18,82 @@ As a result, your application receives updates of the web content as soon as pos
 - Android 4.0.0 or above. Android Studio 2 is required.
 - iOS 7.0 or above. Xcode 7 is required.
 
-### Installation
+### Installation with CocoaPods for iOS
 
-This requires infitinus 5.0+ (current stable 1.4.0)
+#### Podfile
 
-```sh
-infitinus tool add infitinus-hot-code-push-tool
+To integrate InfinitusHotCodePush into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '7.0'
+
+target 'TargetName' do
+pod 'InfinitusHotCodePush'
+end
 ```
 
-It is also possible to install via repo url directly (__unstable__)
-```sh
-infitinus tool add https://github.com/myeveryheart/infitinus-hot-code-push.git
+Then, run the following command:
+
+```bash
+$ pod install
 ```
 
-At the end of the installation tool will recommend you to install [Infitinus Hot Code Push CLI client](https://github.com/myeveryheart/infitinus-hot-code-push-cli). This client will help you to:
-- easily generate necessary configuration files;
-- launch local server to listen for any changes in the web project and deploy new version immediately on the app.
+I recommend you to install [Infitinus Hot Code Push CLI client](https://github.com/myeveryheart/infitinus-hot-code-push-cli). This client will help you to easily generate necessary configuration files;
 
-Of course, you can use this tool without the CLI client, but it will make your life easier.
+Of course, you can use this library without the CLI client, but it will make your life easier.
 
-### Quick start guide
+## Usage
 
-In this guide we will show how quickly you can test this tool and start using it for development. For that we will install [development add-on](https://github.com/myeveryheart/infitinus-hot-code-push/wiki/Local-Development-Plugin).
+### HCPHelper
 
-1. Create new Infitinus project using command line interface and add iOS/Android platforms:
+`HCPHelper` manages an all task.
 
-  ```sh
-  infitinus create TestProject com.example.testproject TestProject
-  cd ./TestProject
-  infitinus platform add android
-  infitinus platform add ios
-  ```
-  Or use the existing one.
+#### Creating a HCPHelper Instance
 
-2. Add tool:
+```objective-c
+NSURL *webUrl = [NSURL URLWithString:@"http://example.com"];
+HCPHelper *hcpHelper = [[HCPHelper alloc] initWithWebUrl:webUrl];
+```
 
-  ```sh
-  infitinus tool add infitinus-hot-code-push-tool
-  ```
+#### Creating a Fetch Task
 
-3. Add tool for local development:
+```objective-c
+[hcpHelper fetchUpdate:^(BOOL needUpdate, NSError *error)
+{
 
-  ```sh
-  infitinus tool add infitinus-hot-code-push-local-dev-addon
-  ```
+}
+```
 
-4. Install Infitinus Hot Code Push CLI client:
+#### Creating a Download Task
 
-  ```sh
-  npm install -g infitinus-hot-code-push-cli
-  ```
+```objective-c
+[hcpHelper downloadUpdate:^(BOOL success, NSInteger totalFiles, NSInteger fileDownloaded, NSError *error)
+{
 
-5. Start local server by executing:
+}
+```
 
-  ```sh
-  infitinus-hcp server
-  ```
+#### Creating a Install Task
 
-  As a result you will see something like this:
-  ```
-  Running server
-  Checking:  /Infitinus/TestProject/www
-  local_url http://localhost:31284
-  Warning: .chcpignore does not exist.
-  Build 2015.09.02-10.17.48 created in /Infitinus/TestProject/www
-  infitinus-hcp local server available at: http://localhost:31284
-  infitinus-hcp public server available at: https://5027caf9.ngrok.com
-  ```
+```objective-c
+[hcpHelper installUpdate:^(BOOL success, NSError *error)
+{
+  
+}
+```
 
-6. Open new console window, go to the project root and launch the app:
+#### Get The local www Path
 
-  ```sh
-  infitinus run
-  ```
+```objective-c
+NSURL *wwwUrl = [hcpHelper pathToWww];
+```
 
-  Wait until application is launched for both platforms.
+#### Load The www From External Storage Folder Or Not
 
-7. Now open your `index.html` page in `www` folder of the `TestProject`, change something in it and save. In a few seconds you will see updated page on the launched devices (emulators).
-
-From this point you can do local development, where all the changes are uploaded on the devices without the need to restart applications on every change you made.
+```objective-c
+BOOL isLoadFromExternalStorageFolder = [hcpHelper loadFromExternalStorageFolder];
+```
 
 ### Documentation
 
