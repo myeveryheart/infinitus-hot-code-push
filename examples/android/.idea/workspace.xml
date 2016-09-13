@@ -24,10 +24,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HCPHelper.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HCPHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/HCPHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.665529">
               <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -35,16 +35,6 @@
                 <element signature="method#doLocalInit#0;class#HCPHelper#0" expanded="false" />
                 <element signature="method#loadFromExternalStorageFolder#0;class#HCPHelper#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PluginInternalPreferences.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/PluginInternalPreferences.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17918089">
-              <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1813,6 +1803,7 @@
         <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/ContentConfig.java" />
         <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/ContentManifest.java" />
         <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/PluginInternalPreferences.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/XmlTags.java" />
       </list>
     </option>
   </component>
@@ -2600,9 +2591,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/PluginInternalPreferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4112628">
+          <caret line="196" column="10" selection-start-line="196" selection-start-column="10" selection-end-line="196" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/HCPHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.665529">
           <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2610,14 +2609,6 @@
             <element signature="method#doLocalInit#0;class#HCPHelper#0" expanded="false" />
             <element signature="method#loadFromExternalStorageFolder#0;class#HCPHelper#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/PluginInternalPreferences.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17918089">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>

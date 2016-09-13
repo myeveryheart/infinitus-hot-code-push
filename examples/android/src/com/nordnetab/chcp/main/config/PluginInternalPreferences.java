@@ -32,7 +32,7 @@ public class PluginInternalPreferences {
     private String readyForInstallationReleaseVersionName;
 
     /**
-     * Create instance of the object from JSON string.
+     * 从JSON实例化
      *
      * @param json JSON string
      * @return object instance
@@ -81,10 +81,10 @@ public class PluginInternalPreferences {
     }
 
     /**
-     * Create default preferences.
+     * 创建默认配置
      *
-     * @param context application context
-     * @return default plugin internal preferences
+     * @param context context
+     * @return 默认配置
      */
     public static PluginInternalPreferences createDefault(final Context context) {
         final PluginInternalPreferences pluginPrefs = new PluginInternalPreferences();
@@ -104,35 +104,34 @@ public class PluginInternalPreferences {
     }
 
     /**
-     * Getter for build version of the app, which was detected on the last launch.
-     * Using it we can determine if application has been updated through Google Play.
+     * 获取app版本号
      *
-     * @return build version of the app from last launch
+     * @return app版本号
      */
     public int getAppBuildVersion() {
         return appBuildVersion;
     }
 
     /**
-     * Setter for build version.
+     * 设置app版本号
      *
-     * @param appBuildVersion new application build version
+     * @param appBuildVersion app版本号
      */
     public void setAppBuildVersion(int appBuildVersion) {
         this.appBuildVersion = appBuildVersion;
     }
 
     /**
-     * Getter for flag if www folder was installed on the external storage.
+     * www文件夹是否拷贝到外部了
      *
-     * @return <code>true</code> - www folder was installed; otherwise - <code>false</code>
+     * @return <code>true</code> - 是; otherwise - <code>false</code>
      */
     public boolean isWwwFolderInstalled() {
         return wwwFolderInstalled;
     }
 
     /**
-     * Setter for the flag that www folder was installed on the external storage.
+     * 设置www文件夹是否拷贝到外部了
      *
      * @param isWwwFolderInstalled is www folder is installed
      */
@@ -141,61 +140,61 @@ public class PluginInternalPreferences {
     }
 
     /**
-     * Getter for current release version name.
+     * 获取现在的版本
      *
-     * @return current release version name
+     * @return 现在的版本
      */
     public String getCurrentReleaseVersionName() {
         return currentReleaseVersionName;
     }
 
     /**
-     * Setter for current release version name.
+     * 设置现在的版本
      *
-     * @param currentReleaseVersionName current release version
+     * @param currentReleaseVersionName 现在的版本
      */
     public void setCurrentReleaseVersionName(final String currentReleaseVersionName) {
         this.currentReleaseVersionName = currentReleaseVersionName;
     }
 
     /**
-     * Getter for previous release version name.
+     * 获取之前的版本
      *
-     * @return previous release version name
+     * @return 之前的版本
      */
     public String getPreviousReleaseVersionName() {
         return previousReleaseVersionName;
     }
 
     /**
-     * Setter for previous release version name.
+     * 设置之前的版本
      *
-     * @param previousReleaseVersionName previous release version name
+     * @param previousReleaseVersionName 之前的版本
      */
     public void setPreviousReleaseVersionName(String previousReleaseVersionName) {
         this.previousReleaseVersionName = previousReleaseVersionName;
     }
 
     /**
-     * Getter for version, that is ready for installation.
+     * 获取可安装的版本
      *
-     * @return version to install
+     * @return 可安装的版本
      */
     public String getReadyForInstallationReleaseVersionName() {
         return readyForInstallationReleaseVersionName;
     }
 
     /**
-     * Setter for version, that is ready for installation.
+     * 设置可安装的版本
      *
-     * @param readyForInstallationReleaseVersionName version to install
+     * @param readyForInstallationReleaseVersionName 可安装的版本
      */
     public void setReadyForInstallationReleaseVersionName(String readyForInstallationReleaseVersionName) {
         this.readyForInstallationReleaseVersionName = readyForInstallationReleaseVersionName;
     }
 
     /**
-     * Convert object into JSON string
+     * 对象转JSON string
      *
      * @return JSON string
      */
