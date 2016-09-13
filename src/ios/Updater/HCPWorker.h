@@ -15,6 +15,8 @@
  */
 @protocol HCPWorker <NSObject>
 
+@optional
+
 ///**
 // *  每个work分配一个id
 // */
