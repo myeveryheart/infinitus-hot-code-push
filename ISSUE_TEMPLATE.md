@@ -18,17 +18,3 @@ It is really hard to solve the issue if you can't reproduce it. So please, add a
 
 1. do this
 2. do that
-
-If you are using JS API - please, include that code as well in this section.
-
-##### System info
-
-Run `cordova info` (or `ionic info`) and paste it here, or give us information like:
-- Platform: iOS / Android
-- Platform version:
-- Cordova version:
-- Node version:
-
-Also, if plugin works on a clean project, but not on your actual app - please, add the list of the plugins you are using:
-- plugin 1
-- plugin 2
