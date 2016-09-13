@@ -1,9 +1,9 @@
 package com.nordnetab.chcp.main.model;
 
 /**
- * Created by Nikolay Demyankov on 25.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Enum for plugin specific errors.
+ * 枚举错误
  */
 public enum ChcpError {
 
@@ -48,8 +48,7 @@ public enum ChcpError {
     }
 
     /**
-     * Getter for error code.
-     * By this you can determine what went wrong.
+     * 获取错误码
      *
      * @return error code
      */
@@ -58,7 +57,7 @@ public enum ChcpError {
     }
 
     /**
-     * Getter for error description.
+     * 获取错误描述
      *
      * @return error description
      */

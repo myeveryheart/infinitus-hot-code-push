@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Nikolay Demyankov on 21.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Model describes difference between two manifest files.
+ * 两个manifest文件的差异
  *
  * @see ManifestFile
  */
@@ -26,45 +26,45 @@ public class ManifestDiff {
     }
 
     /**
-     * Getter for the list of deleted files.
+     * 获取删除文件
      *
-     * @return deleted files
+     * @return 删除文件
      */
     public List<ManifestFile> deletedFiles() {
         return deleted;
     }
 
     /**
-     * Getter for the list of existing files that has been changed.
+     * 获取修改文件
      *
-     * @return changed files
+     * @return 修改文件
      */
     public List<ManifestFile> changedFiles() {
         return changed;
     }
 
     /**
-     * Getter for the list of new files, that were added to the project.
+     * 获取新增文件
      *
-     * @return added files
+     * @return 新增文件
      */
     public List<ManifestFile> addedFiles() {
         return added;
     }
 
     /**
-     * Check if there is any difference between the manifest files.
+     * 两个manifest是否一样
      *
-     * @return <code>true</code> if manifest files are the same; <code>false</code> - otherwise
+     * @return <code>true</code> 是; <code>false</code> - otherwise
      */
     public boolean isEmpty() {
         return added.isEmpty() && changed.isEmpty() && deleted.isEmpty();
     }
 
     /**
-     * Getter for the combined list of added and changed files.
+     * 获取新增的和修改的文件
      *
-     * @return list of changed and added files
+     * @return 新增的和修改的文件
      */
     public List<ManifestFile> getUpdateFiles() {
         List<ManifestFile> updateList = new ArrayList<ManifestFile>();

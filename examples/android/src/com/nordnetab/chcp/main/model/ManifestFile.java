@@ -1,7 +1,7 @@
 package com.nordnetab.chcp.main.model;
 
 /**
- * Created by Nikolay Demyankov on 21.08.15.
+ * Created by M on 16/9/9.
  * <p/>
  * Model holds information about file in web project.
  */
