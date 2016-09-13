@@ -9,18 +9,19 @@ import android.util.Log;
 import com.nordnetab.chcp.main.config.ApplicationConfig;
 import com.nordnetab.chcp.main.config.ChcpXmlConfig;
 import com.nordnetab.chcp.main.config.PluginInternalPreferences;
+import com.nordnetab.chcp.main.events.UpdateDownloadErrorEvent;
+import com.nordnetab.chcp.main.js.PluginResultHelper;
+import com.nordnetab.chcp.main.model.ChcpError;
 import com.nordnetab.chcp.main.model.PluginFilesStructure;
 import com.nordnetab.chcp.main.storage.ApplicationConfigStorage;
 import com.nordnetab.chcp.main.storage.IObjectFileStorage;
 import com.nordnetab.chcp.main.storage.IObjectPreferenceStorage;
 import com.nordnetab.chcp.main.storage.PluginInternalPreferencesStorage;
+import com.nordnetab.chcp.main.updater.UpdatesLoader;
 import com.nordnetab.chcp.main.utils.AssetsHelper;
 import com.nordnetab.chcp.main.utils.CleanUpHelper;
 import com.nordnetab.chcp.main.utils.ContextUtil;
 import com.nordnetab.chcp.main.utils.VersionHelper;
-
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.PluginResult;
 
 import java.io.File;
 import java.net.URL;
@@ -49,8 +50,9 @@ public class HCPHelper {
     private URL webUrl;
     private static Context context;
     private static HCPHelper helper;
+    private HCPResult hcpResult;
 
-    public static HCPHelper instance(Context ctx)
+    public static HCPHelper getInstance(Context ctx)
     {
         if (helper == null)
         {
@@ -61,7 +63,31 @@ public class HCPHelper {
         return helper;
     }
 
+    public void setListener(HCPResult listener)
+    {
+        hcpResult = listener;
+    }
 
+    public void setWebUrl(URL webUrl)
+    {
+        this.webUrl = webUrl;
+        doLocalInit();
+        Log.d("CHCP", "Currently running release version " + pluginInternalPrefs.getCurrentReleaseVersionName());
+
+        // clean up file system
+        if (!TextUtils.isEmpty(pluginInternalPrefs.getCurrentReleaseVersionName())) {
+            CleanUpHelper.removeReleaseFolders(context,
+                    new String[]{pluginInternalPrefs.getCurrentReleaseVersionName(),
+                            pluginInternalPrefs.getPreviousReleaseVersionName(),
+                            pluginInternalPrefs.getReadyForInstallationReleaseVersionName()
+                    }
+            );
+        }
+
+        handler = new Handler();
+        fileStructure = new PluginFilesStructure(context, pluginInternalPrefs.getCurrentReleaseVersionName());
+        appConfigStorage = new ApplicationConfigStorage();
+    }
 
     /**
      *  初始化
@@ -96,6 +122,8 @@ public class HCPHelper {
         return helper;
     }
 
+
+
     private void doLocalInit()
     {
         // 初始化config
@@ -126,15 +154,36 @@ public class HCPHelper {
         return true;
     }
 
+    /**
+     *  检查更新
+     */
     public void fetchUpdate()
     {
-        fetchUpdateResult(true, null);
+        final PluginFilesStructure currentReleaseFS = new PluginFilesStructure(context, pluginInternalPrefs.getCurrentReleaseVersionName());
+        final ChcpError error = UpdatesLoader.downloadUpdate(chcpXmlConfig.getConfigUrl(), currentReleaseFS, chcpXmlConfig.getNativeInterfaceVersion());
+        if (error != ChcpError.NONE) {
+            hcpResult.fetchUpdateResult(false, error);
+        }
+        else {
+            hcpResult.fetchUpdateResult(true, null);
+        }
     }
 
-    public void fetchUpdateResult(boolean needUpdate, Error error)
+    /**
+     *  下载更新
+     */
+    public void downloadUpdate()
     {
-
+        final PluginFilesStructure currentReleaseFS = new PluginFilesStructure(context, pluginInternalPrefs.getCurrentReleaseVersionName());
+        final ChcpError error = UpdatesLoader.downloadUpdate(chcpXmlConfig.getConfigUrl(), currentReleaseFS, chcpXmlConfig.getNativeInterfaceVersion());
+        if (error != ChcpError.NONE) {
+            hcpResult.fetchUpdateResult(false, error);
+        }
+        else {
+            hcpResult.fetchUpdateResult(true, null);
+        }
     }
+
 
     private boolean isWWwFolderNeedsToBeInstalled()
     {

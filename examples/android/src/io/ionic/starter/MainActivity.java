@@ -21,13 +21,16 @@ package io.ionic.starter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.nordnetab.chcp.main.HCPHelper;
+import com.nordnetab.chcp.main.HCPResult;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class MainActivity extends Activity
+public class MainActivity extends Activity implements HCPResult
 {
     HCPHelper helper;
 
@@ -37,11 +40,24 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
 
 
-        helper = HCPHelper.instance(this);
-        URL url = new URL("");
-        helper.initWithWebUrl(new URL(""));
+        helper = HCPHelper.getInstance(this);
+        helper.setListener(this);
+
+
+        try {
+            URL url = new URL("");
+            helper.setWebUrl(url);
+            helper.fetchUpdate();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
-
+    @Override
+    public void fetchUpdateResult(boolean needUpdate, Error error) {
+        Log.d("rrrrr","ddddd");
+    }
 }
