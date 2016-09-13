@@ -20,9 +20,9 @@ import java.net.URLConnection;
 import java.util.List;
 
 /**
- * Created by Nikolay Demyankov on 22.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Helper class to download files.
+ * 下载文件
  */
 public class FileDownloader {
 
@@ -33,15 +33,11 @@ public class FileDownloader {
     private static final int READ_TIMEOUT = 30000;
 
     /**
-     * Download list of files.
-     * Full url to the file is constructed from the contentFolderUrl and ManifestFile#hash (relative path).
-     * For each downloaded file we perform check of his hash. If it is different from the one, that provided
-     * if ManifestFile#hash - exception will be thrown.
-     * Download stops on any error.
+     * 异步下载文件
      *
-     * @param downloadFolder   absolute path to the folder, where downloaded files should be placed
-     * @param contentFolderUrl root url on the server, where all files are located
-     * @param files            list of files to download
+     * @param downloadFolder   存储url
+     * @param contentFolderUrl 文件url
+     * @param files            文件列表
      * @throws IOException
      * @see ManifestFile
      */
@@ -54,11 +50,11 @@ public class FileDownloader {
     }
 
     /**
-     * Download file from server, save it on the disk and check his hash.
+     * 异步下载
      *
-     * @param urlFrom  url to download from
-     * @param filePath where to save file
-     * @param checkSum checksum of the file
+     * @param urlFrom  下载的url
+     * @param filePath 存储url
+     * @param checkSum HASH
      * @throws IOException
      */
     public static void download(final String urlFrom, final String filePath, final String checkSum) throws IOException {

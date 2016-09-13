@@ -1,19 +1,19 @@
 package com.nordnetab.chcp.main.network;
 
 /**
- * Created by Nikolay Demyankov on 28.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Class holds information about download result like it's value and error details.
+ * 下载结果
  */
 public class DownloadResult<T> {
 
     /**
-     * Loaded data
+     * 下载的data
      */
     public final T value;
 
     /**
-     * Occurred error, if any
+     * 错误
      */
     public final Exception error;
 

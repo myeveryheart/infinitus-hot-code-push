@@ -3,9 +3,9 @@ package com.nordnetab.chcp.main.network;
 import com.nordnetab.chcp.main.config.ApplicationConfig;
 
 /**
- * Created by Nikolay Demyankov on 24.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Helper class to download application config from the server.
+ * 下载config文件
  *
  * @see ApplicationConfig
  * @see DownloadResult
@@ -15,7 +15,7 @@ public class ApplicationConfigDownloader extends JsonDownloader<ApplicationConfi
     /**
      * Class constructor
      *
-     * @param url url from where to download application config
+     * @param url config url
      */
     public ApplicationConfigDownloader(String url) {
         super(url);

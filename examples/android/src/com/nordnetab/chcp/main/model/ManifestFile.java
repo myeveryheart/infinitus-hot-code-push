@@ -3,26 +3,25 @@ package com.nordnetab.chcp.main.model;
 /**
  * Created by M on 16/9/9.
  * <p/>
- * Model holds information about file in web project.
+ * mainifest
  */
 public class ManifestFile {
 
     /**
-     * Relative path to the file inside the web project.
+     * 名字
      */
     public final String name;
 
     /**
-     * Hash of the file.
-     * By this we will detect if project file has changed.
+     * HASH
      */
     public final String hash;
 
     /**
      * Class constructor
      *
-     * @param name relative path to the file in project
-     * @param hash hash of the file
+     * @param name 名字
+     * @param hash HASH
      */
     public ManifestFile(String name, String hash) {
         this.name = name;

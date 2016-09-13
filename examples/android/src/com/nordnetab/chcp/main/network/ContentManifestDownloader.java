@@ -3,9 +3,9 @@ package com.nordnetab.chcp.main.network;
 import com.nordnetab.chcp.main.config.ContentManifest;
 
 /**
- * Created by Nikolay Demyankov on 22.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Helper class to download content manifest file from the server.
+ * 下载manifest文件
  *
  * @see ContentManifest
  * @see DownloadResult
@@ -15,7 +15,7 @@ public class ContentManifestDownloader extends JsonDownloader<ContentManifest> {
     /**
      * Class constructor
      *
-     * @param url url from where to download manifest
+     * @param url manifest url
      */
     public ContentManifestDownloader(String url) {
         super(url);

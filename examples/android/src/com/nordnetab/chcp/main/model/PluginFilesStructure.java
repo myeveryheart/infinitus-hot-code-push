@@ -5,20 +5,19 @@ import android.content.Context;
 import com.nordnetab.chcp.main.utils.Paths;
 
 /**
- * Created by Nikolay Demyankov on 21.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * <p/>
- * Model for plugins working files and folders.
+ * 文件结构
  */
 public class PluginFilesStructure {
 
     /**
-     * Application config file name.
+     * config文件的名字
      */
     public static final String CONFIG_FILE_NAME = "chcp.json";
 
     /**
-     * Manifest file name.
+     * manifest文件的名字
      */
     public static final String MANIFEST_FILE_NAME = "chcp.manifest";
 
@@ -32,10 +31,10 @@ public class PluginFilesStructure {
     private String downloadFolder;
 
     /**
-     * Get root folder, where all plugin files are located.
+     * 获取更新的根目录
      *
      * @param context application context
-     * @return absolute path to root folder
+     * @return 更新的根目录
      */
     public static String getPluginRootFolder(final Context context) {
         return Paths.get(context.getFilesDir().getAbsolutePath(), PLUGIN_FOLDER);
@@ -46,7 +45,7 @@ public class PluginFilesStructure {
      * Constructor.
      *
      * @param context        application context
-     * @param releaseVersion version name, for which we need file structure.
+     * @param releaseVersion 文件版本
      */
     public PluginFilesStructure(final Context context, final String releaseVersion) {
         // uncomment this line, if you want store files on sdcard instead of application file directory
@@ -55,9 +54,9 @@ public class PluginFilesStructure {
     }
 
     /**
-     * Switch model to another release.
+     * 切换版本
      *
-     * @param releaseVersion to what release we are switching
+     * @param releaseVersion 切换到哪个版本
      */
     public void switchToRelease(final String releaseVersion) {
         int idx = contentFolder.lastIndexOf("/");
@@ -69,18 +68,18 @@ public class PluginFilesStructure {
     }
 
     /**
-     * Getter for version content folder.
+     * 获取更新目录的绝对路径
      *
-     * @return content folder absolute path
+     * @return 更新目录的绝对路径
      */
     public String getContentFolder() {
         return contentFolder;
     }
 
     /**
-     * Getter for version's www folder: where all web project files are located.
+     * 获取web文件在外部存储的绝对路径
      *
-     * @return www folder absolute path
+     * @return web文件在外部存储的绝对路径
      */
     public String getWwwFolder() {
         if (wwwFolder == null) {
@@ -91,9 +90,9 @@ public class PluginFilesStructure {
     }
 
     /**
-     * Getter for the folder, where downloaded content is placed.
+     * 获取存储下载文件的文件夹绝对路径
      *
-     * @return download folder absolute path
+     * @return 存储下载文件的文件夹绝对路径
      */
     public String getDownloadFolder() {
         if (downloadFolder == null) {

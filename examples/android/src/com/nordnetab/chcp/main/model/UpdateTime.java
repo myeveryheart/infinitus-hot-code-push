@@ -1,30 +1,25 @@
 package com.nordnetab.chcp.main.model;
 
 /**
- * Created by Nikolay Demyankov on 27.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Enum holds list of options, when we should perform the update.
+ * 枚举更新类型
  */
 public enum UpdateTime {
     /**
-     * Value is undefined
+     * 未定义
      */
     UNDEFINED(""),
 
     /**
-     * Update should be performed on application start
+     * 强制更新
      */
-    ON_START("start"),
+    FORCED("forced"),
 
     /**
-     * Update should be performed when application is resumed
+     * 静默更新
      */
-    ON_RESUME("resume"),
-
-    /**
-     * Update should be performed as soon as possible. For example, when download is finished.
-     */
-    NOW("now");
+    SILENT("silent");
 
     private String value;
 
@@ -33,18 +28,16 @@ public enum UpdateTime {
     }
 
     /**
-     * Convert string value to enum instance.
+     * string转enum
      *
      * @param value string value
      * @return enum value
      */
     public static UpdateTime fromString(String value) {
-        if ("start".equals(value)) {
-            return ON_START;
-        } else if ("resume".equals(value)) {
-            return ON_RESUME;
-        } else if ("now".equals(value)) {
-            return NOW;
+        if ("forced".equals(value)) {
+            return FORCED;
+        } else if ("silent".equals(value)) {
+            return SILENT;
         }
 
         return UNDEFINED;

@@ -8,10 +8,9 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * Created by Nikolay Demyankov on 22.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Helper class to download JSON and convert it into appropriate object.
- * Used internally.
+ * 下载JSON然后转成对象
  *
  * @see DownloadResult
  */
