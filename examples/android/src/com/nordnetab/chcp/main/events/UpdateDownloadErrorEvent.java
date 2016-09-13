@@ -4,9 +4,9 @@ import com.nordnetab.chcp.main.config.ApplicationConfig;
 import com.nordnetab.chcp.main.model.ChcpError;
 
 /**
- * Created by Nikolay Demyankov on 25.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Event is send when some error happened during the update download.
+ * 下载文件出错
  */
 public class UpdateDownloadErrorEvent extends WorkerEvent {
 
@@ -15,8 +15,8 @@ public class UpdateDownloadErrorEvent extends WorkerEvent {
     /**
      * Class constructor.
      *
-     * @param error  error information
-     * @param config application config that was used for update download
+     * @param error  错误
+     * @param config 使用的config
      */
     public UpdateDownloadErrorEvent(ChcpError error, ApplicationConfig config) {
         super(EVENT_NAME, error, config);

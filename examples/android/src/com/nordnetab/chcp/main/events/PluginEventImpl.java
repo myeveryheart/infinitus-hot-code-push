@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Nikolay Demyankov on 25.08.15.
+ * Created by M on 16/9/9.
  * <p/>
  * Implementation of the IPluginEvent interface.
  * Also, base class for all plugin specific events.

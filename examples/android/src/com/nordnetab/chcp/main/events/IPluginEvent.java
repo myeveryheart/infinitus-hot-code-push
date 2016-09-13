@@ -5,7 +5,7 @@ import com.nordnetab.chcp.main.model.ChcpError;
 import java.util.Map;
 
 /**
- * Created by Nikolay Demyankov on 28.08.15.
+ * Created by M on 16/9/9.
  * <p/>
  * Interface describes plugin specific events.
  */

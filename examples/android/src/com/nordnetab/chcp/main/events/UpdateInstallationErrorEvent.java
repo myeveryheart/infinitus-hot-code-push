@@ -4,9 +4,9 @@ import com.nordnetab.chcp.main.config.ApplicationConfig;
 import com.nordnetab.chcp.main.model.ChcpError;
 
 /**
- * Created by Nikolay Demyankov on 25.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Event is send when some error has happened during the installation process.
+ * 安装过程出错
  */
 public class UpdateInstallationErrorEvent extends WorkerEvent {
 
@@ -15,8 +15,8 @@ public class UpdateInstallationErrorEvent extends WorkerEvent {
     /**
      * Class constructor.
      *
-     * @param error  error details
-     * @param config application config that was used for installation process
+     * @param error  错误
+     * @param config 使用的config
      */
     public UpdateInstallationErrorEvent(ChcpError error, ApplicationConfig config) {
         super(EVENT_NAME, error, config);

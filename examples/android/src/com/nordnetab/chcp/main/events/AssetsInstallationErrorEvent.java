@@ -3,9 +3,9 @@ package com.nordnetab.chcp.main.events;
 import com.nordnetab.chcp.main.model.ChcpError;
 
 /**
- * Created by Nikolay Demyankov on 28.08.15.
+ * Created by M on 16/9/9.
  *
- * Event is send when error occurred while copying assets from bundle onto external storage.
+ * 从assets拷贝到external storage出错
  */
 public class AssetsInstallationErrorEvent extends PluginEventImpl {
 

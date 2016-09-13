@@ -24,10 +24,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HCPHelper.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HCPHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/HCPHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.665529">
+            <state vertical-scroll-proportion="0.0">
               <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -35,6 +35,16 @@
                 <element signature="method#doLocalInit#0;class#HCPHelper#0" expanded="false" />
                 <element signature="method#loadFromExternalStorageFolder#0;class#HCPHelper#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorkerEvent.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/WorkerEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3327645">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1804,6 +1814,19 @@
         <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/ContentManifest.java" />
         <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/PluginInternalPreferences.java" />
         <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/config/XmlTags.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/AssetsInstallationErrorEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/IPluginEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/PluginEventImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/WorkerEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/AssetsInstalledEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/BeforeAssetsInstalledEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/BeforeInstallEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/NothingToInstallEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/NothingToUpdateEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/UpdateDownloadErrorEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/UpdateInstallationErrorEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/UpdateInstalledEvent.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/UpdateIsReadyToInstallEvent.java" />
       </list>
     </option>
   </component>
@@ -1908,7 +1931,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="events" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2261,16 +2284,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/HotCodePushPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="429" column="55" selection-start-line="429" selection-start-column="45" selection-end-line="429" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/HCPHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2599,9 +2612,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/AssetsInstallationErrorEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17918089">
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/AssetsInstalledEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12798634">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/BeforeAssetsInstalledEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12798634">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/BeforeInstallEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/IPluginEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/NothingToInstallEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/NothingToUpdateEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17918089">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/PluginEventImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.07508533">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/UpdateDownloadErrorEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43515357">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/UpdateInstallationErrorEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43515357">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/UpdateInstalledEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4095563">
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/UpdateIsReadyToInstallEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4095563">
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/HCPHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.665529">
+        <state vertical-scroll-proportion="0.0">
           <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2609,6 +2718,14 @@
             <element signature="method#doLocalInit#0;class#HCPHelper#0" expanded="false" />
             <element signature="method#loadFromExternalStorageFolder#0;class#HCPHelper#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/chcp/main/events/WorkerEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3327645">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,9 +1,9 @@
 package com.nordnetab.chcp.main.events;
 
 /**
- * Created by Nikolay Demyankov on 28.08.15.
+ * Created by M on 16/9/9.
  *
- * Event is send when plugin successfully copied assets from the bundle into external storage.
+ * 从assets拷贝到external storage成功
  */
 public class AssetsInstalledEvent extends PluginEventImpl {
 

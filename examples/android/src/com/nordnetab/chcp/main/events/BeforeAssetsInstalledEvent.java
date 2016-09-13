@@ -1,9 +1,9 @@
 package com.nordnetab.chcp.main.events;
 
 /**
- * Created by Nikolay Demyankov on 09.03.16.
+ * Created by M on 16/9/9.
  *
- * Event is dispatched right before plugin will start installing application assets on the external storage.
+ * 即将从assets拷贝到external storage
  */
 public class BeforeAssetsInstalledEvent extends PluginEventImpl {
 

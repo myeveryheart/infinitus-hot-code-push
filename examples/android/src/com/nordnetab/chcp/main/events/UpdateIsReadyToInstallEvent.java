@@ -3,9 +3,9 @@ package com.nordnetab.chcp.main.events;
 import com.nordnetab.chcp.main.config.ApplicationConfig;
 
 /**
- * Created by Nikolay Demyankov on 25.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Event is send when update is successfully loaded and ready for installation.
+ * 更新文件可以安装
  */
 public class UpdateIsReadyToInstallEvent extends WorkerEvent {
 
@@ -14,7 +14,7 @@ public class UpdateIsReadyToInstallEvent extends WorkerEvent {
     /**
      * Class constructor
      *
-     * @param config application config that was used for update download
+     * @param config 使用的config
      */
     public UpdateIsReadyToInstallEvent(ApplicationConfig config) {
         super(EVENT_NAME, null, config);

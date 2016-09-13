@@ -4,9 +4,9 @@ import com.nordnetab.chcp.main.config.ApplicationConfig;
 import com.nordnetab.chcp.main.model.ChcpError;
 
 /**
- * Created by Nikolay Demyankov on 25.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Event is send when there is nothing new to download from server.
+ * 不需要下载更新
  */
 public class NothingToUpdateEvent extends WorkerEvent {
 
