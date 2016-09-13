@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "InfinitusHotCodePush"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "This tool provides functionality to perform automatic updates of the web based content in your application."
   s.homepage     = "https://github.com/myeveryheart/infinitus-hot-code-push"
   s.license      = "MIT"
