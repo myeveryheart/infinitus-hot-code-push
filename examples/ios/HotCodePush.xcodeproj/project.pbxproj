@@ -12,30 +12,30 @@
 		0C3805651D703A970023BD77 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0C3805641D703A970023BD77 /* config.xml */; };
 		0CB17DF51D7586260030264E /* UpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB17DF31D7586260030264E /* UpdateViewController.m */; };
 		0CB17DF61D7586260030264E /* UpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB17DF41D7586260030264E /* UpdateViewController.xib */; };
-		0CC4A9F21D87F202007B4130 /* HCPApplicationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9B91D87F202007B4130 /* HCPApplicationConfig.m */; };
-		0CC4A9F31D87F202007B4130 /* HCPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9BB1D87F202007B4130 /* HCPConfig.m */; };
-		0CC4A9F41D87F202007B4130 /* HCPContentConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9BD1D87F202007B4130 /* HCPContentConfig.m */; };
-		0CC4A9F51D87F202007B4130 /* HCPContentManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9BF1D87F202007B4130 /* HCPContentManifest.m */; };
-		0CC4A9F61D87F202007B4130 /* HCPInternalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9C11D87F202007B4130 /* HCPInternalPreferences.m */; };
-		0CC4A9F71D87F202007B4130 /* HCPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9C41D87F202007B4130 /* HCPHelper.m */; };
-		0CC4A9F81D87F202007B4130 /* HCPFilesStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9C71D87F202007B4130 /* HCPFilesStructure.m */; };
-		0CC4A9F91D87F202007B4130 /* HCPManifestDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9CA1D87F202007B4130 /* HCPManifestDiff.m */; };
-		0CC4A9FA1D87F202007B4130 /* HCPManifestFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9CC1D87F202007B4130 /* HCPManifestFile.m */; };
-		0CC4A9FB1D87F202007B4130 /* HCPFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9CF1D87F202007B4130 /* HCPFileDownloader.m */; };
-		0CC4A9FC1D87F202007B4130 /* HCPApplicationConfigStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9D21D87F202007B4130 /* HCPApplicationConfigStorage.m */; };
-		0CC4A9FD1D87F202007B4130 /* HCPConfigStorageImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9D51D87F202007B4130 /* HCPConfigStorageImpl.m */; };
-		0CC4A9FE1D87F202007B4130 /* HCPContentManifestStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9D71D87F202007B4130 /* HCPContentManifestStorage.m */; };
-		0CC4A9FF1D87F202007B4130 /* HCPInternalPreferences+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9D91D87F202007B4130 /* HCPInternalPreferences+UserDefaults.m */; };
-		0CC4AA001D87F202007B4130 /* HCPInstallationWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9DC1D87F202007B4130 /* HCPInstallationWorker.m */; };
-		0CC4AA011D87F202007B4130 /* HCPUpdateLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9DE1D87F202007B4130 /* HCPUpdateLoader.m */; };
-		0CC4AA021D87F202007B4130 /* HCPUpdateLoaderWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9E01D87F202007B4130 /* HCPUpdateLoaderWorker.m */; };
-		0CC4AA031D87F202007B4130 /* HCPAssetsFolderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9E41D87F202007B4130 /* HCPAssetsFolderHelper.m */; };
-		0CC4AA041D87F202007B4130 /* HCPCleanupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9E61D87F202007B4130 /* HCPCleanupHelper.m */; };
-		0CC4AA051D87F202007B4130 /* NSBundle+HCPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9E81D87F202007B4130 /* NSBundle+HCPExtension.m */; };
-		0CC4AA061D87F202007B4130 /* NSData+HCPMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9EA1D87F202007B4130 /* NSData+HCPMD5.m */; };
-		0CC4AA071D87F202007B4130 /* NSError+HCPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9EC1D87F202007B4130 /* NSError+HCPExtension.m */; };
-		0CC4AA081D87F202007B4130 /* NSFileManager+HCPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9EE1D87F202007B4130 /* NSFileManager+HCPExtension.m */; };
-		0CC4AA091D87F202007B4130 /* NSJSONSerialization+HCPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC4A9F01D87F202007B4130 /* NSJSONSerialization+HCPExtension.m */; };
+		0CDB5BFC1D88203E005C5306 /* HCPApplicationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BC41D88203E005C5306 /* HCPApplicationConfig.m */; };
+		0CDB5BFD1D88203E005C5306 /* HCPConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BC61D88203E005C5306 /* HCPConfig.m */; };
+		0CDB5BFE1D88203E005C5306 /* HCPContentConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BC81D88203E005C5306 /* HCPContentConfig.m */; };
+		0CDB5BFF1D88203E005C5306 /* HCPContentManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BCA1D88203E005C5306 /* HCPContentManifest.m */; };
+		0CDB5C001D88203E005C5306 /* HCPInternalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BCC1D88203E005C5306 /* HCPInternalPreferences.m */; };
+		0CDB5C011D88203E005C5306 /* HCPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BCF1D88203E005C5306 /* HCPHelper.m */; };
+		0CDB5C021D88203E005C5306 /* HCPFilesStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BD21D88203E005C5306 /* HCPFilesStructure.m */; };
+		0CDB5C031D88203E005C5306 /* HCPManifestDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BD51D88203E005C5306 /* HCPManifestDiff.m */; };
+		0CDB5C041D88203E005C5306 /* HCPManifestFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BD71D88203E005C5306 /* HCPManifestFile.m */; };
+		0CDB5C051D88203E005C5306 /* HCPFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BDA1D88203E005C5306 /* HCPFileDownloader.m */; };
+		0CDB5C061D88203E005C5306 /* HCPApplicationConfigStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BDD1D88203E005C5306 /* HCPApplicationConfigStorage.m */; };
+		0CDB5C071D88203E005C5306 /* HCPConfigStorageImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BE01D88203E005C5306 /* HCPConfigStorageImpl.m */; };
+		0CDB5C081D88203E005C5306 /* HCPContentManifestStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BE21D88203E005C5306 /* HCPContentManifestStorage.m */; };
+		0CDB5C091D88203E005C5306 /* HCPInternalPreferences+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BE41D88203E005C5306 /* HCPInternalPreferences+UserDefaults.m */; };
+		0CDB5C0A1D88203E005C5306 /* HCPInstallationWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BE71D88203E005C5306 /* HCPInstallationWorker.m */; };
+		0CDB5C0B1D88203E005C5306 /* HCPUpdateLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BE91D88203E005C5306 /* HCPUpdateLoader.m */; };
+		0CDB5C0C1D88203E005C5306 /* HCPUpdateLoaderWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BEB1D88203E005C5306 /* HCPUpdateLoaderWorker.m */; };
+		0CDB5C0D1D88203E005C5306 /* HCPAssetsFolderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BEF1D88203E005C5306 /* HCPAssetsFolderHelper.m */; };
+		0CDB5C0E1D88203E005C5306 /* HCPCleanupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BF11D88203E005C5306 /* HCPCleanupHelper.m */; };
+		0CDB5C0F1D88203E005C5306 /* NSBundle+HCPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BF31D88203E005C5306 /* NSBundle+HCPExtension.m */; };
+		0CDB5C101D88203E005C5306 /* NSData+HCPMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BF51D88203E005C5306 /* NSData+HCPMD5.m */; };
+		0CDB5C111D88203E005C5306 /* NSError+HCPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BF71D88203E005C5306 /* NSError+HCPExtension.m */; };
+		0CDB5C121D88203E005C5306 /* NSFileManager+HCPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BF91D88203E005C5306 /* NSFileManager+HCPExtension.m */; };
+		0CDB5C131D88203E005C5306 /* NSJSONSerialization+HCPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB5BFB1D88203E005C5306 /* NSJSONSerialization+HCPExtension.m */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
@@ -70,58 +70,58 @@
 		0CB17DF21D7586260030264E /* UpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateViewController.h; sourceTree = "<group>"; };
 		0CB17DF31D7586260030264E /* UpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateViewController.m; sourceTree = "<group>"; };
 		0CB17DF41D7586260030264E /* UpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateViewController.xib; sourceTree = "<group>"; };
-		0CC4A9B81D87F202007B4130 /* HCPApplicationConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPApplicationConfig.h; sourceTree = "<group>"; };
-		0CC4A9B91D87F202007B4130 /* HCPApplicationConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPApplicationConfig.m; sourceTree = "<group>"; };
-		0CC4A9BA1D87F202007B4130 /* HCPConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPConfig.h; sourceTree = "<group>"; };
-		0CC4A9BB1D87F202007B4130 /* HCPConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPConfig.m; sourceTree = "<group>"; };
-		0CC4A9BC1D87F202007B4130 /* HCPContentConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPContentConfig.h; sourceTree = "<group>"; };
-		0CC4A9BD1D87F202007B4130 /* HCPContentConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPContentConfig.m; sourceTree = "<group>"; };
-		0CC4A9BE1D87F202007B4130 /* HCPContentManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPContentManifest.h; sourceTree = "<group>"; };
-		0CC4A9BF1D87F202007B4130 /* HCPContentManifest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPContentManifest.m; sourceTree = "<group>"; };
-		0CC4A9C01D87F202007B4130 /* HCPInternalPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPInternalPreferences.h; sourceTree = "<group>"; };
-		0CC4A9C11D87F202007B4130 /* HCPInternalPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPInternalPreferences.m; sourceTree = "<group>"; };
-		0CC4A9C21D87F202007B4130 /* HCPBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCPBlock.h; path = ../../../../src/ios/HCPBlock.h; sourceTree = "<group>"; };
-		0CC4A9C31D87F202007B4130 /* HCPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCPHelper.h; path = ../../../../src/ios/HCPHelper.h; sourceTree = "<group>"; };
-		0CC4A9C41D87F202007B4130 /* HCPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCPHelper.m; path = ../../../../src/ios/HCPHelper.m; sourceTree = "<group>"; };
-		0CC4A9C61D87F202007B4130 /* HCPFilesStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPFilesStructure.h; sourceTree = "<group>"; };
-		0CC4A9C71D87F202007B4130 /* HCPFilesStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPFilesStructure.m; sourceTree = "<group>"; };
-		0CC4A9C81D87F202007B4130 /* HCPJsonConvertable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPJsonConvertable.h; sourceTree = "<group>"; };
-		0CC4A9C91D87F202007B4130 /* HCPManifestDiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPManifestDiff.h; sourceTree = "<group>"; };
-		0CC4A9CA1D87F202007B4130 /* HCPManifestDiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPManifestDiff.m; sourceTree = "<group>"; };
-		0CC4A9CB1D87F202007B4130 /* HCPManifestFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPManifestFile.h; sourceTree = "<group>"; };
-		0CC4A9CC1D87F202007B4130 /* HCPManifestFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPManifestFile.m; sourceTree = "<group>"; };
-		0CC4A9CE1D87F202007B4130 /* HCPFileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPFileDownloader.h; sourceTree = "<group>"; };
-		0CC4A9CF1D87F202007B4130 /* HCPFileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPFileDownloader.m; sourceTree = "<group>"; };
-		0CC4A9D11D87F202007B4130 /* HCPApplicationConfigStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPApplicationConfigStorage.h; sourceTree = "<group>"; };
-		0CC4A9D21D87F202007B4130 /* HCPApplicationConfigStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPApplicationConfigStorage.m; sourceTree = "<group>"; };
-		0CC4A9D31D87F202007B4130 /* HCPConfigFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPConfigFileStorage.h; sourceTree = "<group>"; };
-		0CC4A9D41D87F202007B4130 /* HCPConfigStorageImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPConfigStorageImpl.h; sourceTree = "<group>"; };
-		0CC4A9D51D87F202007B4130 /* HCPConfigStorageImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPConfigStorageImpl.m; sourceTree = "<group>"; };
-		0CC4A9D61D87F202007B4130 /* HCPContentManifestStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPContentManifestStorage.h; sourceTree = "<group>"; };
-		0CC4A9D71D87F202007B4130 /* HCPContentManifestStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPContentManifestStorage.m; sourceTree = "<group>"; };
-		0CC4A9D81D87F202007B4130 /* HCPInternalPreferences+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HCPInternalPreferences+UserDefaults.h"; sourceTree = "<group>"; };
-		0CC4A9D91D87F202007B4130 /* HCPInternalPreferences+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HCPInternalPreferences+UserDefaults.m"; sourceTree = "<group>"; };
-		0CC4A9DB1D87F202007B4130 /* HCPInstallationWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPInstallationWorker.h; sourceTree = "<group>"; };
-		0CC4A9DC1D87F202007B4130 /* HCPInstallationWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPInstallationWorker.m; sourceTree = "<group>"; };
-		0CC4A9DD1D87F202007B4130 /* HCPUpdateLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPUpdateLoader.h; sourceTree = "<group>"; };
-		0CC4A9DE1D87F202007B4130 /* HCPUpdateLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPUpdateLoader.m; sourceTree = "<group>"; };
-		0CC4A9DF1D87F202007B4130 /* HCPUpdateLoaderWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPUpdateLoaderWorker.h; sourceTree = "<group>"; };
-		0CC4A9E01D87F202007B4130 /* HCPUpdateLoaderWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPUpdateLoaderWorker.m; sourceTree = "<group>"; };
-		0CC4A9E11D87F202007B4130 /* HCPWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPWorker.h; sourceTree = "<group>"; };
-		0CC4A9E31D87F202007B4130 /* HCPAssetsFolderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPAssetsFolderHelper.h; sourceTree = "<group>"; };
-		0CC4A9E41D87F202007B4130 /* HCPAssetsFolderHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPAssetsFolderHelper.m; sourceTree = "<group>"; };
-		0CC4A9E51D87F202007B4130 /* HCPCleanupHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPCleanupHelper.h; sourceTree = "<group>"; };
-		0CC4A9E61D87F202007B4130 /* HCPCleanupHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPCleanupHelper.m; sourceTree = "<group>"; };
-		0CC4A9E71D87F202007B4130 /* NSBundle+HCPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+HCPExtension.h"; sourceTree = "<group>"; };
-		0CC4A9E81D87F202007B4130 /* NSBundle+HCPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+HCPExtension.m"; sourceTree = "<group>"; };
-		0CC4A9E91D87F202007B4130 /* NSData+HCPMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HCPMD5.h"; sourceTree = "<group>"; };
-		0CC4A9EA1D87F202007B4130 /* NSData+HCPMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HCPMD5.m"; sourceTree = "<group>"; };
-		0CC4A9EB1D87F202007B4130 /* NSError+HCPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+HCPExtension.h"; sourceTree = "<group>"; };
-		0CC4A9EC1D87F202007B4130 /* NSError+HCPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+HCPExtension.m"; sourceTree = "<group>"; };
-		0CC4A9ED1D87F202007B4130 /* NSFileManager+HCPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+HCPExtension.h"; sourceTree = "<group>"; };
-		0CC4A9EE1D87F202007B4130 /* NSFileManager+HCPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+HCPExtension.m"; sourceTree = "<group>"; };
-		0CC4A9EF1D87F202007B4130 /* NSJSONSerialization+HCPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+HCPExtension.h"; sourceTree = "<group>"; };
-		0CC4A9F01D87F202007B4130 /* NSJSONSerialization+HCPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+HCPExtension.m"; sourceTree = "<group>"; };
+		0CDB5BC31D88203E005C5306 /* HCPApplicationConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPApplicationConfig.h; sourceTree = "<group>"; };
+		0CDB5BC41D88203E005C5306 /* HCPApplicationConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPApplicationConfig.m; sourceTree = "<group>"; };
+		0CDB5BC51D88203E005C5306 /* HCPConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPConfig.h; sourceTree = "<group>"; };
+		0CDB5BC61D88203E005C5306 /* HCPConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPConfig.m; sourceTree = "<group>"; };
+		0CDB5BC71D88203E005C5306 /* HCPContentConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPContentConfig.h; sourceTree = "<group>"; };
+		0CDB5BC81D88203E005C5306 /* HCPContentConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPContentConfig.m; sourceTree = "<group>"; };
+		0CDB5BC91D88203E005C5306 /* HCPContentManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPContentManifest.h; sourceTree = "<group>"; };
+		0CDB5BCA1D88203E005C5306 /* HCPContentManifest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPContentManifest.m; sourceTree = "<group>"; };
+		0CDB5BCB1D88203E005C5306 /* HCPInternalPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPInternalPreferences.h; sourceTree = "<group>"; };
+		0CDB5BCC1D88203E005C5306 /* HCPInternalPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPInternalPreferences.m; sourceTree = "<group>"; };
+		0CDB5BCD1D88203E005C5306 /* HCPBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCPBlock.h; path = ../../src/ios/HCPBlock.h; sourceTree = "<group>"; };
+		0CDB5BCE1D88203E005C5306 /* HCPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCPHelper.h; path = ../../src/ios/HCPHelper.h; sourceTree = "<group>"; };
+		0CDB5BCF1D88203E005C5306 /* HCPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCPHelper.m; path = ../../src/ios/HCPHelper.m; sourceTree = "<group>"; };
+		0CDB5BD11D88203E005C5306 /* HCPFilesStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPFilesStructure.h; sourceTree = "<group>"; };
+		0CDB5BD21D88203E005C5306 /* HCPFilesStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPFilesStructure.m; sourceTree = "<group>"; };
+		0CDB5BD31D88203E005C5306 /* HCPJsonConvertable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPJsonConvertable.h; sourceTree = "<group>"; };
+		0CDB5BD41D88203E005C5306 /* HCPManifestDiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPManifestDiff.h; sourceTree = "<group>"; };
+		0CDB5BD51D88203E005C5306 /* HCPManifestDiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPManifestDiff.m; sourceTree = "<group>"; };
+		0CDB5BD61D88203E005C5306 /* HCPManifestFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPManifestFile.h; sourceTree = "<group>"; };
+		0CDB5BD71D88203E005C5306 /* HCPManifestFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPManifestFile.m; sourceTree = "<group>"; };
+		0CDB5BD91D88203E005C5306 /* HCPFileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPFileDownloader.h; sourceTree = "<group>"; };
+		0CDB5BDA1D88203E005C5306 /* HCPFileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPFileDownloader.m; sourceTree = "<group>"; };
+		0CDB5BDC1D88203E005C5306 /* HCPApplicationConfigStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPApplicationConfigStorage.h; sourceTree = "<group>"; };
+		0CDB5BDD1D88203E005C5306 /* HCPApplicationConfigStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPApplicationConfigStorage.m; sourceTree = "<group>"; };
+		0CDB5BDE1D88203E005C5306 /* HCPConfigFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPConfigFileStorage.h; sourceTree = "<group>"; };
+		0CDB5BDF1D88203E005C5306 /* HCPConfigStorageImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPConfigStorageImpl.h; sourceTree = "<group>"; };
+		0CDB5BE01D88203E005C5306 /* HCPConfigStorageImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPConfigStorageImpl.m; sourceTree = "<group>"; };
+		0CDB5BE11D88203E005C5306 /* HCPContentManifestStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPContentManifestStorage.h; sourceTree = "<group>"; };
+		0CDB5BE21D88203E005C5306 /* HCPContentManifestStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPContentManifestStorage.m; sourceTree = "<group>"; };
+		0CDB5BE31D88203E005C5306 /* HCPInternalPreferences+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HCPInternalPreferences+UserDefaults.h"; sourceTree = "<group>"; };
+		0CDB5BE41D88203E005C5306 /* HCPInternalPreferences+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HCPInternalPreferences+UserDefaults.m"; sourceTree = "<group>"; };
+		0CDB5BE61D88203E005C5306 /* HCPInstallationWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPInstallationWorker.h; sourceTree = "<group>"; };
+		0CDB5BE71D88203E005C5306 /* HCPInstallationWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPInstallationWorker.m; sourceTree = "<group>"; };
+		0CDB5BE81D88203E005C5306 /* HCPUpdateLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPUpdateLoader.h; sourceTree = "<group>"; };
+		0CDB5BE91D88203E005C5306 /* HCPUpdateLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPUpdateLoader.m; sourceTree = "<group>"; };
+		0CDB5BEA1D88203E005C5306 /* HCPUpdateLoaderWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPUpdateLoaderWorker.h; sourceTree = "<group>"; };
+		0CDB5BEB1D88203E005C5306 /* HCPUpdateLoaderWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPUpdateLoaderWorker.m; sourceTree = "<group>"; };
+		0CDB5BEC1D88203E005C5306 /* HCPWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPWorker.h; sourceTree = "<group>"; };
+		0CDB5BEE1D88203E005C5306 /* HCPAssetsFolderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPAssetsFolderHelper.h; sourceTree = "<group>"; };
+		0CDB5BEF1D88203E005C5306 /* HCPAssetsFolderHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPAssetsFolderHelper.m; sourceTree = "<group>"; };
+		0CDB5BF01D88203E005C5306 /* HCPCleanupHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCPCleanupHelper.h; sourceTree = "<group>"; };
+		0CDB5BF11D88203E005C5306 /* HCPCleanupHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCPCleanupHelper.m; sourceTree = "<group>"; };
+		0CDB5BF21D88203E005C5306 /* NSBundle+HCPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+HCPExtension.h"; sourceTree = "<group>"; };
+		0CDB5BF31D88203E005C5306 /* NSBundle+HCPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+HCPExtension.m"; sourceTree = "<group>"; };
+		0CDB5BF41D88203E005C5306 /* NSData+HCPMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HCPMD5.h"; sourceTree = "<group>"; };
+		0CDB5BF51D88203E005C5306 /* NSData+HCPMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HCPMD5.m"; sourceTree = "<group>"; };
+		0CDB5BF61D88203E005C5306 /* NSError+HCPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+HCPExtension.h"; sourceTree = "<group>"; };
+		0CDB5BF71D88203E005C5306 /* NSError+HCPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+HCPExtension.m"; sourceTree = "<group>"; };
+		0CDB5BF81D88203E005C5306 /* NSFileManager+HCPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+HCPExtension.h"; sourceTree = "<group>"; };
+		0CDB5BF91D88203E005C5306 /* NSFileManager+HCPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+HCPExtension.m"; sourceTree = "<group>"; };
+		0CDB5BFA1D88203E005C5306 /* NSJSONSerialization+HCPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+HCPExtension.h"; sourceTree = "<group>"; };
+		0CDB5BFB1D88203E005C5306 /* NSJSONSerialization+HCPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+HCPExtension.m"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* HotCodePush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotCodePush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,101 +166,117 @@
 			path = HotCodePush/Classes;
 			sourceTree = SOURCE_ROOT;
 		};
-		0CC4A9B71D87F202007B4130 /* Config */ = {
+		0CDB5BC11D882033005C5306 /* HCP */ = {
 			isa = PBXGroup;
 			children = (
-				0CC4A9B81D87F202007B4130 /* HCPApplicationConfig.h */,
-				0CC4A9B91D87F202007B4130 /* HCPApplicationConfig.m */,
-				0CC4A9BA1D87F202007B4130 /* HCPConfig.h */,
-				0CC4A9BB1D87F202007B4130 /* HCPConfig.m */,
-				0CC4A9BC1D87F202007B4130 /* HCPContentConfig.h */,
-				0CC4A9BD1D87F202007B4130 /* HCPContentConfig.m */,
-				0CC4A9BE1D87F202007B4130 /* HCPContentManifest.h */,
-				0CC4A9BF1D87F202007B4130 /* HCPContentManifest.m */,
-				0CC4A9C01D87F202007B4130 /* HCPInternalPreferences.h */,
-				0CC4A9C11D87F202007B4130 /* HCPInternalPreferences.m */,
+				0CDB5BC21D88203E005C5306 /* Config */,
+				0CDB5BCD1D88203E005C5306 /* HCPBlock.h */,
+				0CDB5BCE1D88203E005C5306 /* HCPHelper.h */,
+				0CDB5BCF1D88203E005C5306 /* HCPHelper.m */,
+				0CDB5BD01D88203E005C5306 /* Model */,
+				0CDB5BD81D88203E005C5306 /* Network */,
+				0CDB5BDB1D88203E005C5306 /* Storage */,
+				0CDB5BE51D88203E005C5306 /* Updater */,
+				0CDB5BED1D88203E005C5306 /* Utils */,
+			);
+			name = HCP;
+			sourceTree = "<group>";
+		};
+		0CDB5BC21D88203E005C5306 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				0CDB5BC31D88203E005C5306 /* HCPApplicationConfig.h */,
+				0CDB5BC41D88203E005C5306 /* HCPApplicationConfig.m */,
+				0CDB5BC51D88203E005C5306 /* HCPConfig.h */,
+				0CDB5BC61D88203E005C5306 /* HCPConfig.m */,
+				0CDB5BC71D88203E005C5306 /* HCPContentConfig.h */,
+				0CDB5BC81D88203E005C5306 /* HCPContentConfig.m */,
+				0CDB5BC91D88203E005C5306 /* HCPContentManifest.h */,
+				0CDB5BCA1D88203E005C5306 /* HCPContentManifest.m */,
+				0CDB5BCB1D88203E005C5306 /* HCPInternalPreferences.h */,
+				0CDB5BCC1D88203E005C5306 /* HCPInternalPreferences.m */,
 			);
 			name = Config;
-			path = ../../../../src/ios/Config;
+			path = ../../src/ios/Config;
 			sourceTree = "<group>";
 		};
-		0CC4A9C51D87F202007B4130 /* Model */ = {
+		0CDB5BD01D88203E005C5306 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0CC4A9C61D87F202007B4130 /* HCPFilesStructure.h */,
-				0CC4A9C71D87F202007B4130 /* HCPFilesStructure.m */,
-				0CC4A9C81D87F202007B4130 /* HCPJsonConvertable.h */,
-				0CC4A9C91D87F202007B4130 /* HCPManifestDiff.h */,
-				0CC4A9CA1D87F202007B4130 /* HCPManifestDiff.m */,
-				0CC4A9CB1D87F202007B4130 /* HCPManifestFile.h */,
-				0CC4A9CC1D87F202007B4130 /* HCPManifestFile.m */,
+				0CDB5BD11D88203E005C5306 /* HCPFilesStructure.h */,
+				0CDB5BD21D88203E005C5306 /* HCPFilesStructure.m */,
+				0CDB5BD31D88203E005C5306 /* HCPJsonConvertable.h */,
+				0CDB5BD41D88203E005C5306 /* HCPManifestDiff.h */,
+				0CDB5BD51D88203E005C5306 /* HCPManifestDiff.m */,
+				0CDB5BD61D88203E005C5306 /* HCPManifestFile.h */,
+				0CDB5BD71D88203E005C5306 /* HCPManifestFile.m */,
 			);
 			name = Model;
-			path = ../../../../src/ios/Model;
+			path = ../../src/ios/Model;
 			sourceTree = "<group>";
 		};
-		0CC4A9CD1D87F202007B4130 /* Network */ = {
+		0CDB5BD81D88203E005C5306 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0CC4A9CE1D87F202007B4130 /* HCPFileDownloader.h */,
-				0CC4A9CF1D87F202007B4130 /* HCPFileDownloader.m */,
+				0CDB5BD91D88203E005C5306 /* HCPFileDownloader.h */,
+				0CDB5BDA1D88203E005C5306 /* HCPFileDownloader.m */,
 			);
 			name = Network;
-			path = ../../../../src/ios/Network;
+			path = ../../src/ios/Network;
 			sourceTree = "<group>";
 		};
-		0CC4A9D01D87F202007B4130 /* Storage */ = {
+		0CDB5BDB1D88203E005C5306 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				0CC4A9D11D87F202007B4130 /* HCPApplicationConfigStorage.h */,
-				0CC4A9D21D87F202007B4130 /* HCPApplicationConfigStorage.m */,
-				0CC4A9D31D87F202007B4130 /* HCPConfigFileStorage.h */,
-				0CC4A9D41D87F202007B4130 /* HCPConfigStorageImpl.h */,
-				0CC4A9D51D87F202007B4130 /* HCPConfigStorageImpl.m */,
-				0CC4A9D61D87F202007B4130 /* HCPContentManifestStorage.h */,
-				0CC4A9D71D87F202007B4130 /* HCPContentManifestStorage.m */,
-				0CC4A9D81D87F202007B4130 /* HCPInternalPreferences+UserDefaults.h */,
-				0CC4A9D91D87F202007B4130 /* HCPInternalPreferences+UserDefaults.m */,
+				0CDB5BDC1D88203E005C5306 /* HCPApplicationConfigStorage.h */,
+				0CDB5BDD1D88203E005C5306 /* HCPApplicationConfigStorage.m */,
+				0CDB5BDE1D88203E005C5306 /* HCPConfigFileStorage.h */,
+				0CDB5BDF1D88203E005C5306 /* HCPConfigStorageImpl.h */,
+				0CDB5BE01D88203E005C5306 /* HCPConfigStorageImpl.m */,
+				0CDB5BE11D88203E005C5306 /* HCPContentManifestStorage.h */,
+				0CDB5BE21D88203E005C5306 /* HCPContentManifestStorage.m */,
+				0CDB5BE31D88203E005C5306 /* HCPInternalPreferences+UserDefaults.h */,
+				0CDB5BE41D88203E005C5306 /* HCPInternalPreferences+UserDefaults.m */,
 			);
 			name = Storage;
-			path = ../../../../src/ios/Storage;
+			path = ../../src/ios/Storage;
 			sourceTree = "<group>";
 		};
-		0CC4A9DA1D87F202007B4130 /* Updater */ = {
+		0CDB5BE51D88203E005C5306 /* Updater */ = {
 			isa = PBXGroup;
 			children = (
-				0CC4A9DB1D87F202007B4130 /* HCPInstallationWorker.h */,
-				0CC4A9DC1D87F202007B4130 /* HCPInstallationWorker.m */,
-				0CC4A9DD1D87F202007B4130 /* HCPUpdateLoader.h */,
-				0CC4A9DE1D87F202007B4130 /* HCPUpdateLoader.m */,
-				0CC4A9DF1D87F202007B4130 /* HCPUpdateLoaderWorker.h */,
-				0CC4A9E01D87F202007B4130 /* HCPUpdateLoaderWorker.m */,
-				0CC4A9E11D87F202007B4130 /* HCPWorker.h */,
+				0CDB5BE61D88203E005C5306 /* HCPInstallationWorker.h */,
+				0CDB5BE71D88203E005C5306 /* HCPInstallationWorker.m */,
+				0CDB5BE81D88203E005C5306 /* HCPUpdateLoader.h */,
+				0CDB5BE91D88203E005C5306 /* HCPUpdateLoader.m */,
+				0CDB5BEA1D88203E005C5306 /* HCPUpdateLoaderWorker.h */,
+				0CDB5BEB1D88203E005C5306 /* HCPUpdateLoaderWorker.m */,
+				0CDB5BEC1D88203E005C5306 /* HCPWorker.h */,
 			);
 			name = Updater;
-			path = ../../../../src/ios/Updater;
+			path = ../../src/ios/Updater;
 			sourceTree = "<group>";
 		};
-		0CC4A9E21D87F202007B4130 /* Utils */ = {
+		0CDB5BED1D88203E005C5306 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0CC4A9E31D87F202007B4130 /* HCPAssetsFolderHelper.h */,
-				0CC4A9E41D87F202007B4130 /* HCPAssetsFolderHelper.m */,
-				0CC4A9E51D87F202007B4130 /* HCPCleanupHelper.h */,
-				0CC4A9E61D87F202007B4130 /* HCPCleanupHelper.m */,
-				0CC4A9E71D87F202007B4130 /* NSBundle+HCPExtension.h */,
-				0CC4A9E81D87F202007B4130 /* NSBundle+HCPExtension.m */,
-				0CC4A9E91D87F202007B4130 /* NSData+HCPMD5.h */,
-				0CC4A9EA1D87F202007B4130 /* NSData+HCPMD5.m */,
-				0CC4A9EB1D87F202007B4130 /* NSError+HCPExtension.h */,
-				0CC4A9EC1D87F202007B4130 /* NSError+HCPExtension.m */,
-				0CC4A9ED1D87F202007B4130 /* NSFileManager+HCPExtension.h */,
-				0CC4A9EE1D87F202007B4130 /* NSFileManager+HCPExtension.m */,
-				0CC4A9EF1D87F202007B4130 /* NSJSONSerialization+HCPExtension.h */,
-				0CC4A9F01D87F202007B4130 /* NSJSONSerialization+HCPExtension.m */,
+				0CDB5BEE1D88203E005C5306 /* HCPAssetsFolderHelper.h */,
+				0CDB5BEF1D88203E005C5306 /* HCPAssetsFolderHelper.m */,
+				0CDB5BF01D88203E005C5306 /* HCPCleanupHelper.h */,
+				0CDB5BF11D88203E005C5306 /* HCPCleanupHelper.m */,
+				0CDB5BF21D88203E005C5306 /* NSBundle+HCPExtension.h */,
+				0CDB5BF31D88203E005C5306 /* NSBundle+HCPExtension.m */,
+				0CDB5BF41D88203E005C5306 /* NSData+HCPMD5.h */,
+				0CDB5BF51D88203E005C5306 /* NSData+HCPMD5.m */,
+				0CDB5BF61D88203E005C5306 /* NSError+HCPExtension.h */,
+				0CDB5BF71D88203E005C5306 /* NSError+HCPExtension.m */,
+				0CDB5BF81D88203E005C5306 /* NSFileManager+HCPExtension.h */,
+				0CDB5BF91D88203E005C5306 /* NSFileManager+HCPExtension.m */,
+				0CDB5BFA1D88203E005C5306 /* NSJSONSerialization+HCPExtension.h */,
+				0CDB5BFB1D88203E005C5306 /* NSJSONSerialization+HCPExtension.m */,
 			);
 			name = Utils;
-			path = ../../../../src/ios/Utils;
+			path = ../../src/ios/Utils;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -274,12 +290,12 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0CDB5BC11D882033005C5306 /* HCP */,
 				0C07CA0A1D7FEE0D00C08EFF /* www */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				0C3805641D703A970023BD77 /* config.xml */,
 				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
-				307C750510C5A3420062BCA9 /* HCP */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -333,23 +349,6 @@
 			);
 			name = config;
 			sourceTree = "<group>";
-		};
-		307C750510C5A3420062BCA9 /* HCP */ = {
-			isa = PBXGroup;
-			children = (
-				0CC4A9B71D87F202007B4130 /* Config */,
-				0CC4A9C21D87F202007B4130 /* HCPBlock.h */,
-				0CC4A9C31D87F202007B4130 /* HCPHelper.h */,
-				0CC4A9C41D87F202007B4130 /* HCPHelper.m */,
-				0CC4A9C51D87F202007B4130 /* Model */,
-				0CC4A9CD1D87F202007B4130 /* Network */,
-				0CC4A9D01D87F202007B4130 /* Storage */,
-				0CC4A9DA1D87F202007B4130 /* Updater */,
-				0CC4A9E21D87F202007B4130 /* Utils */,
-			);
-			name = HCP;
-			path = HotCodePush/Plugins;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -454,34 +453,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CC4AA051D87F202007B4130 /* NSBundle+HCPExtension.m in Sources */,
-				0CC4AA081D87F202007B4130 /* NSFileManager+HCPExtension.m in Sources */,
+				0CDB5C0F1D88203E005C5306 /* NSBundle+HCPExtension.m in Sources */,
+				0CDB5C121D88203E005C5306 /* NSFileManager+HCPExtension.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				0CC4AA021D87F202007B4130 /* HCPUpdateLoaderWorker.m in Sources */,
-				0CC4A9FC1D87F202007B4130 /* HCPApplicationConfigStorage.m in Sources */,
-				0CC4AA061D87F202007B4130 /* NSData+HCPMD5.m in Sources */,
-				0CC4AA001D87F202007B4130 /* HCPInstallationWorker.m in Sources */,
+				0CDB5C0C1D88203E005C5306 /* HCPUpdateLoaderWorker.m in Sources */,
+				0CDB5C061D88203E005C5306 /* HCPApplicationConfigStorage.m in Sources */,
+				0CDB5C101D88203E005C5306 /* NSData+HCPMD5.m in Sources */,
+				0CDB5C0A1D88203E005C5306 /* HCPInstallationWorker.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
-				0CC4A9FB1D87F202007B4130 /* HCPFileDownloader.m in Sources */,
-				0CC4AA011D87F202007B4130 /* HCPUpdateLoader.m in Sources */,
-				0CC4A9F41D87F202007B4130 /* HCPContentConfig.m in Sources */,
-				0CC4A9F91D87F202007B4130 /* HCPManifestDiff.m in Sources */,
-				0CC4A9F71D87F202007B4130 /* HCPHelper.m in Sources */,
+				0CDB5C051D88203E005C5306 /* HCPFileDownloader.m in Sources */,
+				0CDB5C0B1D88203E005C5306 /* HCPUpdateLoader.m in Sources */,
+				0CDB5BFE1D88203E005C5306 /* HCPContentConfig.m in Sources */,
+				0CDB5C031D88203E005C5306 /* HCPManifestDiff.m in Sources */,
+				0CDB5C011D88203E005C5306 /* HCPHelper.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				0CC4A9F51D87F202007B4130 /* HCPContentManifest.m in Sources */,
-				0CC4A9FD1D87F202007B4130 /* HCPConfigStorageImpl.m in Sources */,
-				0CC4A9FF1D87F202007B4130 /* HCPInternalPreferences+UserDefaults.m in Sources */,
-				0CC4A9F81D87F202007B4130 /* HCPFilesStructure.m in Sources */,
-				0CC4A9F31D87F202007B4130 /* HCPConfig.m in Sources */,
-				0CC4AA031D87F202007B4130 /* HCPAssetsFolderHelper.m in Sources */,
-				0CC4A9F61D87F202007B4130 /* HCPInternalPreferences.m in Sources */,
-				0CC4AA041D87F202007B4130 /* HCPCleanupHelper.m in Sources */,
-				0CC4AA071D87F202007B4130 /* NSError+HCPExtension.m in Sources */,
-				0CC4A9FE1D87F202007B4130 /* HCPContentManifestStorage.m in Sources */,
+				0CDB5BFF1D88203E005C5306 /* HCPContentManifest.m in Sources */,
+				0CDB5C071D88203E005C5306 /* HCPConfigStorageImpl.m in Sources */,
+				0CDB5C091D88203E005C5306 /* HCPInternalPreferences+UserDefaults.m in Sources */,
+				0CDB5C021D88203E005C5306 /* HCPFilesStructure.m in Sources */,
+				0CDB5BFD1D88203E005C5306 /* HCPConfig.m in Sources */,
+				0CDB5C0D1D88203E005C5306 /* HCPAssetsFolderHelper.m in Sources */,
+				0CDB5C001D88203E005C5306 /* HCPInternalPreferences.m in Sources */,
+				0CDB5C0E1D88203E005C5306 /* HCPCleanupHelper.m in Sources */,
+				0CDB5C111D88203E005C5306 /* NSError+HCPExtension.m in Sources */,
+				0CDB5C081D88203E005C5306 /* HCPContentManifestStorage.m in Sources */,
 				0CB17DF51D7586260030264E /* UpdateViewController.m in Sources */,
-				0CC4AA091D87F202007B4130 /* NSJSONSerialization+HCPExtension.m in Sources */,
-				0CC4A9F21D87F202007B4130 /* HCPApplicationConfig.m in Sources */,
-				0CC4A9FA1D87F202007B4130 /* HCPManifestFile.m in Sources */,
+				0CDB5C131D88203E005C5306 /* NSJSONSerialization+HCPExtension.m in Sources */,
+				0CDB5BFC1D88203E005C5306 /* HCPApplicationConfig.m in Sources */,
+				0CDB5C041D88203E005C5306 /* HCPManifestFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
