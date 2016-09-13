@@ -16,13 +16,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- * Created by Nikolay Demyankov on 22.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Model for application config. Holds information from chcp.json file.
+ * 保存hcp.json文件的信息
  */
 public class ApplicationConfig {
 
-    private static final String MARKET_URL_FORMAT = "market://details?id=%s";
+//    private static final String MARKET_URL_FORMAT = "market://details?id=%s";
 
     private static class JsonKeys {
         public static final String STORE_PACKAGE_IDENTIFIER = "android_identifier";
@@ -30,17 +30,17 @@ public class ApplicationConfig {
 
     private String jsonString;
     private ContentConfig contentConfig;
-    private String storeIdentifier;
-    private String storeUrl;
+//    private String storeIdentifier;
+//    private String storeUrl;
 
     private ApplicationConfig() {
     }
 
     /**
-     * Create instance of the config from json string.
+     * 从json读取，创建实例
      *
-     * @param jsonString json to process
-     * @return class instance
+     * @param jsonString json
+     * @return class 实例
      */
     public static ApplicationConfig fromJson(String jsonString) {
         ApplicationConfig config = new ApplicationConfig();
@@ -49,12 +49,12 @@ public class ApplicationConfig {
 
             config.setContentConfig(ContentConfig.fromJson(json));
 
-            // store identifier is optional
-            if (json.has(JsonKeys.STORE_PACKAGE_IDENTIFIER)) {
-                config.setStoreIdentifier(json.get(JsonKeys.STORE_PACKAGE_IDENTIFIER).asText());
-            } else {
-                config.setStoreIdentifier("");
-            }
+//            // store identifier is optional
+//            if (json.has(JsonKeys.STORE_PACKAGE_IDENTIFIER)) {
+//                config.setStoreIdentifier(json.get(JsonKeys.STORE_PACKAGE_IDENTIFIER).asText());
+//            } else {
+//                config.setStoreIdentifier("");
+//            }
 
             config.jsonString = jsonString;
         } catch (Exception e) {
@@ -66,10 +66,10 @@ public class ApplicationConfig {
     }
 
     /**
-     * Load application config from the assets folder.
+     * 从资源文件夹读取配置
      *
      * @param context application context
-     * @return application config from assets
+     * @return config
      */
     public static ApplicationConfig configFromAssets(final Context context, final String configFileName) {
         final AssetManager assetManager = context.getResources().getAssets();
@@ -99,7 +99,7 @@ public class ApplicationConfig {
     }
 
     /**
-     * Generates JSON string from class instance.
+     * 实例转json
      *
      * @return JSON formatted string
      */
@@ -113,7 +113,7 @@ public class ApplicationConfig {
     }
 
     /**
-     * Getter for content config.
+     * 获取配置
      *
      * @return content config
      * @see ContentConfig
@@ -122,28 +122,28 @@ public class ApplicationConfig {
         return contentConfig;
     }
 
-    /**
-     * Getter for url, that leeds to the applications page on the Google Play Store.
-     *
-     * @return market url
-     */
-    public String getStoreUrl() {
-        if (TextUtils.isEmpty(storeIdentifier)) {
-            return "";
-        }
-
-        if (TextUtils.isEmpty(storeUrl)) {
-            if (storeIdentifier.startsWith("http://")
-                    || storeIdentifier.startsWith("https://")
-                    || storeIdentifier.startsWith("market://")) {
-                storeUrl = storeIdentifier;
-            } else {
-                storeUrl = String.format(MARKET_URL_FORMAT, storeIdentifier);
-            }
-        }
-
-        return storeUrl;
-    }
+//    /**
+//     * Getter for url, that leeds to the applications page on the Google Play Store.
+//     *
+//     * @return market url
+//     */
+//    public String getStoreUrl() {
+//        if (TextUtils.isEmpty(storeIdentifier)) {
+//            return "";
+//        }
+//
+//        if (TextUtils.isEmpty(storeUrl)) {
+//            if (storeIdentifier.startsWith("http://")
+//                    || storeIdentifier.startsWith("https://")
+//                    || storeIdentifier.startsWith("market://")) {
+//                storeUrl = storeIdentifier;
+//            } else {
+//                storeUrl = String.format(MARKET_URL_FORMAT, storeIdentifier);
+//            }
+//        }
+//
+//        return storeUrl;
+//    }
 
     // region Private API
 
@@ -151,16 +151,16 @@ public class ApplicationConfig {
         this.contentConfig = config;
     }
 
-    private void setStoreIdentifier(String storeIdentifier) {
-        this.storeIdentifier = storeIdentifier;
-        storeUrl = "";
-    }
+//    private void setStoreIdentifier(String storeIdentifier) {
+//        this.storeIdentifier = storeIdentifier;
+//        storeUrl = "";
+//    }
 
     private String generateJson() {
         JsonNodeFactory nodeFactory = JsonNodeFactory.instance;
 
         ObjectNode json = (ObjectNode) contentConfig.toJson();
-        json.set(JsonKeys.STORE_PACKAGE_IDENTIFIER, nodeFactory.textNode(storeIdentifier));
+//        json.set(JsonKeys.STORE_PACKAGE_IDENTIFIER, nodeFactory.textNode(storeIdentifier));
 
         return json.toString();
     }

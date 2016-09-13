@@ -12,9 +12,9 @@ import com.nordnetab.chcp.main.utils.VersionHelper;
 import java.io.IOException;
 
 /**
- * Created by Nikolay Demyankov on 28.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Model for plugin internal preferences.
+ * 更新功能使用的参数
  */
 public class PluginInternalPreferences {
 

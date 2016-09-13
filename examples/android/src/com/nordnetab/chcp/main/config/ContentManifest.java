@@ -14,11 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Nikolay Demyankov on 22.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Model for content manifest.
- * Content manifest is a configuration file, that holds the list of all web project files with they hashes.
- * Used to determine which files has been removed from the project, which are added or updated.
+ * manifest文件
  */
 public class ContentManifest {
 
@@ -31,11 +29,10 @@ public class ContentManifest {
     }
 
     /**
-     * Create instance of the object from JSON string.
-     * JSON string is a content of the chcp.manifest file.
+     * 从chcp.manifest实例化
      *
-     * @param json JSON string to parse
-     * @return content manifest instance
+     * @param json JSON
+     * @return manifest
      */
     public static ContentManifest fromJson(String json) {
         ContentManifest manifest = new ContentManifest();
@@ -56,7 +53,7 @@ public class ContentManifest {
     }
 
     /**
-     * Convert object into JSON string
+     * 转JSON string
      *
      * @return JSON string
      */
@@ -101,11 +98,10 @@ public class ContentManifest {
     }
 
     /**
-     * Find differences between this manifest and the new one.
-     * Current object is considered as an old manifest.
+     * web文件列表，数组里是HCPManifestFile
      *
-     * @param manifest new manifest, relative to which we will calculate the difference
-     * @return calculated difference between manifests
+     * @param manifest 新的manifest
+     * @return manifests差别
      * @see ManifestDiff
      * @see ManifestFile
      */

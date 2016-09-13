@@ -6,11 +6,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.nordnetab.chcp.main.model.UpdateTime;
 
 /**
- * Created by Nikolay Demyankov on 22.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Model for content configuration.
- * Holds information about current/new release, when to perform the update installation and so on.
- * Basically, it is a part of the chcp.json file, just moved to separate class for convenience.
+ * hcp.json文件对应的配置
  */
 public class ContentConfig {
 
@@ -23,10 +21,10 @@ public class ContentConfig {
     }
 
     /**
-     * Create instance of the class from JSON node.
+     * 从JSON node实例化
      *
-     * @param node JSON node with data from chcp.json file
-     * @return content configuration object
+     * @param node chcp.json文件的JSON node
+     * @return 实例
      * @see JsonNode
      */
     static ContentConfig fromJson(JsonNode node) {
@@ -65,52 +63,42 @@ public class ContentConfig {
     }
 
     /**
-     * Getter for the content's version.
-     * Used to determine if the new release is available on the server.
+     * 获取www版本
      *
-     * @return content version
+     * @return www版本
      */
     public String getReleaseVersion() {
         return releaseVersion;
     }
 
     /**
-     * Getter for minimum required version of the native part.
-     * By this value we will determine if it is possible to install new version of web content
-     * into current version of the app.
+     * 要求的最低的app版本
      *
-     * @return minimum required native version for installing current web content
+     * @return 获取最低的app版本
      */
     public int getMinimumNativeVersion() {
         return minimumNativeVersion;
     }
 
     /**
-     * Getter for url on the server where all content is stored.
-     * All updated/new files are loaded relative to this url.
+     * 获取资源文件在web端的url
      *
-     * @return content url
+     * @return 资源文件在web端的url
      */
     public String getContentUrl() {
         return contentUrl;
     }
 
     /**
-     * Getter for the preference, when we should install the update.
+     * 获取更新类型
      *
-     * @return update time preference
+     * @return 更新类型
      * @see UpdateTime
      */
     public UpdateTime getUpdateTime() {
         return updateTime;
     }
 
-    /**
-     * Convert object into JSON node instance.
-     *
-     * @return JSON node
-     * @see JsonNode
-     */
     JsonNode toJson() {
         if (jsonNode == null) {
             jsonNode = generateJson();
