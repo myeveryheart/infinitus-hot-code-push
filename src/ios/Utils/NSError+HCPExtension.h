@@ -1,153 +1,145 @@
 //
 //  NSError+HCPExtension.h
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  Domain for plugin specific errors
+ *  Error Domain
  */
-extern NSString *const kHCPPluginErrorDomain;
+extern NSString *const kHCPErrorDomain;
 
 /**
- *  Code for error during the download process. Means that we failed to download application config.
+ *  下载config文件出错
  */
 extern NSInteger const kHCPFailedToDownloadApplicationConfigErrorCode;
 
 /**
- *  Code for error during the download process. Indicates that web update requires higher version of the native side.
- *  User should update application through the App Store.
+ *  本地app版本过低
  */
 extern NSInteger const kHCPApplicationBuildVersionTooLowErrorCode;
 
 /**
- *  Code for error during the download process. Indicates that we failed to download manifest file.
+ *  下载manifest文件出错
  */
 extern NSInteger const kHCPFailedToDownloadContentManifestErrorCode;
 
 /**
- *  Code for error during the download process. Means that we failed to download new files from the server.
+ *  下载文件出错
  */
 extern NSInteger const kHCPFailedToDownloadUpdateFilesErrorCode;
 
 /**
- *  Code for error that we failed to copy downloaded files from cache folder to the installation folder.
+ *  拷贝更新文件出错
  */
 extern NSInteger const kHCPFailedToMoveLoadedFilesToInstallationFolderErrorCode;
 
 /**
- *  Code for error that something is wrong with the loaded update. 
- *  Maybe some files are missing, or hashes are invalid.
+ *  更新文件不完整或者hash不对
  */
 extern NSInteger const kHCPUpdateIsInvalidErrorCode;
 
 /**
- *  Code fore error during the installation. Indicates that we couldn't copy project files from the previous release.
+ *  拷贝老版本出错
  */
 extern NSInteger const kHCPFailedToCopyFilesFromPreviousReleaseErrorCode;
 
 /**
- *  Code for error during the installation. Means that we could not install loaded files.
+ *  拷贝新文件出错
  */
 extern NSInteger const kHCPFailedToCopyNewContentFilesErrorCode;
 
 /**
- *  Code error occures on installation/download processes on initialization phase. 
- *  Means that we could not load current version of the application config from the file system.
+ *  读取当前config出错
  */
 extern NSInteger const kHCPLocalVersionOfApplicationConfigNotFoundErrorCode;
 
 /**
- *  Code error occures on installation/download processes on initialization phase. 
- *  Means that we could not load current version of the manifest file from the file system.
+ *  读取当前manifest出错
  */
 extern NSInteger const kHCPLocalVersionOfManifestNotFoundErrorCode;
 
 /**
- *  Code error occures on installation process on initialization phase. 
- *  Means that we can't find loaded version of the application config in the installation folder.
+ *  读取新版config出错
  */
 extern NSInteger const kHCPLoadedVersionOfApplicationConfigNotFoundErrorCode;
 
 /**
- *  Code error occures on installation process on initialization phase.
- *  Means that we can't find loaded version of the manifest fle in the installation folder.
+ *  读取新版manifest出错
  */
 extern NSInteger const kHCPLoadedVersionOfManifestNotFoundErrorCode;
 
 /**
- *  Code error occures on application very first start. 
- *  At that point we need to copy www folder from bundle onto external storage.
- *  If we fail to do that - plugin won't work.
+ *  从bundle拷贝到external storage出错
  */
 extern NSInteger const kHCPFailedToInstallAssetsOnExternalStorageErrorCode;
 
 /**
- *  Code error occures when we tried to install the update, but there is nothing to install.
+ *  不需要安装更新
  */
 extern NSInteger const kHCPNothingToInstallErrorCode;
 
 /**
- *  Code error occures when we tried to download new release, but there is nothing to download.
+ *  不需要下载更新
  */
 extern NSInteger const kHCPNothingToUpdateErrorCode;
 
 /**
- *  Code error occures when we tried to install, while update downlod is in progress.
+ *  正要安装，发现正在下载更新文件
  */
 extern NSInteger const kHCPCantInstallWhileDownloadInProgressErrorCode;
 
 /**
- *  Code error occures when we tried to download the update, while installation is in progress.
+ *  正要下载，发现正在安装更新文件
  */
 extern NSInteger const kHCPCantDownloadUpdateWhileInstallationInProgressErrorCode;
 
 /**
- *  Code error occures when we try to install the update while installation is already in progress.
+ *  正要安装，发现正在安装更新文件
  */
 extern NSInteger const kHCPInstallationAlreadyInProgressErorrCode;
 
 /**
- *  Code error occures when we try to download the update while it's already in progress.
+ *  正要下载，发现正在下载
  */
 extern NSInteger const kHCPDownloadAlreadyInProgressErrorCode;
 
 /**
- *  Code error occures when we try to call plugin API before assets are installed on external storage.
+ *  bundle还未安装到external storage
  */
 extern NSInteger const kHCPAssetsNotYetInstalledErrorCode;
 
 /**
- *  Category for NSError.
- *  Extended with plugin specific errors.
+ *  扩展NSError
  */
 @interface NSError (HCPExtension)
 
 /**
- *  Create instance of the NSError object with the given error code and error description.
- *  Domain for the error is plugin specific.
+ *  创建error
  *
- *  @param errorCode   error code
- *  @param description error descrption; puted in the user info dictionary with NSLocalizedDescriptionKey key.
+ *  @param errorCode   错误码
+ *  @param description 描述
  *
- *  @return error instance
+ *  @return error实例
  */
 + (NSError *)errorWithCode:(NSInteger)errorCode description:(NSString *)description;
 
 /**
- *  Create instance of the NSError object with the given error code and description that is extracted from provided error object.
+ *  创建error
  *
- *  @param errorCode error code
- *  @param error     error object from which description is extracted
+ *  @param errorCode 错误码
+ *  @param error     error对象
  *
- *  @return error instance
+ *  @return error实例
  */
 + (NSError *)errorWithCode:(NSInteger)errorCode descriptionFromError:(NSError *)error;
 
 /**
- *  Helper method to get localized description of the underlying error.
+ *  国际化
  *
  *  @return error message
  */

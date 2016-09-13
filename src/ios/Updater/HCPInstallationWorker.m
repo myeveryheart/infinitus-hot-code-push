@@ -1,7 +1,9 @@
 //
 //  HCPInstallationWorker.m
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "HCPInstallationWorker.h"
@@ -12,7 +14,6 @@
 #import "HCPContentManifestStorage.h"
 #import "NSError+HCPExtension.h"
 #import "NSData+HCPMD5.h"
-#import "HCPEvents.h"
 
 @interface HCPInstallationWorker() {
     HCPFilesStructure *_newReleaseFS;
@@ -46,72 +47,95 @@
     return self;
 }
 
-- (void)runWithComplitionBlock:(void (^)(void))updateInstallationComplitionBlock {
-    [self dispatchBeforeInstallEvent];
-
+-(void)installWithComplitionBlock:(InstallUpdateBlock)block
+{
     NSError *error = nil;
     if (![self initBeforeRun:&error] ||
         ![self isUpdateValid:&error] ||
         ![self copyFilesFromCurrentReleaseToNewRelease:&error] ||
         ![self deleteUnusedFiles:&error] ||
         ![self moveDownloadedFilesToWwwFolder:&error]) {
-            NSLog(@"%@. Error code %ld", [error underlyingErrorLocalizedDesription], (long)error.code);
-            [self cleanUpOnFailure];
-            [self dispatchEventWithError:error];
-        
-            return;
+        NSLog(@"%@. Error code %ld", [error underlyingErrorLocalizedDesription], (long)error.code);
+        [self cleanUpOnFailure];
+//        [self dispatchEventWithError:error];
+        block(NO, error);
     }
-    
-    [self cleanUpOnSucess];
-    [self saveNewConfigsToWwwFolder];
-    [self dispatchSuccessEvent];
+    else
+    {
+        [self cleanUpOnSucess];
+        [self saveNewConfigsToWwwFolder];
+        //    [self dispatchSuccessEvent];
+        block(YES, nil);
+    }
 }
+
+
+//- (void)runWithComplitionBlock:(void (^)(void))updateInstallationComplitionBlock {
+//    [self dispatchBeforeInstallEvent];
+//
+//    NSError *error = nil;
+//    if (![self initBeforeRun:&error] ||
+//        ![self isUpdateValid:&error] ||
+//        ![self copyFilesFromCurrentReleaseToNewRelease:&error] ||
+//        ![self deleteUnusedFiles:&error] ||
+//        ![self moveDownloadedFilesToWwwFolder:&error]) {
+//            NSLog(@"%@. Error code %ld", [error underlyingErrorLocalizedDesription], (long)error.code);
+//            [self cleanUpOnFailure];
+//            [self dispatchEventWithError:error];
+//        
+//            return;
+//    }
+//    
+//    [self cleanUpOnSucess];
+//    [self saveNewConfigsToWwwFolder];
+//    [self dispatchSuccessEvent];
+//}
 
 #pragma mark Private API
 
-/**
- *  Send event that update is about to begin
- */
-- (void)dispatchBeforeInstallEvent {
-    NSNotification *notification = [HCPEvents notificationWithName:kHCPBeforeInstallEvent
-                                                 applicationConfig:_newConfig
-                                                            taskId:self.workerId];
-    
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-}
+///**
+// *  发送事件：即将安装
+// */
+//- (void)dispatchBeforeInstallEvent {
+//    NSNotification *notification = [HCPEvents notificationWithName:kHCPBeforeInstallEvent
+//                                                 applicationConfig:_newConfig
+//                                                            taskId:self.workerId];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotification:notification];
+//}
+//
+///**
+// *  发送事件：安装失败
+// *
+// *  @param error 错误
+// */
+//- (void)dispatchEventWithError:(NSError *)error {
+//    NSNotification *notification = [HCPEvents notificationWithName:kHCPUpdateInstallationErrorEvent
+//                                                 applicationConfig:_newConfig
+//                                                            taskId:self.workerId
+//                                                             error:error];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotification:notification];
+//}
+//
+///**
+// *  发送事件：安装成功
+// */
+//- (void)dispatchSuccessEvent {
+//    NSNotification *notification = [HCPEvents notificationWithName:kHCPUpdateIsInstalledEvent
+//                                                 applicationConfig:_newConfig
+//                                                            taskId:self.workerId];
+//    
+//    
+//    [[NSNotificationCenter defaultCenter] postNotification:notification];
+//}
 
 /**
- *  Send update installation failure event with error details.
+ *  初始化
  *
- *  @param error occured error
- */
-- (void)dispatchEventWithError:(NSError *)error {
-    NSNotification *notification = [HCPEvents notificationWithName:kHCPUpdateInstallationErrorEvent
-                                                 applicationConfig:_newConfig
-                                                            taskId:self.workerId
-                                                             error:error];
-    
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-}
-
-/**
- *  Send event that update was successfully installed
- */
-- (void)dispatchSuccessEvent {
-    NSNotification *notification = [HCPEvents notificationWithName:kHCPUpdateIsInstalledEvent
-                                                 applicationConfig:_newConfig
-                                                            taskId:self.workerId];
-    
-    
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-}
-
-/**
- *  Initialize all required variables before executing installation logic.
+ *  @param error 错误
  *
- *  @param error filled with information about any occured error; <code>nil</code> if initialization finished with success
- *
- *  @return <code>YES</code> if everything is ready for update; <code>NO</code> otherwise
+ *  @return <code>YES</code> 成功; <code>NO</code> 失败
  */
 - (BOOL)initBeforeRun:(NSError **)error {
     *error = nil;
@@ -120,7 +144,7 @@
     _manifestStorage = [[HCPContentManifestStorage alloc] initWithFileStructure:_newReleaseFS];
     _configStorage = [[HCPApplicationConfigStorage alloc] initWithFileStructure:_newReleaseFS];
     
-    // load from file system current version of application config
+    // 读取当前版本的config
     _oldConfig = [_configStorage loadFromFolder:_currentReleaseFS.wwwFolder];
     if (_oldConfig == nil) {
         *error = [NSError errorWithCode:kHCPLocalVersionOfApplicationConfigNotFoundErrorCode
@@ -128,7 +152,7 @@
         return NO;
     }
     
-    // load from file system new version of the application config
+    // 读取新版本的config
     _newConfig = [_configStorage loadFromFolder:_newReleaseFS.downloadFolder];
     if (_newConfig == nil) {
         *error = [NSError errorWithCode:kHCPLoadedVersionOfApplicationConfigNotFoundErrorCode
@@ -136,7 +160,7 @@
         return NO;
     }
     
-    // load from file system old version of the manifest
+    // 读取当前版本的manifest
     _oldManifest = [_manifestStorage loadFromFolder:_currentReleaseFS.wwwFolder];
     if (_oldManifest == nil) {
         *error = [NSError errorWithCode:kHCPLocalVersionOfManifestNotFoundErrorCode
@@ -144,7 +168,7 @@
         return NO;
     }
     
-    // load from file system new version of the manifest
+    // 读取新版本的manifest
     _newManifest = [_manifestStorage loadFromFolder:_newReleaseFS.downloadFolder];
     if (_newManifest == nil) {
         *error = [NSError errorWithCode:kHCPLoadedVersionOfManifestNotFoundErrorCode
@@ -152,19 +176,18 @@
         return NO;
     }
     
-    // calculate difference between the old and the new manifests
+    // 计算manifest的差别
     _manifestDiff = [_oldManifest calculateDifference:_newManifest];
     
     return YES;
 }
 
 /**
- *  Validate the update.
- *  We will check if all the required files are loaded and if they are not corrupted.
+ *  验证更新，检查文件是否下载完全和HASH正确
  *
- *  @param error filled with information about any occured error; <code>nil</code> if update is valid
+ *  @param error 错误
  *
- *  @return <code>YES</code> if update is valid and can be installed; <code>NO</code> - update is corrupted
+ *  @return <code>YES</code> 成功; <code>NO</code> 失败
  */
 - (BOOL)isUpdateValid:(NSError **)error {
     *error = nil;
@@ -195,12 +218,12 @@
 - (BOOL)copyFilesFromCurrentReleaseToNewRelease:(NSError **)error {
     *error = nil;
     
-    // just in case check if previous www folder exists; if it does - remove it before copying new stuff
+    // 如果有同名目录存在，先删除
     if ([_fileManager fileExistsAtPath:_newReleaseFS.wwwFolder.path]) {
         [_fileManager removeItemAtURL:_newReleaseFS.wwwFolder error:nil];
     }
     
-    // copy items from current www folder to the new www folder
+    // 把当前目录拷贝到新目录
     if (![_fileManager copyItemAtURL:_currentReleaseFS.wwwFolder toURL:_newReleaseFS.wwwFolder error:error]) {
         NSLog(@"Installation error! Failed to copy files from %@ to %@", _currentReleaseFS.wwwFolder.path, _newReleaseFS.wwwFolder.path);
         *error = [NSError errorWithCode:kHCPFailedToCopyFilesFromPreviousReleaseErrorCode descriptionFromError:*error];
@@ -211,11 +234,11 @@
 }
 
 /**
- *  Delete from the project unused files.
+ *  删除无用文件
  *
- *  @param error filled with error information if any occured; <code>nil</code> on success
+ *  @param error 错误
  *
- *  @return <code>YES</code> if unused files were deleted; <code>NO</code> on failure;
+ *  @return <code>YES</code> 删除成功; <code>NO</code> 失败;
  */
 - (BOOL)deleteUnusedFiles:(NSError **)error {
     *error = nil;
@@ -223,7 +246,7 @@
     for (HCPManifestFile *deletedFile in deletedFiles) {
         NSURL *filePath = [_newReleaseFS.wwwFolder URLByAppendingPathComponent:deletedFile.name];
         if (![_fileManager removeItemAtURL:filePath error:error]) {
-            NSLog(@"CHCP Warinig! Failed to delete file: %@", filePath.absoluteString);
+            NSLog(@"HCP Warinig! Failed to delete file: %@", filePath.absoluteString);
         }
     }
     
@@ -231,11 +254,11 @@
 }
 
 /**
- *  Copy loaded from server files into the www folder on the external storage.
+ *  拷贝下载文件到www目录里
  *
- *  @param error filled with error information if any occured; <code>nil</code> when files are installed
+ *  @param error 错误
  *
- *  @return <code>YES</code> if files are copied successfully; <code>NO</code> on failure
+ *  @return <code>YES</code> 成功; <code>NO</code> 失败
  */
 - (BOOL)moveDownloadedFilesToWwwFolder:(NSError **)error {
     *error = nil;
@@ -243,18 +266,18 @@
     NSArray *updatedFiles = _manifestDiff.updateFileList;
     NSString *errorMsg = nil;
     for (HCPManifestFile *manifestFile in updatedFiles) {
-        // determine paths to the file in installation and www folders
+        // 获取更新目录和www目录
         NSURL *pathInInstallationFolder = [_newReleaseFS.downloadFolder URLByAppendingPathComponent:manifestFile.name];
         NSURL *pathInWwwFolder = [_newReleaseFS.wwwFolder URLByAppendingPathComponent:manifestFile.name];
         
-        // if file already exists in www folder - remove it before copying
+        // 如果文件存在，先删掉老的
         if ([fileManager fileExistsAtPath:pathInWwwFolder.path] && ![fileManager removeItemAtURL:pathInWwwFolder error:error]) {
             errorMsg = [NSString stringWithFormat:@"Failed to delete old version of the file %@ : %@. Installation failed",
                             manifestFile.name, [(*error) underlyingErrorLocalizedDesription]];
             break;
         }
         
-        // if needed - create subfolders for the new file
+        // 如果需要，创建子目录
         NSURL *parentDirectoryPathInWwwFolder = [pathInWwwFolder URLByDeletingLastPathComponent];
         if (![fileManager fileExistsAtPath:parentDirectoryPathInWwwFolder.path]) {
             if (![fileManager createDirectoryAtPath:parentDirectoryPathInWwwFolder.path withIntermediateDirectories:YES attributes:nil error:error]) {
@@ -264,7 +287,7 @@
             }
         }
         
-        // copy new file into www folder
+        // 拷贝新的文件到目录里
         if (![fileManager moveItemAtURL:pathInInstallationFolder toURL:pathInWwwFolder error:error]) {
             errorMsg = [NSString stringWithFormat:@"Failed to copy file %@ into www folder: %@. Installation failed.",
                             manifestFile.name, [(*error) underlyingErrorLocalizedDesription]];
@@ -280,7 +303,7 @@
 }
 
 /**
- *  Save loaded configs to the www folder. They are now our current configs.
+ *  保存config文件
  */
 - (void)saveNewConfigsToWwwFolder {
     [_manifestStorage store:_newManifest inFolder:_newReleaseFS.wwwFolder];
@@ -288,14 +311,14 @@
 }
 
 /**
- *  Cleanup on failed installation attempt.
+ *  如果失败，删除目录
  */
 - (void)cleanUpOnFailure {
     [_fileManager removeItemAtURL:_newReleaseFS.contentFolder error:nil];
 }
 
 /**
- *  Cleanup on successfull installation.
+ *  如果成功，删除目录
  */
 - (void)cleanUpOnSucess {
     [_fileManager removeItemAtURL:_newReleaseFS.downloadFolder error:nil];

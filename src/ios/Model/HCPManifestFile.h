@@ -1,35 +1,36 @@
 //
 //  HCPManifestFile.h
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 #import "HCPJsonConvertable.h"
 
 /**
- *  Model holds information about file in web project.
+ *  mainifest
  */
 @interface HCPManifestFile : NSObject<HCPJsonConvertable>
 
 /**
- *  Relative path to the file inside the web project.
+ *  名字
  */
 @property (nonatomic, readonly, strong) NSString *name;
 
 /**
- * Hash of the file.
- * By this we will detect if project file has changed.
+ * HASH
  */
 @property (nonatomic, readonly, strong) NSString *md5Hash;
 
 /**
- *  Object initializer
+ *  初始化
  *
- *  @param name    name of the file
- *  @param md5Hash file md5 hash
+ *  @param name    名字
+ *  @param md5Hash HASH
  *
- *  @return instance of the object
+ *  @return 实例
  */
 - (instancetype)initWithName:(NSString *)name md5Hash:(NSString *)md5Hash;
 

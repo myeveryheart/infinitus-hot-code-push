@@ -1,12 +1,14 @@
 //
 //  NSError+HCPExtension.m
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "NSError+HCPExtension.h"
 
-NSString *const kHCPPluginErrorDomain = @"HCPPluginError";
+NSString *const kHCPErrorDomain = @"HCPError";
 
 // Actual errors
 NSInteger const kHCPFailedToDownloadApplicationConfigErrorCode = -1;
@@ -37,11 +39,11 @@ NSInteger const kHCPNothingToUpdateErrorCode = 2;
 + (NSError *)errorWithCode:(NSInteger)errorCode description:(NSString *)description {
     NSDictionary *userInfo = @{NSLocalizedDescriptionKey: description};
     
-    return [NSError errorWithDomain:kHCPPluginErrorDomain code:errorCode userInfo:userInfo];
+    return [NSError errorWithDomain:kHCPErrorDomain code:errorCode userInfo:userInfo];
 }
 
 + (NSError *)errorWithCode:(NSInteger)errorCode descriptionFromError:(NSError *)error {
-    return [NSError errorWithDomain:kHCPPluginErrorDomain code:errorCode userInfo:error.userInfo];
+    return [NSError errorWithDomain:kHCPErrorDomain code:errorCode userInfo:error.userInfo];
 }
 
 - (NSString *)underlyingErrorLocalizedDesription {

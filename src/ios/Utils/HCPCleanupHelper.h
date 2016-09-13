@@ -1,21 +1,22 @@
 //
 //  HCPCleanupHelper.h
 //
-//  Created by Nikolay Demyankov on 23.12.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  Helper class to cleanup after plugin work.
- *  For now it's main task is to remove content folders from the previous releases.
+ *  清理工具类
  */
 @interface HCPCleanupHelper : NSObject
 
 /**
- *  Remove older releases from the external storage to free space.
+ *  删除老版本
  *
- *  @param ignoredReleases list of releases that should be left; mainly: current and previous one
+ *  @param ignoredReleases 忽略文件
  */
 + (void)removeUnusedReleasesExcept:(NSArray *)ignoredReleases;
 

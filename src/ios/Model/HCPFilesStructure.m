@@ -7,13 +7,13 @@
 #import "HCPFilesStructure.h"
 #import "NSFileManager+HCPExtension.h"
 
-#pragma mark Predefined folders and file names of the plugin
+#pragma mark Predefined folders and file names
 
-static NSString *const CHCP_FOLDER = @"cordova-hot-code-push-plugin";
+static NSString *const HCP_FOLDER = @"hot-code-push";
 static NSString *const DOWNLOAD_FOLDER = @"update";
 static NSString *const WWWW_FOLDER = @"www";
-static NSString *const CHCP_JSON_FILE_PATH = @"chcp.json";
-static NSString *const CHCP_MANIFEST_FILE_PATH = @"chcp.manifest";
+static NSString *const HCP_JSON_FILE_PATH = @"hcp.json";
+static NSString *const HCP_MANIFEST_FILE_PATH = @"hcp.manifest";
 
 @interface HCPFilesStructure()
 
@@ -36,34 +36,33 @@ static NSString *const CHCP_MANIFEST_FILE_PATH = @"chcp.manifest";
     return self;
 }
 
-+ (NSURL *)pluginRootFolder {
-    // static decleration gets executed only once
-    static NSURL *_pluginRootFolder = nil;
-    if (_pluginRootFolder != nil) {
-        return _pluginRootFolder;
++ (NSURL *)hcpRootFolder {
+    static NSURL *_hcpRootFolder = nil;
+    if (_hcpRootFolder != nil) {
+        return _hcpRootFolder;
     }
 
-    // construct path to the folder, where we will store our plugin's files
+    // 创建根目录
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *supportDir = [fileManager applicationSupportDirectory];
-    _pluginRootFolder = [supportDir URLByAppendingPathComponent:CHCP_FOLDER isDirectory:YES];
-    if (![fileManager fileExistsAtPath:_pluginRootFolder.path]) {
-        [fileManager createDirectoryAtURL:_pluginRootFolder withIntermediateDirectories:YES attributes:nil error:nil];
+    _hcpRootFolder = [supportDir URLByAppendingPathComponent:HCP_FOLDER isDirectory:YES];
+    if (![fileManager fileExistsAtPath:_hcpRootFolder.path]) {
+        [fileManager createDirectoryAtURL:_hcpRootFolder withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
-    // we need to exclude plugin's root folder from the iCloud backup, or it can become too big and Apple will reject the app.
+    // 把这个目录设置为不用iCloud备份
     // https://developer.apple.com/library/ios/qa/qa1719/_index.html
     NSError *error = nil;
-    BOOL success = [_pluginRootFolder setResourceValue:[NSNumber numberWithBool:YES] forKey:NSURLIsExcludedFromBackupKey error:&error];
+    BOOL success = [_hcpRootFolder setResourceValue:[NSNumber numberWithBool:YES] forKey:NSURLIsExcludedFromBackupKey error:&error];
     if (!success) {
-        NSLog(@"Error excluding %@ from backup %@", [_pluginRootFolder lastPathComponent], error);
+        NSLog(@"Error excluding %@ from backup %@", [_hcpRootFolder lastPathComponent], error);
     }
     
-    return _pluginRootFolder;
+    return _hcpRootFolder;
 }
 
 - (void)localInitWithReleaseVersion:(NSString *)releaseVersion {
-    _contentFolder = [[HCPFilesStructure pluginRootFolder]
+    _contentFolder = [[HCPFilesStructure hcpRootFolder]
                       URLByAppendingPathComponent:releaseVersion isDirectory:YES];
 }
 
@@ -84,19 +83,19 @@ static NSString *const CHCP_MANIFEST_FILE_PATH = @"chcp.manifest";
 }
 
 - (NSString *)configFileName {
-    return CHCP_JSON_FILE_PATH;
+    return HCP_JSON_FILE_PATH;
 }
 
 - (NSString *)manifestFileName {
-    return CHCP_MANIFEST_FILE_PATH;
+    return HCP_MANIFEST_FILE_PATH;
 }
 
 + (NSString *)defaultConfigFileName {
-    return CHCP_JSON_FILE_PATH;
+    return HCP_JSON_FILE_PATH;
 }
 
 + (NSString *)defaultManifestFileName {
-    return CHCP_MANIFEST_FILE_PATH;
+    return HCP_MANIFEST_FILE_PATH;
 }
 
 @end

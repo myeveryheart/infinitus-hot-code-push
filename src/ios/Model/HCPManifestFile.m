@@ -1,7 +1,9 @@
 //
 //  HCPManifestFile.m
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "HCPManifestFile.h"

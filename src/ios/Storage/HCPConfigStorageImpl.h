@@ -1,35 +1,36 @@
 //
 //  HCPConfigStorageImpl.h
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 #import "HCPConfigFileStorage.h"
 
 /**
- *  Base implementation of the HCPConfigFileStorage protocol.
+ *  实现HCPConfigFileStorage protocol
  *  
  *  @see HCPConfigFileStorage
  */
 @interface HCPConfigStorageImpl : NSObject<HCPConfigFileStorage>
 
 /**
- *  Getter for absolute url to the file from which we need to load a config instance.
- *  Used internally by the subclasses.
+ *  读取文件夹里的配置文件的url
  *
- *  @param folder absoule url to the folder where config file is stored
+ *  @param folder 文件夹
  *
- *  @return absoulte url to the config file
+ *  @return 配置文件的url
  */
 - (NSURL *)getFullUrlToFileInFolder:(NSURL *)folder;
 
 /**
- *  Create instance of the object from the JSON object.
+ *  把JSON对象转成自定义对象
  *
- *  @param jsonObject JSON object to process
+ *  @param jsonObject JSON对象
  *
- *  @return instance of the created object
+ *  @return 自定义对象
  *  @see HCPJsonConvertable
  */
 - (id<HCPJsonConvertable>)getInstanceFromJson:(id)jsonObject;

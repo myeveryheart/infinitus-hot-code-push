@@ -1,26 +1,49 @@
 //
 //  HCPWorker.h
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
+#import "HCPBlock.h"
+#import "HCPUpdateLoader.h"
 
 /**
- *  Protocol describes installation/download worker.
- *  Those worker does all the update logic.
+ *  下载和安装
  */
 @protocol HCPWorker <NSObject>
 
-/**
- *  String identifier of the created worker.
- *  Since all workers run in the background - they broadcast their results via NSNotificationCenter.
- *  With this identifier we can determine who finished his work.
- */
-@property (nonatomic, strong, readonly) NSString *workerId;
+///**
+// *  每个work分配一个id
+// */
+//@property (nonatomic, strong, readonly) NSString *workerId;
+//
+///**
+// *  启动下载和安装
+// */
+//- (void)runWithComplitionBlock:(void (^)(void))updateLoaderComplitionBlock;
 
 /**
- *  Run the worker logic.
+ *  是否要升级
+ *
+ *  @param block FetchUpdateBlock
  */
-- (void)runWithComplitionBlock:(void (^)(void))updateLoaderComplitionBlock;
+- (void)fetchWithComplitionBlock:(HCPFileFetchCompletionBlock)block;
+
+/**
+ *  下载更新
+ *
+ *  @param block DownloadUpdateBlock
+ */
+- (void)downloadWithNewAppConfig:(HCPApplicationConfig *)newAppConfig complitionBlock:(HCPFileDownloadCompletionBlock)block;
+
+/**
+ *  安装更新
+ *
+ *  @param block FetchUpdateBlock
+ */
+- (void)installWithComplitionBlock:(InstallUpdateBlock)block;
+
 @end

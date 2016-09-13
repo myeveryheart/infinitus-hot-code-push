@@ -1,76 +1,72 @@
 //
 //  HCPFilesStructure.h
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  Model for plugins file structure.
- *  Each release has it's own folder, so we need to initialize this object with release version.
+ *  文件结构
  *  
  *  @see HCPFileStructure
  */
 @interface HCPFilesStructure : NSObject
 
 /**
- *  Constructor.
+ *  初始化
  *
- *  @param releaseVersion for what version this file structure
+ *  @param releaseVersion 文件版本
  *
- *  @return object instance
+ *  @return object 实例
  */
 - (instancetype)initWithReleaseVersion:(NSString *)releaseVersion;
 
 /**
- *  Absolute path to plugins working directory.
+ *  更新目录的绝对路径
  */
 @property (nonatomic, strong, readonly) NSURL *contentFolder;
 
 /**
- *  Absolute path to the folder on the external storage where all web content is placed.
- *  From this folder we will show web pages.
- *  Think of this as an bundle folder on the external storage.
+ *  web文件在外部存储的绝对路径
  */
 @property (nonatomic, strong, readonly) NSURL *wwwFolder;
 
 /**
- *  Absolute path to the temporary folder where we will put files during the update download.
+ *  存储下载文件的文件夹绝对路径
  */
 @property (nonatomic, strong, readonly) NSURL *downloadFolder;
 
 /**
- *  Getter for the name of the application config file.
+ *  config文件的名字
  */
 @property (nonatomic, strong, readonly) NSString *configFileName;
 
 /**
- *  Getter for the name of the manifest file.
+ *  manifest文件的名字
  */
 @property (nonatomic, strong, readonly) NSString *manifestFileName;
 
 /**
- *  Get root folder for this plugin. 
- *  In it all releases are located.
+ *  更新的根目录
  *
- *  @return url on the external storage to the plugins root folder.
+ *  @return url 更新的根目录
  */
-+ (NSURL *)pluginRootFolder;
++ (NSURL *)hcpRootFolder;
 
 /**
- *  Default application config file name.
- *  Should be equal to the config name, that is bundled with the app.
+ *  config文件默认的名字
  *
- *  @return default application config file name.
+ *  @return config文件默认的名字
  */
 + (NSString *)defaultConfigFileName;
 
 /**
- *  Default name of the manifest file.
- *  Should be equal to the manifest name, that is bundled with the app.
+ *  manifest文件默认的名字
  *
- *  @return default manifest file name.
+ *  @return config文件默认的名字
  */
 + (NSString *)defaultManifestFileName;
 

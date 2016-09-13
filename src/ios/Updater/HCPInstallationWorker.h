@@ -1,7 +1,9 @@
 //
 //  HCPInstallationWorker.h
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
@@ -9,20 +11,19 @@
 #import "HCPFilesStructure.h"
 
 /**
- *  Worker, that implements installation logic.
- *  During the installation process events are dispatched to notify the subscribers about the progress.
+ *  安装类
  *
  *  @see HCPWorker
  */
 @interface HCPInstallationWorker : NSObject<HCPWorker>
 
 /**
- *  Initialize the worker.
+ *  初始化
  *
- *  @param newVersion new version of web content, that needs to be installed
- *  @param currentVersion current version of the web content
+ *  @param newVersion 需要安装的新版本
+ *  @param currentVersion 现在的版本
  *
- *  @return instance of the object
+ *  @return 实例
  */
 - (instancetype)initWithNewVersion:(NSString *)newVersion currentVersion:(NSString *)currentVersion;
 

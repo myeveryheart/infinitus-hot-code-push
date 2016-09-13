@@ -1,29 +1,31 @@
 //
 //  HCPJsonConvertable.h
 //
-//  Created by Nikolay Demyankov on 07.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  Protocol describes objects that can be converted to/from JSON.
+ *  可转换JSON
  */
 @protocol HCPJsonConvertable <NSObject>
 
 /**
- *  Convert this object instnace into JSON object
+ *  转JSON
  *
  *  @return JSON object
  */
 - (id)toJson;
 
 /**
- *  Create instance of the object from the JSON object
+ *  JSON转object
  *
- *  @param json JSON object to convert from
+ *  @param json JSON object
  *
- *  @return created instance
+ *  @return 实例
  */
 + (instancetype)instanceFromJsonObject:(id)json;
 

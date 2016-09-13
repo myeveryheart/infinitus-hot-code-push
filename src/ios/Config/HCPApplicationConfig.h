@@ -1,7 +1,9 @@
 //
 //  HCPApplicationConfig.h
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
@@ -9,28 +11,23 @@
 #import "HCPContentConfig.h"
 
 /**
- *  Model for application config. Holds information from chcp.json file.
+ *  保存hcp.json文件的信息
  */
 @interface HCPApplicationConfig : NSObject<HCPJsonConvertable>
 
 /**
- *  Getter for url, that leeds to the applications page on the App Store.
- */
-@property (nonatomic, strong, readonly) NSString *storeUrl;
-
-/**
- *  Getter for content config.
+ *  内容配置信息
  *
  *  @see HCPContentConfig
  */
 @property (nonatomic, strong, readonly) HCPContentConfig *contentConfig;
 
 /**
- *  Create instance of the application config from the configuration file in assets.
+ *  创建配置实例
  *
- *  @param configFileName name of the configuration file
+ *  @param configFileName 配置文件的信息名字
  *
- *  @return config instance
+ *  @return 配置实例
  */
 + (instancetype)configFromBundle:(NSString *)configFileName;
 

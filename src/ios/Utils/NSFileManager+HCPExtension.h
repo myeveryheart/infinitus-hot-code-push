@@ -1,29 +1,29 @@
 //
 //  NSFileManager+HCPExtension.h
 //
-//  Created by Nikolay Demyankov on 20.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  Category for NSFileManager class.
+ *  扩展NSFileManager
  */
 @interface NSFileManager (HCPExtension)
 
 /**
- *  Get URL to the Application Support directory.
- *  Basically, it's a working directory for the plugin, where we put all our files.
+ *  获取Application Support路径，更新都是在这里面完成的
  *
- *  @return URL to the directory.
+ *  @return URL
  */
 - (NSURL *)applicationSupportDirectory;
 
 /**
- *  Get URL to the application Cache directory.
- *  We will use this folder for update download process.
+ *  获取Cache路径，下载的更新包放这里
  *
- *  @return URL to the directory.
+ *  @return URL
  */
 - (NSURL *)applicationCacheDirectory;
 

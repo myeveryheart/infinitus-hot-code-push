@@ -1,28 +1,31 @@
 //
 //  HCPUpdateLoaderWorker.h
 //
-//  Created by Nikolay Demyankov on 11.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 #import "HCPFilesStructure.h"
 #import "HCPWorker.h"
-#import "HCPUpdateRequest.h"
 
 /**
- *  Worker, that implements update download logic.
- *  During the download process events are dispatched to notify the subscribers about the progress.
+ *  实现下载逻辑
+ *
  *  @see HCPWorker
  */
 @interface HCPUpdateLoaderWorker : NSObject<HCPWorker>
 
 /**
- *  Constructor.
+ *  初始化
  *
- *  @param request request parameters
+ *  @param configURL     web的config
+ *  @param currentVersion 当前版本
  *
- *  @return object instance
+ *  @return 实例
+ *  @see HCPFilesStructure
  */
-- (instancetype)initWithRequest:(HCPUpdateRequest *)request;
+- (instancetype)initWithConfigUrl:(NSURL *)configURL currentWebVersion:(NSString *)currentWebVersion nativeInterfaceVersion:(NSUInteger)currentNativeVersion;
 
 @end

@@ -1,62 +1,64 @@
 //
 //  HCPManifestDiff.h
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 #import "HCPManifestFile.h"
 
 /**
- *  Model describes difference between two manifest files.
+ *  两个manifest文件的差异
  */
 @interface HCPManifestDiff : NSObject
 
 /**
- *  Getter for the combined list of added and changed files.
+ *  获取新增的和修改的文件
  *
- *  @return array of HCPManifestFile objects
+ *  @return HCPManifestFile数组
  *  @see HCPManifestFile
  */
 @property (nonatomic, strong, readonly) NSArray *updateFileList;
 
 /**
- *  Check if there is no defference between the manifests.
+ *  两个manifest是否一样
  */
 @property (nonatomic, readonly, getter=isEmpty) BOOL isEmpty;
 
 /**
- *  Getter for the list of new files, that were added to the project.
+ *  新增文件
  *
- *  @return array of HCPManifestFile objects
+ *  @return HCPManifestFile数组
  *  @see HCPManifestFile
  */
 @property (nonatomic, strong, readonly) NSArray *addedFiles;
 
 /**
- *  Getter for the list of existing files that has been changed.
+ *  修改文件
  *
- *  @return array of HCPManifestFile objects
+ *  @return HCPManifestFile数组
  *  @see HCPManifestFile
  */
 @property (nonatomic, strong, readonly) NSArray *changedFiles;
 
 /**
- *  Getter for the list of deleted files.
+ *  删除文件
  * 
- *  @return array of HCPManifestFile objects
+ *  @return HCPManifestFile数组
  *  @see HCPManifestFile
  */
 @property (nonatomic, strong, readonly) NSArray *deletedFiles;
 
 /**
- *  Object initializer
+ *  初始化
  *
- *  @param addedFiles   list of added files
- *  @param changedFiles list of changed files
- *  @param deletedFiles list of deleted files
+ *  @param addedFiles   新增文件
+ *  @param changedFiles 修改文件
+ *  @param deletedFiles 删除文件
  *
- *  @return instance of the object
+ *  @return 实例
  *  @see HCPManifestFile
  */
 - (instancetype)initWithAddedFiles:(NSArray *)addedFiles changedFiles:(NSArray *)changedFiles deletedFiles:(NSArray *)deletedFiles;

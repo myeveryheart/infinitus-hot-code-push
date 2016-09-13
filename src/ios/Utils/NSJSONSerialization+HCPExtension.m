@@ -1,7 +1,9 @@
 //
 //  NSJSONSerialization+HCPExtension.m
 //
-//  Created by Nikolay Demyankov on 11.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "NSJSONSerialization+HCPExtension.h"

@@ -1,7 +1,9 @@
 //
 //  HCPContentManifest.m
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "HCPContentManifest.h"
@@ -22,7 +24,7 @@
     NSMutableArray *changedFiles = [[NSMutableArray alloc] init];
     NSMutableArray *deletedFiles = [[NSMutableArray alloc] init];
 
-    // find deleted and updated files
+    //找到需要删除的和更新的文件
     for (HCPManifestFile *oldFile in self.files) {
         BOOL isDeleted = YES;
         for (HCPManifestFile *newFile in comparedManifest.files) {
@@ -38,7 +40,7 @@
         }
     }
     
-    // find new files
+    //找到新的文件
     for (HCPManifestFile *newFile in comparedManifest.files) {
         BOOL isFound = NO;
         for (HCPManifestFile *oldFile in self.files) {

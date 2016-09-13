@@ -1,7 +1,9 @@
 //
 //  HCPFileDownloader.m
 //
-//  Created by Nikolay Demyankov on 11.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "HCPFileDownloader.h"
@@ -13,12 +15,9 @@
 
 #pragma mark Public API
 
-- (void) downloadDataFromUrl:(NSURL*) url requestHeaders:(NSDictionary *)headers completionBlock:(HCPDataDownloadCompletionBlock) block {
+- (void) downloadDataFromUrl:(NSURL*) url completionBlock:(HCPDataDownloadCompletionBlock) block {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-    if (headers) {
-        [configuration setHTTPAdditionalHeaders:headers];
-    }
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     
     NSURLSessionDataTask* dowloadTask = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -28,16 +27,14 @@
     [dowloadTask resume];
 }
 
-- (void) downloadFiles:(NSArray *)filesList fromURL:(NSURL *)contentURL toFolder:(NSURL *)folderURL requestHeaders:(NSDictionary *)headers completionBlock:(HCPFileDownloadCompletionBlock)block {
+- (void) downloadFiles:(NSArray *)filesList fromURL:(NSURL *)contentURL toFolder:(NSURL *)folderURL completionBlock:(DownloadUpdateBlock)block {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-    if (headers) {
-        [configuration setHTTPAdditionalHeaders:headers];
-    }
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     
     __block NSMutableSet* startedTasks = [NSMutableSet set];
     __block BOOL canceled = NO;
+    __block NSInteger fileDownloaded = 0;
     for (HCPManifestFile *file in filesList) {
         NSURL *url = [contentURL URLByAppendingPathComponent:file.name];
         __block NSURLSessionDataTask *downloadTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -45,6 +42,8 @@
             if (!error) {
                 if ([weakSelf saveData:data forFile:file toFolder:folderURL error:&error]) {
                     NSLog(@"Loaded file %@ from %@", file.name, url.absoluteString);
+                    fileDownloaded++;
+                    block(NO, filesList.count, fileDownloaded, error);
                     [startedTasks removeObject:downloadTask];
                 }
             }
@@ -54,13 +53,13 @@
                 [startedTasks removeAllObjects];
             }
             
-            // operations finishes
+            // 操作完成
             if (!canceled && (startedTasks.count == 0 || error)) {
                 if (error) {
-                    canceled = YES; // do not dispatch any other error
+                    canceled = YES; // 不再发送其他错误
                 }
-                // we should already be in the background thread
-                block(error);
+                
+                block(YES, filesList.count, fileDownloaded, error);
             }
         }];
         
@@ -72,13 +71,13 @@
 #pragma Private API
 
 /**
- *  Check if data was corrupted during the download.
+ *  检查数据的正确性
  *
- *  @param data     data to check
- *  @param checksum supposed checksum of the data
- *  @param error    error details if data corrupted; <code>nil</code> if data is valid
+ *  @param data     要检查的数据
+ *  @param checksum 应该的checksum
+ *  @param error    错误
  *
- *  @return <code>YES</code> if data is corrupted; <code>NO</code> if data is valid
+ *  @return <code>YES</code> 数据不正确; <code>NO</code> 数据正确
  */
 - (BOOL)isDataCorrupted:(NSData *)data forFile:(HCPManifestFile *)file error:(NSError **)error {
     *error = nil;
@@ -95,14 +94,14 @@
 }
 
 /**
- *  Save loaded file data to the file system.
+ *  把数据保存到文件
  *
- *  @param data      loaded data
- *  @param file      file, whose data we loaded
- *  @param folderURL folder, where to save loaded data
- *  @param error     error entry; <code>nil</code> - if saved successfully;
+ *  @param data      数据
+ *  @param file      文件
+ *  @param folderURL 文件夹
+ *  @param error     错误
  *
- *  @return <code>YES</code> - if data is saved; <code>NO</code> - otherwise
+ *  @return <code>YES</code> - 保存成功; <code>NO</code> - 保存失败
  */
 - (BOOL)saveData:(NSData *)data forFile:(HCPManifestFile *)file toFolder:(NSURL *)folderURL error:(NSError **)error {
     if ([self isDataCorrupted:data forFile:file error:error]) {
@@ -112,18 +111,18 @@
     NSURL *filePath = [folderURL URLByAppendingPathComponent:file.name];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    // remove old version of the file
+    // 删除旧文件
     if ([fileManager fileExistsAtPath:filePath.path]) {
         [fileManager removeItemAtURL:filePath error:nil];
     }
     
-    // create storage directories
+    // 创建目录
     [fileManager createDirectoryAtPath:[filePath.path stringByDeletingLastPathComponent]
            withIntermediateDirectories:YES
                             attributes:nil
                                  error:nil];
     
-    // write data
+    // 写数据
     return [data writeToURL:filePath options:kNilOptions error:error];
 }
 

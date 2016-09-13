@@ -1,7 +1,9 @@
 //
 //  HCPCleanupHelper.m
 //
-//  Created by Nikolay Demyankov on 23.12.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "HCPCleanupHelper.h"
@@ -25,8 +27,7 @@
 #pragma Private API
 
 /**
- *  Get shared instance of the cleaner.
- *  Class is a singleton to exclude conflicts.
+ *  单例
  *
  *  @return class instance
  */
@@ -53,16 +54,14 @@
 }
 
 - (void)removeFoldersWithIgnoreList:(NSArray *)ignoreList {
-    NSURL *rootFolder = [HCPFilesStructure pluginRootFolder];
+    NSURL *rootFolder = [HCPFilesStructure hcpRootFolder];
     NSFileManager *fm = [NSFileManager defaultManager];
     
-    // get list of release folders
     NSArray *releases = [fm contentsOfDirectoryAtURL:rootFolder includingPropertiesForKeys:@[] options:kNilOptions error:nil];
     if (releases.count == 0) {
         return;
     }
     
-    // iterate over them and delete ones that are not in ignore list
     for (NSURL *releaseFolderURL in releases) {
         BOOL shouldIgnore = NO;
         NSString *releaseFolder = [releaseFolderURL lastPathComponent];

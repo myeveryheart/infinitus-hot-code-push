@@ -1,34 +1,36 @@
 //
 //  NSJSONSerialization+HCPExtension.h
 //
-//  Created by Nikolay Demyankov on 11.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  Category for NSJSONSerialization class.
+ *  扩展NSJSONSerialization
  */
 @interface NSJSONSerialization (HCPExtension)
 
 /**
- *  Create JSON object with the contents of the given file.
+ *  文件转JSON
  *
- *  @param fileURL url to the file whose content to use
- *  @param error object is filled with error details if any happened during the convertation
+ *  @param fileURL 文件url
+ *  @param error 错误
  *
- *  @return JSON object instance
+ *  @return JSON对象
  *
  */
 + (id)JSONObjectWithContentsFromFileURL:(NSURL *)fileURL error:(NSError **)error;
 
 /**
- *  Create JSON object from the string.
+ *  string转JSON
  *
- *  @param jsonString JSON formatted string
- *  @param error      object is filled with error details if any happened during the convertation.
+ *  @param jsonString JSON格式的string
+ *  @param error      错误
  *
- *  @return JSON object instance
+ *  @return JSON对象
  */
 + (id)JSONObjectWithContentsFromString:(NSString *)jsonString error:(NSError **)error;
 

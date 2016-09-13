@@ -1,21 +1,22 @@
 //
 //  NSData+MD5.h
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  Category for NSData class.
- *  Allow us to generate MD5 hash from NSData instance.
+ *  扩展NSData
  */
 @interface NSData (HCPMD5)
 
 /**
- *  Generate md5 hash string from the object instance.
+ *  生成hash
  *
- *  @return hash string
+ *  @return hash
  */
 - (NSString *)md5;
 

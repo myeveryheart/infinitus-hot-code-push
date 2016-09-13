@@ -1,7 +1,9 @@
 //
 //  HCPContentConfig.m
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "HCPContentConfig.h"
@@ -24,37 +26,31 @@ static NSString *const CONTENT_URL_JSON_KEY = @"content_url";
 
 #pragma mark HCPUpdateTime enum strings declaration
 
-static NSString *const UPDATE_TIME_NOW = @"now";
-static NSString *const UPDATE_TIME_ON_START = @"start";
-static NSString *const UPDATE_TIME_ON_RESUME = @"resume";
+static NSString *const UPDATE_TIME_FORCED = @"forced";
+static NSString *const UPDATE_TIME_SILENT = @"silent";
 
 @implementation HCPContentConfig
 
 #pragma mark Private API
 
 /**
- *  Convert HCPUpdateTime instance to string.
+ *  enum转string.
  *
  *  @param updateTime
  *
- *  @return string representation of the update time option
+ *  @return string
  */
 - (NSString *)updateTimeEnumToString:(HCPUpdateTime)updateTime {
     NSString *value = @"";
     switch (updateTime) {
-        case HCPUpdateNow: {
-            value = UPDATE_TIME_NOW;
+        case HCPUpdateTimeForced: {
+            value = UPDATE_TIME_FORCED;
             break;
         }
-        case HCPUpdateOnResume: {
-            value = UPDATE_TIME_ON_RESUME;
+        case HCPUpdateTimeSilent: {
+            value = UPDATE_TIME_SILENT;
             break;
         }
-        case HCPUpdateOnStart: {
-            value = UPDATE_TIME_ON_START;
-            break;
-        }
-        
         case HCPUpdateTimeUndefined:
         default: {
             break;
@@ -65,22 +61,19 @@ static NSString *const UPDATE_TIME_ON_RESUME = @"resume";
 }
 
 /**
- *  Convert update time option from string to enum
+ *  string转enum
  *
- *  @param updateTime string version
+ *  @param updateTime string
  *
- *  @return enum version of the string
+ *  @return enum
  */
 - (HCPUpdateTime)updateTimeStringToEnum:(NSString *)updateTime {
     HCPUpdateTime value = HCPUpdateTimeUndefined;
-    if ([updateTime isEqualToString:UPDATE_TIME_NOW]) {
-        value = HCPUpdateNow;
-    } else if ([updateTime isEqualToString:UPDATE_TIME_ON_START]) {
-        value = HCPUpdateOnStart;
-    } else if ([updateTime isEqualToString:UPDATE_TIME_ON_RESUME]) {
-        value = HCPUpdateOnResume;
-    }
-    
+    if ([updateTime isEqualToString:UPDATE_TIME_FORCED]) {
+        value = HCPUpdateTimeForced;
+    } else if ([updateTime isEqualToString:UPDATE_TIME_SILENT]) {
+        value = HCPUpdateTimeSilent;
+    }     
     return value;
 }
 

@@ -1,7 +1,9 @@
 //
 //  HCPApplicationConfigStorage.h
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
@@ -9,18 +11,18 @@
 #import "HCPFilesStructure.h"
 
 /**
- *  Utility class to save and load application config from the certain folder.
+ *  从文件夹读取和保存配置的工具类
  *
  *  @see HCPConfigFileStorage
  */
 @interface HCPApplicationConfigStorage : HCPConfigStorageImpl
 
 /**
- *  Initialize object.
+ *  初始化
  *
- *  @param fileStructure plugins file structure
+ *  @param fileStructure 文件结构
  *
- *  @return instance of the object
+ *  @return 实例
  *  @see HCPFilesStructure
  */
 - (instancetype)initWithFileStructure:(HCPFilesStructure *)fileStructure;

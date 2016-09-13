@@ -1,12 +1,13 @@
 //
 //  NSBundle+Extension.m
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "NSBundle+HCPExtension.h"
 #import "NSError+HCPExtension.h"
-#import "HCPEvents.h"
 
 static NSString *const WWW_FOLDER_IN_BUNDLE = @"www";
 
@@ -14,18 +15,18 @@ static NSString *const WWW_FOLDER_IN_BUNDLE = @"www";
 
 #pragma mark Public API
 
-+ (NSString *)applicationBuildVersion {
++ (NSInteger)applicationBuildVersion {
     NSBundle *mainBundle = [NSBundle mainBundle];
+    id appBuildVersion = [mainBundle objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    if (appBuildVersion == nil) {
+        return 0;
+    }
     
-    return [mainBundle objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    return [appBuildVersion integerValue];
 }
 
 + (NSString *)pathToWwwFolder {
     return [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:WWW_FOLDER_IN_BUNDLE];
-}
-
-+ (NSString *)pathToCordovaConfigXml {
-    return [[NSBundle mainBundle] pathForResource:@"config" ofType:@"xml"];
 }
 
 @end

@@ -1,34 +1,35 @@
 //
 //  HCPConfigStorage.h
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 #import "HCPJsonConvertable.h"
 
 /**
- *  Protocol describes objects for storing/restoring different config instances.
+ *  Protocol 配置文件存储
  */
 @protocol HCPConfigFileStorage <NSObject>
 
 /**
- *  Save object into the folder. Object will be stored as JSON string.
- *  Actual path to the file in the folder, where object is putted is determined by the implementation class.
+ *  保存配置到文件夹
  *
- *  @param config    config to save
- *  @param folderURL absolute URL to folder, where to save the object
- *  @return <code>YES</code> if config is saved; <code>NO</code> if failed
+ *  @param config    配置
+ *  @param folderURL 文件夹
+ *  @return <code>YES</code> 保存成功; <code>NO</code> 保存失败
  *  @see HCPJsonConvertable
  */
 - (BOOL)store:(id<HCPJsonConvertable>)config inFolder:(NSURL *)folderURL;
 
 /**
- *  Load object from folder.
+ *  从文件夹读取配置
  *
- *  @param folderURL absolute URL to folder, where to save the object
+ *  @param folderURL 文件夹
  *
- *  @return instance of the object, loaded from the provided folder.
+ *  @return 配置
  */
 - (id<HCPJsonConvertable>)loadFromFolder:(NSURL *)folderURL;
 

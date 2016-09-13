@@ -1,25 +1,27 @@
 //
 //  HCPContentManifestStorage.h
 //
-//  Created by Nikolay Demyankov on 12.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import "HCPConfigStorageImpl.h"
 #import "HCPFilesStructure.h"
 
 /**
- *  Utility class to save and load content manifest file from the certain folder.
+ *  保存和读取manifest文件的工具类
  * 
  *  @see HCPContentManifest
  */
 @interface HCPContentManifestStorage : HCPConfigStorageImpl
 
 /**
- *  Object initializer
+ *  初始化
  *
- *  @param fileStructure plugins file structure
+ *  @param fileStructure fileStructure
  *
- *  @return instance of the object
+ *  @return 实例
  */
 - (instancetype)initWithFileStructure:(HCPFilesStructure *)fileStructure;
 

@@ -1,22 +1,24 @@
 //
 //  HCPAssetsFolderHelper.h
 //
-//  Created by Nikolay Demyankov on 03.11.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
+#import "HCPBlock.h"
 
 /**
- *  Helper class to install www folder on the external storage
+ *  把www文件夹安装到外部存储的工具类
  */
 @interface HCPAssetsFolderHelper : NSObject
 
 /**
- *  Install www folder from bunlde onto the external storage.
+ *  把bunlde的www文件夹安装到外部存储
  *
- *  @param externalFolderURL URL to the folder where to install web content; 
- *         usually it is a folder in Application Support directory.
+ *  @param externalFolderURL 外部存储的url
  */
-+ (void)installWwwFolderToExternalStorageFolder:(NSURL *)externalFolderURL;
++ (void)installWwwFolderToExternalStorageFolder:(NSURL *)externalFolderURL completionBlock:(InstallWwwFolderBlock)block;
 
 @end

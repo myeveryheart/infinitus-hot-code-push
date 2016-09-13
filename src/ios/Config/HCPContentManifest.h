@@ -1,7 +1,9 @@
 //
 //  HCPContentManifest.h
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
@@ -10,27 +12,23 @@
 #import "HCPManifestDiff.h"
 
 /**
- *  Model for content manifest.
- *  Content manifest is a configuration file, that holds the list of all web project files with they hashes.
- *  Used to determine which files has been removed from the project, which are added or updated.
+ *  manifest文件
  */
 @interface HCPContentManifest : NSObject<HCPJsonConvertable>
 
 /**
- *  List of web project files.
- *  Objects in the array are the instances of the HCPManifestFile class.
+ *  web文件列表，数组里是HCPManifestFile
  *
  *  @see HCPManifestFile
  */
 @property (nonatomic, readonly, strong) NSArray *files;
 
 /**
- * Find differences between this manifest and the new one.
- * Current object is considered as an old manifest.
+ *  比较manifest
  *
- *  @param comparedManifest new manifest, relative to which we will calculate the difference
+ *  @param comparedManifest 新的manifest
  *
- *  @return calculated difference between manifests
+ *  @return manifests差别
  *  @see HCPManifestFile
  *  @see HCPManifestDiff
  */

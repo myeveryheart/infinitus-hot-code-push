@@ -1,55 +1,71 @@
 //
 //  HCPFileDownloader.h
 //
-//  Created by Nikolay Demyankov on 11.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
+#import "HCPBlock.h"
+#import "HCPApplicationConfig.h"
 
 /**
- *  Complition block for file download process.
+ *  文件下载完成block
  *
- *  @param error holds information about occured error; <code>nil</code> if everything is fine
+ *  @param success    是否成功
+ *  @param totalFiles    文件总数
+ *  @param fileDownloaded 已下载文件数
+ *  @param error         错误
+ *  @param newAppConfig         新配置
  */
-typedef void (^HCPFileDownloadCompletionBlock)(NSError *error);
+typedef void (^HCPFileDownloadCompletionBlock)(BOOL success, NSInteger totalFiles, NSInteger fileDownloaded, NSError *error, HCPApplicationConfig *newAppConfig);
 
 /**
- *  Complition block for data download.
+ *  检查更新完成block
  *
- *  @param data  downloaded data
- *  @param error error information; <code>nil</code> - if everything is fine
+ *  @param needUpdate 是否需要强制更新
+ *  @param error      错误
+ *  @param newAppConfig         新配置
+ */
+typedef void (^HCPFileFetchCompletionBlock)(BOOL needUpdate, NSError *error, HCPApplicationConfig *newAppConfig);
+
+
+
+
+typedef void (^HCPFileInstallCompletionBlock)(BOOL success, NSError *error, HCPApplicationConfig *newAppConfig);
+
+/**
+ *  数据下载完成block
+ *
+ *  @param data  下载数据
+ *  @param error 错误
  */
 typedef void (^HCPDataDownloadCompletionBlock)(NSData *data, NSError *error);
 
 /**
- *  Helper class to download files from the server.
+ *  下载文件的工具类
  */
 @interface HCPFileDownloader : NSObject
 
 /**
- *  Download data asynchronously.
+ *  异步下载
  *
- *  @param url      url to the downloaded file
- *  @param block    data download completion block, called with the data when it is available.
+ *  @param url      下载的url
+ *  @param block    下载的数据
  */
-- (void) downloadDataFromUrl:(NSURL*)url
-              requestHeaders:(NSDictionary *)headers
-             completionBlock:(HCPDataDownloadCompletionBlock) block;
+- (void) downloadDataFromUrl:(NSURL*) url completionBlock:(HCPDataDownloadCompletionBlock) block;
 
 /**
- *  Download list of files asynchronously.
+ *  异步下载文件
  *
- *  @param filesList  list of files to download. Files are instances of HCPManifestFile class.
- *  @param contentURL url on the server where all files are located. Full URL to the file is constructed from this one and the files mame.
- *  @param folderURL  url to the directory in local file system where to put all loaded files
- *  @param block      download completion block
+ *  @param filesList  文件列表
+ *  @param contentURL 文件url
+ *  @param folderURL  存储url
+ *  @param block      下载完成block
  *
  *  @see HCPManifestFile
  */
-- (void) downloadFiles:(NSArray *)filesList
-               fromURL:(NSURL *)contentURL
-              toFolder:(NSURL *)folderURL
-        requestHeaders:(NSDictionary *)headers
-       completionBlock:(HCPFileDownloadCompletionBlock)block;
+- (void) downloadFiles:(NSArray *)filesList fromURL:(NSURL *)contentURL toFolder:(NSURL *)folderURL completionBlock:(DownloadUpdateBlock)block;
 
 @end

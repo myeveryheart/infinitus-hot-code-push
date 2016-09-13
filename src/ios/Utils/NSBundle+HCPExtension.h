@@ -1,35 +1,30 @@
 //
 //  NSBundle+Extension.h
 //
-//  Created by Nikolay Demyankov on 10.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- *  Category for the NSBundle class.
+ *  扩展NSBundle
  */
 @interface NSBundle (HCPExtension)
 
 /**
- *  Getter for the current build version of the application.
+ *  app build 版本号
  *
- *  @return build version of the app
+ *  @return build app build 版本号
  */
-+ (NSString *)applicationBuildVersion;
++ (NSInteger)applicationBuildVersion;
 
 /**
- *  Path to the www folder in the application bundle.
+ *  www文件夹在app bundle里的路径
  *
- *  @return path to www folder
+ *  @return 路径
  */
 + (NSString *)pathToWwwFolder;
-
-/**
- *  Path to the config.xml file in the project.
- *
- *  @return path to the config file
- */
-+ (NSString *)pathToCordovaConfigXml;
 
 @end

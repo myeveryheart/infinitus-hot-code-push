@@ -1,47 +1,76 @@
 //
 //  HCPUpdateLoader.h
 //
-//  Created by Nikolay Demyankov on 11.08.15.
+//  InfinitusHotCodePush
+//
+//  Created by M on 16/8/30.
 //
 
 #import <Foundation/Foundation.h>
-#import "HCPUpdateRequest.h"
+#import "HCPBlock.h"
+#import "HCPFileDownloader.h"
 
 /**
- *  Utility class to perform update download.
- *  It only schedules the download and executes it as soon as possible.
- *
- *  Queue consists from 1 task, because we don't need to store 100 tasks for download request,
- *  we need only the last one.
- * 
- *  Class is a singleton.
+ *  下载工具类
  *
  *  @see HCPUpdateLoaderWorker
  */
 @interface HCPUpdateLoader : NSObject
 
 /**
- *  Get shared instance of the object.
+ *  单例
  *
- *  @return instance of the object
+ *  @return 实例
  */
 + (HCPUpdateLoader *)sharedInstance;
 
 /**
- *  Add update download task to queue. It will be executed as fast as possible.
- *  
- *  @param request update download parameters
- *  @param error   error object reference; filled with data when we failed to launch the update task
+ *  检查更新
  *
- *  @return YES if download task is launched; NO - otherwise
+ *  @param configUrl            服务器上的configUrl
+ *  @param currentWebVersion    当前www版本
+ *  @param currentNativeVersion 当前app版本
+ *  @param block                block
  */
-- (BOOL)executeDownloadRequest:(HCPUpdateRequest *)request error:(NSError **)error;
+- (void)fetchUpdateWithConfigUrl:(NSURL *)configUrl currentWebVersion:(NSString *)currentWebVersion currentNativeVersion:(NSUInteger)currentNativeVersion fetchUpdateBlock:(FetchUpdateBlock)block;
 
 /**
- *  Flag to check if we are doing any downloads at the moment.
+ *  新增下载任务
  *
- *  @return <code>YES</code> if download is running, <code>NO</code> otherwise.
+ *  @param block                block
+ */
+- (void)downloadUpdateWithDownloadUpdateBlock:(HCPFileDownloadCompletionBlock)block;
+
+/**
+ *  是否正在下载
+ *
+ *  @return <code>YES</code> 是, <code>NO</code> 否
  */
 @property (nonatomic, readonly, getter=isDownloadInProgress) BOOL isDownloadInProgress;
+
+
+
+
+/**
+ *  是否正在安装
+ *
+ *  @return <code>YES</code> 是; <code>NO</code> 否
+ */
+@property (nonatomic, readonly, getter=isInstallationInProgress) BOOL isInstallationInProgress;
+
+/**
+ *  启动安装
+ *
+ *  @param installVersion 需要安装的版本
+ *  @param currentVersion 当前版本
+ *  @param error 错误
+ *
+ *  @return <code>YES</code> 启动成功; <code>NO</code> 启动失败
+ */
+- (void)installVersion:(NSString *)newVersion
+        currentVersion:(NSString *)currentVersion
+       completionBlock:(HCPFileInstallCompletionBlock)block;
+
+
 
 @end
