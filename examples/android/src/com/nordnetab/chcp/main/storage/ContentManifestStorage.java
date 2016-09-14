@@ -5,9 +5,9 @@ import com.nordnetab.chcp.main.model.PluginFilesStructure;
 import com.nordnetab.chcp.main.utils.Paths;
 
 /**
- * Created by Nikolay Demyankov on 23.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Utility class to save and load content manifest file from the certain folder.
+ * 保存和读取manifest文件的工具类
  *
  * @see ContentManifest
  * @see IObjectFileStorage

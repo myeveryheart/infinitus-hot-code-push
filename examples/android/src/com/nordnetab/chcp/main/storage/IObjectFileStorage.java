@@ -1,27 +1,26 @@
 package com.nordnetab.chcp.main.storage;
 
 /**
- * Created by Nikolay Demyankov on 25.08.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Interface that describes utility class, which does saving/loading of the object to/from folder.
+ * 保存和读取manifest文件的接口
  */
 public interface IObjectFileStorage<T> {
 
     /**
-     * Save object into the folder. Object will be stored as JSON string.
-     * Actual path to the file in the folder, where object is putted is determined by the implementation class.
+     * 保存到文件夹
      *
-     * @param config object to store
-     * @param folder absolute path to folder, where to save the object
-     * @return <code>true</code> if object is saved; <code>false</code> - otherwise
+     * @param config 保存的对象
+     * @param folder 文件夹路径
+     * @return <code>true</code> 是; <code>false</code> - otherwise
      */
     boolean storeInFolder(T config, String folder);
 
     /**
-     * Load object from folder.
+     * 从文件夹读取
      *
-     * @param folder absolute path to the folder, where object lies.
-     * @return instance of the object, loaded from the provided folder.
+     * @param folder 文件夹路径
+     * @return 对象
      */
     T loadFromFolder(String folder);
 }

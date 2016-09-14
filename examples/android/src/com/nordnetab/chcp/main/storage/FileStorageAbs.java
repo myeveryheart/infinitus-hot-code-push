@@ -7,28 +7,27 @@ import com.nordnetab.chcp.main.utils.FilesUtility;
 import java.io.IOException;
 
 /**
- * Created by Nikolay Demyankov on 23.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Base class for storing/loading file from the certain folder.
- * Object is stored in file as JSON string.
+ * 从文件夹读取和保存配置的基类
  *
  * @see IObjectFileStorage
  */
 abstract class FileStorageAbs<T> implements IObjectFileStorage<T> {
 
     /**
-     * Create instance of the object from the JSON string
+     * JSON转对象
      *
      * @param json JSON string
-     * @return instance of the created object
+     * @return 对象
      */
     protected abstract T createInstance(String json);
 
     /**
-     * Getter for the path to the file from which we want to restore an object.
+     * 保存的url
      *
-     * @param folder absolute path to folder, where file lies
-     * @return absolute path to the file
+     * @param folder 文件夹url
+     * @return 文件url
      */
     protected abstract String getFullPathForFileInFolder(String folder);
 

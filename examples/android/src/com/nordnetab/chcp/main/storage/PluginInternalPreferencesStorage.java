@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import com.nordnetab.chcp.main.config.PluginInternalPreferences;
 
 /**
- * Created by Nikolay Demyankov on 28.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Utility class to store plugin internal preferences in shared preferences
+ * 保存 shared preferences
  *
  * @see PluginInternalPreferences
  * @see IObjectPreferenceStorage
