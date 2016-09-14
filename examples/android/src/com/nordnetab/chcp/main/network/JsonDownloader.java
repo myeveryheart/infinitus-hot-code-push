@@ -25,26 +25,26 @@ abstract class JsonDownloader<T> {
     private static final int READ_TIMEOUT = 30000;
 
     /**
-     * Create instance of the object from json string.
+     * json转对象
      *
-     * @param json loaded JSON string
-     * @return instance of the object, created from the JSON string
+     * @param json 下载的JSON string
+     * @return 对象实例
      */
     protected abstract T createInstance(String json);
 
     /**
      * Class constructor
      *
-     * @param url url from which JSON should be loaded
+     * @param url JSON的url
      */
     public JsonDownloader(String url) {
         this.downloadUrl = url;
     }
 
     /**
-     * Perform download.
+     * 执行下载
      *
-     * @return result of the download
+     * @return 下载结果
      * @see DownloadResult
      */
     public DownloadResult<T> download() {
