@@ -48,7 +48,7 @@ class InstallationWorker implements WorkerTask {
         currentReleaseFS = new HCPFilesStructure(context, currentVersion);
     }
 
-    @Override
+//    @Override
     public void run() {
         // try to initialize before run
         if (!init()) {

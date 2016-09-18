@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @see com.nordnetab.hcp.main.updater.InstallationWorker
  * @see com.nordnetab.hcp.main.updater.UpdateLoaderWorker
- * @see IHCPEvent
+ * @see HCPEvent
  */
 public class WorkerEvent extends HCPEventImpl {
 

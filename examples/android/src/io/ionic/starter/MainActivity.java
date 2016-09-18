@@ -27,7 +27,7 @@ public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallb
 //        helper.setListener(this);
 
 
-            helper.setWebUrl("http://172.20.70.80/poc");
+            helper.setWebUrl("http://172.20.70.80/poc/");
 
         if (helper.loadFromExternalStorageFolder())
         {
@@ -48,6 +48,6 @@ public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallb
 
     @Override
     public void fetchUpdateCallback(boolean needUpdate, HCPError error) {
-
+        Log.d("HCP", "强制更新");
     }
 }

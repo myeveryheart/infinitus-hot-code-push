@@ -1,5 +1,6 @@
 package com.nordnetab.hcp.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -13,6 +14,8 @@ import com.nordnetab.hcp.main.events.AssetsInstallationErrorEvent;
 import com.nordnetab.hcp.main.events.AssetsInstalledEvent;
 import com.nordnetab.hcp.main.events.BeforeAssetsInstalledEvent;
 import com.nordnetab.hcp.main.events.BeforeInstallEvent;
+import com.nordnetab.hcp.main.events.FetchUpdateCompletedEvent;
+import com.nordnetab.hcp.main.events.FetchUpdateErrorEvent;
 import com.nordnetab.hcp.main.events.NothingToInstallEvent;
 import com.nordnetab.hcp.main.events.NothingToUpdateEvent;
 import com.nordnetab.hcp.main.events.UpdateDownloadErrorEvent;
@@ -51,6 +54,11 @@ import java.util.Map;
  */
 public class HCPHelper {
 
+    public interface FetchUpdateCallback
+    {
+        void fetchUpdateCallback(boolean needUpdate, HCPError error);
+    }
+
     private static final String WWW_FOLDER = "www";
     private static final String LOCAL_ASSETS_FOLDER = "file:///android_asset/www";
 
@@ -66,11 +74,9 @@ public class HCPHelper {
     private static Context context;
     private static HCPHelper helper;
 //    private HCPResult hcpResult;
+    private FetchUpdateCallback fetchUpdateCallback;
 
-    public interface FetchUpdateCallback
-    {
-        void fetchUpdateCallback(boolean needUpdate, HCPError error);
-    }
+
 
     public static HCPHelper getInstance(Context ctx)
     {
@@ -157,8 +163,9 @@ public class HCPHelper {
      */
     public void fetchUpdate(FetchUpdateCallback fetchUpdateCallback)
     {
+        this.fetchUpdateCallback = fetchUpdateCallback;
         final HCPFilesStructure currentReleaseFS = new HCPFilesStructure(context, hcpInternalPrefs.getCurrentReleaseVersionName());
-        UpdatesLoader.fetchUpdate(config.getConfigUrl(), currentReleaseFS, config.getNativeInterfaceVersion(), fetchUpdateCallback);
+        UpdatesLoader.fetchUpdate(config.getConfigUrl(), currentReleaseFS, config.getNativeInterfaceVersion());
 //        if (error != HCPError.NONE)
 //        {
 //            fetchUpdateCallback.fetchUpdateCallback(false, error);
@@ -232,6 +239,40 @@ public class HCPHelper {
 
         AssetsHelper.copyAssetDirectoryToAppDirectory(context.getAssets(), WWW_FOLDER, fileStructure.getWwwFolder());
     }
+
+    /**
+     * 检查更新错误
+     *
+     * @param event event details
+     * @see FetchUpdateErrorEvent
+     * @see AssetsHelper
+     * @see EventBus
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(final FetchUpdateErrorEvent event) {
+        fetchUpdateCallback.fetchUpdateCallback(false, event.error());
+    }
+
+    /**
+     * 检查更新成功
+     *
+     * @param event event details
+     * @see FetchUpdateCompletedEvent
+     * @see AssetsHelper
+     * @see EventBus
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(final FetchUpdateCompletedEvent event) {
+        ((Activity)context).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                fetchUpdateCallback.fetchUpdateCallback(true, null);
+            }
+        });
+    }
+
 
     /**
      * www文件夹安装到外部成功

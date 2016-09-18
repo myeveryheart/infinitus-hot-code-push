@@ -64,17 +64,17 @@ public class UpdatesInstaller {
     }
 
     private static void execute(final WorkerTask task) {
-        isInstalling = true;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                task.run();
-                isInstalling = false;
-
-                // dispatch resulting event
-                EventBus.getDefault().post(task.result());
-            }
-        }).start();
+//        isInstalling = true;
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                task.run();
+//                isInstalling = false;
+//
+//                // dispatch resulting event
+//                EventBus.getDefault().post(task.result());
+//            }
+//        }).start();
     }
 
     private static void dispatchBeforeInstallEvent() {

@@ -1,6 +1,6 @@
 package com.nordnetab.hcp.main.updater;
 
-import com.nordnetab.hcp.main.HCPHelper;
+import com.nordnetab.hcp.main.events.FetchUpdateErrorEvent;
 import com.nordnetab.hcp.main.model.HCPError;
 import com.nordnetab.hcp.main.model.HCPFilesStructure;
 
@@ -31,32 +31,30 @@ public class UpdatesLoader {
      * @param currentReleaseFileStructure 当前版本的文件结构
      * @param currentNativeVersion        当前本地版本
      */
-    public static void fetchUpdate(final String configURL, final HCPFilesStructure currentReleaseFileStructure, final int currentNativeVersion, HCPHelper.FetchUpdateCallback fetchUpdateCallback) {
+    public static void fetchUpdate(final String configURL, final HCPFilesStructure currentReleaseFileStructure, final int currentNativeVersion) {
 
         if (isExecuting) {
-            fetchUpdateCallback.fetchUpdateCallback(false, HCPError.DOWNLOAD_ALREADY_IN_PROGRESS);
+            EventBus.getDefault().post(new FetchUpdateErrorEvent(HCPError.DOWNLOAD_ALREADY_IN_PROGRESS, null));
             return;
         }
 
         if (UpdatesInstaller.isInstalling()) {
-            fetchUpdateCallback.fetchUpdateCallback(false, HCPError.CANT_DOWNLOAD_UPDATE_WHILE_INSTALLATION_IN_PROGRESS);
+            EventBus.getDefault().post(new FetchUpdateErrorEvent(HCPError.CANT_DOWNLOAD_UPDATE_WHILE_INSTALLATION_IN_PROGRESS, null));
             return;
         }
 
         isExecuting = true;
 
-        final UpdateLoaderWorker task = new UpdateLoaderWorker(configURL, currentReleaseFileStructure, currentNativeVersion, fetchUpdateCallback);
+        final UpdateLoaderWorker task = new UpdateLoaderWorker(configURL, currentReleaseFileStructure, currentNativeVersion);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                task.run();
+                task.fetch();
                 isExecuting = false;
 
-//                EventBus.getDefault().post(task.result());
+                EventBus.getDefault().post(task.result());
             }
         }).start();
-
-//        return HCPError.NONE;
     }
 
 //    private static void executeTask(final WorkerTask task) {

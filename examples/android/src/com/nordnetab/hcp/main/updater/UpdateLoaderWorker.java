@@ -3,11 +3,11 @@ package com.nordnetab.hcp.main.updater;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.nordnetab.hcp.main.HCPHelper;
 import com.nordnetab.hcp.main.config.ApplicationConfig;
 import com.nordnetab.hcp.main.config.ContentManifest;
+import com.nordnetab.hcp.main.events.FetchUpdateCompletedEvent;
+import com.nordnetab.hcp.main.events.FetchUpdateErrorEvent;
 import com.nordnetab.hcp.main.events.NothingToUpdateEvent;
-import com.nordnetab.hcp.main.events.UpdateDownloadErrorEvent;
 import com.nordnetab.hcp.main.events.UpdateIsReadyToInstallEvent;
 import com.nordnetab.hcp.main.events.WorkerEvent;
 import com.nordnetab.hcp.main.model.HCPError;
@@ -24,6 +24,8 @@ import com.nordnetab.hcp.main.storage.ContentManifestStorage;
 import com.nordnetab.hcp.main.storage.IObjectFileStorage;
 import com.nordnetab.hcp.main.utils.FilesUtility;
 import com.nordnetab.hcp.main.utils.URLUtility;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,8 +49,6 @@ class UpdateLoaderWorker implements WorkerTask {
 
     private WorkerEvent resultEvent;
 
-    private HCPHelper.FetchUpdateCallback fetchUpdateCallback;
-
     /**
      * Constructor.
      *
@@ -56,18 +56,16 @@ class UpdateLoaderWorker implements WorkerTask {
      * @param currentReleaseFileStructure 当前版本的文件结构
      * @param currentNativeVersion        当前app版本
      */
-    public UpdateLoaderWorker(final String configUrl, final HCPFilesStructure currentReleaseFileStructure, final int currentNativeVersion, HCPHelper.FetchUpdateCallback fetchUpdateCallback) {
+    public UpdateLoaderWorker(final String configUrl, final HCPFilesStructure currentReleaseFileStructure, final int currentNativeVersion) {
         filesStructure = currentReleaseFileStructure;
         applicationConfigUrl = configUrl;
         appNativeVersion = currentNativeVersion;
-        this.fetchUpdateCallback = fetchUpdateCallback;
     }
 
     public void fetch()
     {
         Log.d("HCP", "Starting loader worker ");
         if (!init()) {
-            fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
 
@@ -75,35 +73,36 @@ class UpdateLoaderWorker implements WorkerTask {
         ApplicationConfig newAppConfig = downloadApplicationConfig();
         if (newAppConfig == null) {
             setErrorResult(HCPError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
-            fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
 
         // 新版本号比旧版大才更新
         if (newAppConfig.getContentConfig().getReleaseVersion().compareTo(oldAppConfig.getContentConfig().getReleaseVersion()) <= 0) {
             setNothingToUpdateResult(newAppConfig);
-            fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
 
         // 本地app版本是否支持新版本
         if (newAppConfig.getContentConfig().getMinimumNativeVersion() > appNativeVersion) {
             setErrorResult(HCPError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
-            fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
 
         if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
         {
             //强制更新
-            fetchUpdateCallback.fetchUpdateCallback(true, null);
+            resultEvent = new FetchUpdateCompletedEvent(newAppConfig);
+        }
+        else
+        {
+            //静默更新
         }
     }
 
-    @Override
-    public void run() {
-        fetch();
-
+//    @Override
+//    public void run() {
+//        fetch();
+//
 //        Log.d("HCP", "Starting loader worker ");
 //        if (!init()) {
 //            return;
@@ -173,7 +172,7 @@ class UpdateLoaderWorker implements WorkerTask {
 //        setSuccessResult(newAppConfig);
 //
 //        Log.d("HCP", "Loader worker has finished");
-    }
+//    }
 
     /**
      * 初始化
@@ -287,7 +286,7 @@ class UpdateLoaderWorker implements WorkerTask {
     // region Events
 
     private void setErrorResult(HCPError error, ApplicationConfig newAppConfig) {
-        resultEvent = new UpdateDownloadErrorEvent(error, newAppConfig);
+        resultEvent = new FetchUpdateErrorEvent(error, newAppConfig);
     }
 
     private void setSuccessResult(ApplicationConfig newAppConfig) {

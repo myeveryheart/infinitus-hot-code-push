@@ -7,8 +7,8 @@ import com.nordnetab.hcp.main.events.WorkerEvent;
  * <p/>
  * update Interface
  */
-interface WorkerTask extends Runnable {
-
+//interface WorkerTask extends Runnable {
+interface WorkerTask {
     /**
      * Get event, that describes the result of the task execution.
      */
