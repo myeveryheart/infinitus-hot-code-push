@@ -3,6 +3,7 @@ package com.nordnetab.chcp.main.updater;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.nordnetab.chcp.main.HCPHelper;
 import com.nordnetab.chcp.main.config.ApplicationConfig;
 import com.nordnetab.chcp.main.config.ContentManifest;
 import com.nordnetab.chcp.main.events.NothingToUpdateEvent;
@@ -46,6 +47,8 @@ class UpdateLoaderWorker implements WorkerTask {
 
     private WorkerEvent resultEvent;
 
+    private HCPHelper.FetchUpdateCallback fetchUpdateCallback;
+
     /**
      * Constructor.
      *
@@ -53,16 +56,18 @@ class UpdateLoaderWorker implements WorkerTask {
      * @param currentReleaseFileStructure 当前版本的文件结构
      * @param currentNativeVersion        当前app版本
      */
-    public UpdateLoaderWorker(final String configUrl, final PluginFilesStructure currentReleaseFileStructure, final int currentNativeVersion) {
+    public UpdateLoaderWorker(final String configUrl, final PluginFilesStructure currentReleaseFileStructure, final int currentNativeVersion, HCPHelper.FetchUpdateCallback fetchUpdateCallback) {
         filesStructure = currentReleaseFileStructure;
         applicationConfigUrl = configUrl;
         appNativeVersion = currentNativeVersion;
+        this.fetchUpdateCallback = fetchUpdateCallback;
     }
 
-    @Override
-    public void run() {
+    public void fetch()
+    {
         Log.d("CHCP", "Starting loader worker ");
         if (!init()) {
+            fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
 
@@ -70,66 +75,104 @@ class UpdateLoaderWorker implements WorkerTask {
         ApplicationConfig newAppConfig = downloadApplicationConfig();
         if (newAppConfig == null) {
             setErrorResult(ChcpError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
+            fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
 
         // 新版本号比旧版大才更新
         if (newAppConfig.getContentConfig().getReleaseVersion().compareTo(oldAppConfig.getContentConfig().getReleaseVersion()) <= 0) {
             setNothingToUpdateResult(newAppConfig);
-
+            fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
 
         // 本地app版本是否支持新版本
         if (newAppConfig.getContentConfig().getMinimumNativeVersion() > appNativeVersion) {
             setErrorResult(ChcpError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
+            fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
 
         if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
         {
             //强制更新
-
+            fetchUpdateCallback.fetchUpdateCallback(true, null);
         }
+    }
 
-        // download new content manifest
-        ContentManifest newContentManifest = downloadContentManifest(newAppConfig);
-        if (newContentManifest == null) {
-            setErrorResult(ChcpError.FAILED_TO_DOWNLOAD_CONTENT_MANIFEST, newAppConfig);
-            return;
-        }
+    @Override
+    public void run() {
+        fetch();
 
-        // find files that were updated
-        ManifestDiff diff = oldManifest.calculateDifference(newContentManifest);
-        if (diff.isEmpty()) {
-            manifestStorage.storeInFolder(newContentManifest, filesStructure.getWwwFolder());
-            appConfigStorage.storeInFolder(newAppConfig, filesStructure.getWwwFolder());
-            setNothingToUpdateResult(newAppConfig);
-
-            return;
-        }
-
-        // switch file structure to new release
-        filesStructure.switchToRelease(newAppConfig.getContentConfig().getReleaseVersion());
-
-        recreateDownloadFolder(filesStructure.getDownloadFolder());
-
-        // download files
-        boolean isDownloaded = downloadNewAndChangedFiles(newAppConfig, diff);
-        if (!isDownloaded) {
-            cleanUp();
-            setErrorResult(ChcpError.FAILED_TO_DOWNLOAD_UPDATE_FILES, newAppConfig);
-            return;
-        }
-
-        // store configs
-        manifestStorage.storeInFolder(newContentManifest, filesStructure.getDownloadFolder());
-        appConfigStorage.storeInFolder(newAppConfig, filesStructure.getDownloadFolder());
-
-        // notify that we are done
-        setSuccessResult(newAppConfig);
-
-        Log.d("CHCP", "Loader worker has finished");
+//        Log.d("CHCP", "Starting loader worker ");
+//        if (!init()) {
+//            return;
+//        }
+//
+//        // 下载新的config
+//        ApplicationConfig newAppConfig = downloadApplicationConfig();
+//        if (newAppConfig == null) {
+//            setErrorResult(ChcpError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
+//            return;
+//        }
+//
+//        // 新版本号比旧版大才更新
+//        if (newAppConfig.getContentConfig().getReleaseVersion().compareTo(oldAppConfig.getContentConfig().getReleaseVersion()) <= 0) {
+//            setNothingToUpdateResult(newAppConfig);
+//
+//            return;
+//        }
+//
+//        // 本地app版本是否支持新版本
+//        if (newAppConfig.getContentConfig().getMinimumNativeVersion() > appNativeVersion) {
+//            setErrorResult(ChcpError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
+//            return;
+//        }
+//
+//        if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
+//        {
+//            //强制更新
+//
+//        }
+//
+//        // download new content manifest
+//        ContentManifest newContentManifest = downloadContentManifest(newAppConfig);
+//        if (newContentManifest == null) {
+//            setErrorResult(ChcpError.FAILED_TO_DOWNLOAD_CONTENT_MANIFEST, newAppConfig);
+//            return;
+//        }
+//
+//        // find files that were updated
+//        ManifestDiff diff = oldManifest.calculateDifference(newContentManifest);
+//        if (diff.isEmpty()) {
+//            manifestStorage.storeInFolder(newContentManifest, filesStructure.getWwwFolder());
+//            appConfigStorage.storeInFolder(newAppConfig, filesStructure.getWwwFolder());
+//            setNothingToUpdateResult(newAppConfig);
+//
+//            return;
+//        }
+//
+//        // switch file structure to new release
+//        filesStructure.switchToRelease(newAppConfig.getContentConfig().getReleaseVersion());
+//
+//        recreateDownloadFolder(filesStructure.getDownloadFolder());
+//
+//        // download files
+//        boolean isDownloaded = downloadNewAndChangedFiles(newAppConfig, diff);
+//        if (!isDownloaded) {
+//            cleanUp();
+//            setErrorResult(ChcpError.FAILED_TO_DOWNLOAD_UPDATE_FILES, newAppConfig);
+//            return;
+//        }
+//
+//        // store configs
+//        manifestStorage.storeInFolder(newContentManifest, filesStructure.getDownloadFolder());
+//        appConfigStorage.storeInFolder(newAppConfig, filesStructure.getDownloadFolder());
+//
+//        // notify that we are done
+//        setSuccessResult(newAppConfig);
+//
+//        Log.d("CHCP", "Loader worker has finished");
     }
 
     /**

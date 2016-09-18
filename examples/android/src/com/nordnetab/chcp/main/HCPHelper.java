@@ -65,12 +65,16 @@ public class HCPHelper {
     private PluginFilesStructure fileStructure;
 
     private Handler handler;
-    private boolean isPluginReadyForWork;
 
-    private URL webUrl;
+    private String webUrl;
     private static Context context;
     private static HCPHelper helper;
-    private HCPResult hcpResult;
+//    private HCPResult hcpResult;
+
+    public interface FetchUpdateCallback
+    {
+        void fetchUpdateCallback(boolean needUpdate, ChcpError error);
+    }
 
     public static HCPHelper getInstance(Context ctx)
     {
@@ -83,12 +87,12 @@ public class HCPHelper {
         return helper;
     }
 
-    public void setListener(HCPResult listener)
-    {
-        hcpResult = listener;
-    }
+//    public void setListener(HCPResult listener)
+//    {
+//        hcpResult = listener;
+//    }
 
-    public void setWebUrl(URL webUrl)
+    public void setWebUrl(String webUrl)
     {
         this.webUrl = webUrl;
         doLocalInit();
@@ -113,7 +117,7 @@ public class HCPHelper {
     {
         // 初始化config
         chcpXmlConfig = ChcpXmlConfig.getDefaultConfig();
-        chcpXmlConfig.setWebUrl(webUrl.toString());
+        chcpXmlConfig.setWebUrl(webUrl);
         // 加载internal preferences
         pluginInternalPrefsStorage = new PluginInternalPreferencesStorage(context);
         PluginInternalPreferences config = pluginInternalPrefsStorage.loadFromPreference();
@@ -149,16 +153,19 @@ public class HCPHelper {
     /**
      *  检查更新
      */
-    public void fetchUpdate()
+    public void fetchUpdate(FetchUpdateCallback fetchUpdateCallback)
     {
         final PluginFilesStructure currentReleaseFS = new PluginFilesStructure(context, pluginInternalPrefs.getCurrentReleaseVersionName());
-        final ChcpError error = UpdatesLoader.downloadUpdate(chcpXmlConfig.getConfigUrl(), currentReleaseFS, chcpXmlConfig.getNativeInterfaceVersion());
-        if (error != ChcpError.NONE) {
-            hcpResult.fetchUpdateResult(false, error);
-        }
-        else {
-            hcpResult.fetchUpdateResult(true, null);
-        }
+        UpdatesLoader.fetchUpdate(chcpXmlConfig.getConfigUrl(), currentReleaseFS, chcpXmlConfig.getNativeInterfaceVersion(), fetchUpdateCallback);
+//        if (error != ChcpError.NONE)
+//        {
+//            fetchUpdateCallback.fetchUpdateCallback(false, error);
+////            hcpResult.fetchUpdateResult(false, error);
+//        }
+//        else {
+//            fetchUpdateCallback.fetchUpdateCallback(true, null);
+////            hcpResult.fetchUpdateResult(true, null);
+//        }
     }
 
     /**
@@ -167,13 +174,13 @@ public class HCPHelper {
     public void downloadUpdate()
     {
         final PluginFilesStructure currentReleaseFS = new PluginFilesStructure(context, pluginInternalPrefs.getCurrentReleaseVersionName());
-        final ChcpError error = UpdatesLoader.downloadUpdate(chcpXmlConfig.getConfigUrl(), currentReleaseFS, chcpXmlConfig.getNativeInterfaceVersion());
-        if (error != ChcpError.NONE) {
-            hcpResult.fetchUpdateResult(false, error);
-        }
-        else {
-            hcpResult.fetchUpdateResult(true, null);
-        }
+//        final ChcpError error = UpdatesLoader.downloadUpdate(chcpXmlConfig.getConfigUrl(), currentReleaseFS, chcpXmlConfig.getNativeInterfaceVersion());
+//        if (error != ChcpError.NONE) {
+//            hcpResult.fetchUpdateResult(false, error);
+//        }
+//        else {
+//            hcpResult.fetchUpdateResult(true, null);
+//        }
     }
 
     /**
@@ -182,13 +189,13 @@ public class HCPHelper {
     private void installUpdate()
     {
         ChcpError error = UpdatesInstaller.install(context, pluginInternalPrefs.getReadyForInstallationReleaseVersionName(), pluginInternalPrefs.getCurrentReleaseVersionName());
-        if (error != ChcpError.NONE)
-        {
-            hcpResult.fetchUpdateResult(false, error);
-        }
-        else {
-            hcpResult.fetchUpdateResult(true, null);
-        }
+//        if (error != ChcpError.NONE)
+//        {
+//            hcpResult.fetchUpdateResult(false, error);
+//        }
+//        else {
+//            hcpResult.fetchUpdateResult(true, null);
+//        }
     }
 
     /**
@@ -202,7 +209,7 @@ public class HCPHelper {
         boolean isWwwFolderInstalled = pluginInternalPrefs.isWwwFolderInstalled();
         boolean isApplicationHasBeenUpdated = isApplicationHasBeenUpdated();
 
-        return !isWwwFolderExists && !isWwwFolderInstalled && isApplicationHasBeenUpdated;
+        return !isWwwFolderExists || !isWwwFolderInstalled || isApplicationHasBeenUpdated;
     }
 
     private boolean isWwwFolderExists() {
@@ -214,7 +221,6 @@ public class HCPHelper {
     }
 
     private void installWwwFolder() {
-        isPluginReadyForWork = false;
 
         // reset www folder installed flag
         if (pluginInternalPrefs.isWwwFolderInstalled()) {

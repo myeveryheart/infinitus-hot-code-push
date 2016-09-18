@@ -1,5 +1,6 @@
 package com.nordnetab.chcp.main.updater;
 
+import com.nordnetab.chcp.main.HCPHelper;
 import com.nordnetab.chcp.main.model.ChcpError;
 import com.nordnetab.chcp.main.model.PluginFilesStructure;
 
@@ -29,36 +30,44 @@ public class UpdatesLoader {
      * @param configURL                   服务器上的configUrl
      * @param currentReleaseFileStructure 当前版本的文件结构
      * @param currentNativeVersion        当前本地版本
-     * @return <code>ChcpError.NONE</code> 启动成功; otherwise - error details
      */
-    public static ChcpError downloadUpdate(final String configURL, final PluginFilesStructure currentReleaseFileStructure, final int currentNativeVersion) {
-        // if download already in progress - exit
+    public static void fetchUpdate(final String configURL, final PluginFilesStructure currentReleaseFileStructure, final int currentNativeVersion, HCPHelper.FetchUpdateCallback fetchUpdateCallback) {
+
         if (isExecuting) {
-            return ChcpError.DOWNLOAD_ALREADY_IN_PROGRESS;
+            fetchUpdateCallback.fetchUpdateCallback(false, ChcpError.DOWNLOAD_ALREADY_IN_PROGRESS);
+            return;
         }
 
-        // if installation is in progress - exit
         if (UpdatesInstaller.isInstalling()) {
-            return ChcpError.CANT_DOWNLOAD_UPDATE_WHILE_INSTALLATION_IN_PROGRESS;
+            fetchUpdateCallback.fetchUpdateCallback(false, ChcpError.CANT_DOWNLOAD_UPDATE_WHILE_INSTALLATION_IN_PROGRESS);
+            return;
         }
 
         isExecuting = true;
 
-        final UpdateLoaderWorker task = new UpdateLoaderWorker(configURL, currentReleaseFileStructure, currentNativeVersion);
-        executeTask(task);
-
-        return ChcpError.NONE;
-    }
-
-    private static void executeTask(final WorkerTask task) {
+        final UpdateLoaderWorker task = new UpdateLoaderWorker(configURL, currentReleaseFileStructure, currentNativeVersion, fetchUpdateCallback);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 task.run();
                 isExecuting = false;
 
-                EventBus.getDefault().post(task.result());
+//                EventBus.getDefault().post(task.result());
             }
         }).start();
+
+//        return ChcpError.NONE;
     }
+
+//    private static void executeTask(final WorkerTask task) {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                task.run();
+//                isExecuting = false;
+//
+//                EventBus.getDefault().post(task.result());
+//            }
+//        }).start();
+//    }
 }

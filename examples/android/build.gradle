@@ -174,7 +174,7 @@ android {
     }
 
     lintOptions {
-      abortOnError false;
+        abortOnError false;
     }
 
     compileSdkVersion cdvCompileSdkVersion
@@ -183,13 +183,13 @@ android {
     if (Boolean.valueOf(cdvBuildMultipleApks)) {
         productFlavors {
             armv7 {
-                versionCode defaultConfig.versionCode*10 + 2
+                versionCode defaultConfig.versionCode * 10 + 2
                 ndk {
                     abiFilters "armeabi-v7a", ""
                 }
             }
             x86 {
-                versionCode defaultConfig.versionCode*10 + 4
+                versionCode defaultConfig.versionCode * 10 + 4
                 ndk {
                     abiFilters "x86", ""
                 }
@@ -228,7 +228,8 @@ android {
             release {
                 // These must be set or Gradle will complain (even if they are overridden).
                 keyAlias = ""
-                keyPassword = "__unset" // And these must be set to non-empty in order to have the signing step added to the task graph.
+                keyPassword = "__unset"
+                // And these must be set to non-empty in order to have the signing step added to the task graph.
                 storeFile = null
                 storePassword = "__unset"
             }
@@ -251,6 +252,7 @@ dependencies {
     debugCompile project(path: "CordovaLib", configuration: "debug")
     releaseCompile project(path: "CordovaLib", configuration: "release")
     // SUB-PROJECT DEPENDENCIES END
+    compile 'com.android.support:appcompat-v7:23.4.0'
 }
 
 def promptForReleaseKeyPassword() {
