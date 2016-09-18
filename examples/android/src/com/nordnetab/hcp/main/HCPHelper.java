@@ -19,7 +19,7 @@ import com.nordnetab.hcp.main.events.UpdateDownloadErrorEvent;
 import com.nordnetab.hcp.main.events.UpdateInstallationErrorEvent;
 import com.nordnetab.hcp.main.events.UpdateInstalledEvent;
 import com.nordnetab.hcp.main.events.UpdateIsReadyToInstallEvent;
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 import com.nordnetab.hcp.main.model.HCPFilesStructure;
 import com.nordnetab.hcp.main.model.UpdateTime;
 import com.nordnetab.hcp.main.storage.ApplicationConfigStorage;
@@ -32,6 +32,11 @@ import com.nordnetab.hcp.main.utils.AssetsHelper;
 import com.nordnetab.hcp.main.utils.CleanUpHelper;
 import com.nordnetab.hcp.main.utils.Paths;
 import com.nordnetab.hcp.main.utils.VersionHelper;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 import java.io.File;
@@ -64,7 +69,7 @@ public class HCPHelper {
 
     public interface FetchUpdateCallback
     {
-        void fetchUpdateCallback(boolean needUpdate, HcpError error);
+        void fetchUpdateCallback(boolean needUpdate, HCPError error);
     }
 
     public static HCPHelper getInstance(Context ctx)
@@ -73,10 +78,16 @@ public class HCPHelper {
         {
             helper = new HCPHelper();
             context = ctx;
+            final EventBus eventBus = EventBus.getDefault();
+            if (!eventBus.isRegistered(helper)) {
+                eventBus.register(helper);
+            }
         }
 
         return helper;
     }
+
+
 
 //    public void setListener(HCPResult listener)
 //    {
@@ -148,7 +159,7 @@ public class HCPHelper {
     {
         final HCPFilesStructure currentReleaseFS = new HCPFilesStructure(context, hcpInternalPrefs.getCurrentReleaseVersionName());
         UpdatesLoader.fetchUpdate(config.getConfigUrl(), currentReleaseFS, config.getNativeInterfaceVersion(), fetchUpdateCallback);
-//        if (error != HcpError.NONE)
+//        if (error != HCPError.NONE)
 //        {
 //            fetchUpdateCallback.fetchUpdateCallback(false, error);
 ////            hcpResult.fetchUpdateResult(false, error);
@@ -165,8 +176,8 @@ public class HCPHelper {
     public void downloadUpdate()
     {
         final HCPFilesStructure currentReleaseFS = new HCPFilesStructure(context, hcpInternalPrefs.getCurrentReleaseVersionName());
-//        final HcpError error = UpdatesLoader.downloadUpdate(config.getConfigUrl(), currentReleaseFS, config.getNativeInterfaceVersion());
-//        if (error != HcpError.NONE) {
+//        final HCPError error = UpdatesLoader.downloadUpdate(config.getConfigUrl(), currentReleaseFS, config.getNativeInterfaceVersion());
+//        if (error != HCPError.NONE) {
 //            hcpResult.fetchUpdateResult(false, error);
 //        }
 //        else {
@@ -179,8 +190,8 @@ public class HCPHelper {
      */
     private void installUpdate()
     {
-        HcpError error = UpdatesInstaller.install(context, hcpInternalPrefs.getReadyForInstallationReleaseVersionName(), hcpInternalPrefs.getCurrentReleaseVersionName());
-//        if (error != HcpError.NONE)
+        HCPError error = UpdatesInstaller.install(context, hcpInternalPrefs.getReadyForInstallationReleaseVersionName(), hcpInternalPrefs.getCurrentReleaseVersionName());
+//        if (error != HCPError.NONE)
 //        {
 //            hcpResult.fetchUpdateResult(false, error);
 //        }
@@ -222,44 +233,141 @@ public class HCPHelper {
         AssetsHelper.copyAssetDirectoryToAppDirectory(context.getAssets(), WWW_FOLDER, fileStructure.getWwwFolder());
     }
 
-    private void onAssetsInstalledOnExternalStorageEvent()
-    {
+    /**
+     * www文件夹安装到外部成功
+     *
+     * @param event event details
+     * @see AssetsInstalledEvent
+     * @see AssetsHelper
+     * @see EventBus
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(final AssetsInstalledEvent event) {
+        // update stored application version
         hcpInternalPrefs.setAppBuildVersion(VersionHelper.applicationVersionCode(context));
         hcpInternalPrefs.setWwwFolderInstalled(true);
         hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
     }
 
-    private void onUpdateIsReadyForInstallation(ApplicationConfig applicationConfig)
-    {
-        final ContentConfig newContentConfig = applicationConfig.getContentConfig();
+    /**
+     * www文件夹安装到外部失败
+     *
+     * @param event event details
+     * @see AssetsInstallationErrorEvent
+     * @see AssetsHelper
+     * @see EventBus
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(AssetsInstallationErrorEvent event) {
+        Log.d("HCP", "Can't install assets on device. Continue to work with default bundle");
+
+    }
+
+    /**
+     * 下载更新成功
+     *
+     * @param event event information
+     * @see EventBus
+     * @see UpdateIsReadyToInstallEvent
+     * @see UpdatesLoader
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(UpdateIsReadyToInstallEvent event) {
+        final ContentConfig newContentConfig = event.applicationConfig().getContentConfig();
         Log.d("HCP", "Update is ready for installation: " + newContentConfig.getReleaseVersion());
 
         hcpInternalPrefs.setReadyForInstallationReleaseVersionName(newContentConfig.getReleaseVersion());
         hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
     }
 
-    private void onNothingToUpdateEvent()
-    {
+    /**
+     * 无需下载更新
+     *
+     * @param event event information
+     * @see EventBus
+     * @see NothingToUpdateEvent
+     * @see UpdatesLoader
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(NothingToUpdateEvent event) {
         Log.d("HCP", "Nothing to update");
     }
 
-    private void onUpdateDownloadErrorEvent(UpdateDownloadErrorEvent event)
-    {
+//    private void onAssetsInstalledOnExternalStorageEvent()
+//    {
+//        hcpInternalPrefs.setAppBuildVersion(VersionHelper.applicationVersionCode(context));
+//        hcpInternalPrefs.setWwwFolderInstalled(true);
+//        hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
+//    }
+
+//    private void onUpdateIsReadyForInstallation(ApplicationConfig applicationConfig)
+//    {
+//        final ContentConfig newContentConfig = applicationConfig.getContentConfig();
+//        Log.d("HCP", "Update is ready for installation: " + newContentConfig.getReleaseVersion());
+//
+//        hcpInternalPrefs.setReadyForInstallationReleaseVersionName(newContentConfig.getReleaseVersion());
+//        hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
+//    }
+
+//    private void onNothingToUpdateEvent()
+//    {
+//        Log.d("HCP", "Nothing to update");
+//    }
+
+    /**
+     * 即将开始安装
+     *
+     * @param event event information
+     * @see EventBus
+     * @see BeforeInstallEvent
+     * @see UpdatesLoader
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(BeforeInstallEvent event) {
+        Log.d("HCP", "Dispatching Before install event");
+    }
+
+    /**
+     * 下载更新过程中出错
+     *
+     * @param event event information
+     * @see EventBus
+     * @see UpdateDownloadErrorEvent
+     * @see UpdatesLoader
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(UpdateDownloadErrorEvent event) {
         Log.d("HCP", "Failed to update");
 
-        final HcpError error = event.error();
-        if (error == HcpError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == HcpError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
+        final HCPError error = event.error();
+        if (error == HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
             Log.d("HCP", "Can't load application config from installation folder. Reinstalling external folder");
             installWwwFolder();
         }
+
         rollbackIfCorrupted(event.error());
     }
 
-    private void onUpdateInstalledEvent(ApplicationConfig applicationConfig)
-    {
+    /**
+     * 安装更新成功
+     *
+     * @param event event information
+     * @see EventBus
+     * @see UpdateInstalledEvent
+     * @see UpdatesInstaller
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(UpdateInstalledEvent event) {
         Log.d("HCP", "Update is installed");
 
-        final ContentConfig newContentConfig = applicationConfig.getContentConfig();
+        final ContentConfig newContentConfig = event.applicationConfig().getContentConfig();
 
         // update preferences
         hcpInternalPrefs.setPreviousReleaseVersionName(hcpInternalPrefs.getCurrentReleaseVersionName());
@@ -270,14 +378,72 @@ public class HCPHelper {
         fileStructure = new HCPFilesStructure(context, newContentConfig.getReleaseVersion());
     }
 
-    private void onUpdateInstallationErrorEvent()
-    {
+//    private void onUpdateDownloadErrorEvent(UpdateDownloadErrorEvent event)
+//    {
+//        Log.d("HCP", "Failed to update");
+//
+//        final HCPError error = event.error();
+//        if (error == HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
+//            Log.d("HCP", "Can't load application config from installation folder. Reinstalling external folder");
+//            installWwwFolder();
+//        }
+//        rollbackIfCorrupted(event.error());
+//    }
 
+//    private void onUpdateInstalledEvent(ApplicationConfig applicationConfig)
+//    {
+//        Log.d("HCP", "Update is installed");
+//
+//        final ContentConfig newContentConfig = applicationConfig.getContentConfig();
+//
+//        // update preferences
+//        hcpInternalPrefs.setPreviousReleaseVersionName(hcpInternalPrefs.getCurrentReleaseVersionName());
+//        hcpInternalPrefs.setCurrentReleaseVersionName(newContentConfig.getReleaseVersion());
+//        hcpInternalPrefs.setReadyForInstallationReleaseVersionName("");
+//        hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
+//
+//        fileStructure = new HCPFilesStructure(context, newContentConfig.getReleaseVersion());
+//    }
+
+//    private void onUpdateInstallationErrorEvent()
+//    {
+//
+//    }
+
+    /**
+     * 安装更新出错
+     *
+     * @param event event information
+     * @see UpdateInstallationErrorEvent
+     * @see EventBus
+     * @see UpdatesInstaller
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(UpdateInstallationErrorEvent event) {
+        Log.d("HCP", "Failed to install");
+
+        rollbackIfCorrupted(event.error());
     }
 
-    private void rollbackIfCorrupted(HcpError error) {
-        if (error != HcpError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND &&
-                error != HcpError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
+    /**
+     * 无需安装更新
+     *
+     * @param event event information
+     * @see NothingToInstallEvent
+     * @see UpdatesInstaller
+     * @see EventBus
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(NothingToInstallEvent event) {
+        Log.d("HCP", "Nothing to install");
+    }
+
+
+    private void rollbackIfCorrupted(HCPError error) {
+        if (error != HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND &&
+                error != HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
             return;
         }
 

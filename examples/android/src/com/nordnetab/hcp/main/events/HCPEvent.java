@@ -1,6 +1,6 @@
 package com.nordnetab.hcp.main.events;
 
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 
 import java.util.Map;
 
@@ -20,9 +20,9 @@ public interface HCPEvent {
     /**
      * Error information, that is attached to the event
      *
-     * @see HcpError
+     * @see HCPError
      */
-    HcpError error();
+    HCPError error();
 
     /**
      * Additional user information, attached to the event

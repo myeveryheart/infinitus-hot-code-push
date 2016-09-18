@@ -1,7 +1,7 @@
 package com.nordnetab.hcp.main.events;
 
 import com.nordnetab.hcp.main.config.ApplicationConfig;
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 
 /**
  * Created by M on 16/9/9.
@@ -18,7 +18,7 @@ public class NothingToUpdateEvent extends WorkerEvent {
      * @param config application config that was used for update download
      */
     public NothingToUpdateEvent(ApplicationConfig config) {
-        super(EVENT_NAME, HcpError.NOTHING_TO_UPDATE, config);
+        super(EVENT_NAME, HCPError.NOTHING_TO_UPDATE, config);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.nordnetab.hcp.main.events;
 
 import com.nordnetab.hcp.main.config.ApplicationConfig;
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 
 /**
  * Created by M on 16/9/9.
@@ -18,6 +18,6 @@ public class NothingToInstallEvent extends WorkerEvent {
      * @param config Application config that was used for installation.
      */
     public NothingToInstallEvent(ApplicationConfig config) {
-        super(EVENT_NAME, HcpError.NOTHING_TO_INSTALL, config);
+        super(EVENT_NAME, HCPError.NOTHING_TO_INSTALL, config);
     }
 }

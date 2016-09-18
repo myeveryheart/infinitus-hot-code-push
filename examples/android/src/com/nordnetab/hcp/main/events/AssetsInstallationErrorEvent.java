@@ -1,6 +1,6 @@
 package com.nordnetab.hcp.main.events;
 
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 
 /**
  * Created by M on 16/9/9.
@@ -15,6 +15,6 @@ public class AssetsInstallationErrorEvent extends HCPEventImpl {
      * Class constructor
      */
     public AssetsInstallationErrorEvent() {
-        super(EVENT_NAME, HcpError.FAILED_TO_INSTALL_ASSETS_ON_EXTERNAL_STORAGE);
+        super(EVENT_NAME, HCPError.FAILED_TO_INSTALL_ASSETS_ON_EXTERNAL_STORAGE);
     }
 }

@@ -1,7 +1,7 @@
 package com.nordnetab.hcp.main.updater;
 
 import com.nordnetab.hcp.main.HCPHelper;
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 import com.nordnetab.hcp.main.model.HCPFilesStructure;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,12 +34,12 @@ public class UpdatesLoader {
     public static void fetchUpdate(final String configURL, final HCPFilesStructure currentReleaseFileStructure, final int currentNativeVersion, HCPHelper.FetchUpdateCallback fetchUpdateCallback) {
 
         if (isExecuting) {
-            fetchUpdateCallback.fetchUpdateCallback(false, HcpError.DOWNLOAD_ALREADY_IN_PROGRESS);
+            fetchUpdateCallback.fetchUpdateCallback(false, HCPError.DOWNLOAD_ALREADY_IN_PROGRESS);
             return;
         }
 
         if (UpdatesInstaller.isInstalling()) {
-            fetchUpdateCallback.fetchUpdateCallback(false, HcpError.CANT_DOWNLOAD_UPDATE_WHILE_INSTALLATION_IN_PROGRESS);
+            fetchUpdateCallback.fetchUpdateCallback(false, HCPError.CANT_DOWNLOAD_UPDATE_WHILE_INSTALLATION_IN_PROGRESS);
             return;
         }
 
@@ -56,7 +56,7 @@ public class UpdatesLoader {
             }
         }).start();
 
-//        return HcpError.NONE;
+//        return HCPError.NONE;
     }
 
 //    private static void executeTask(final WorkerTask task) {

@@ -5,7 +5,7 @@ package com.nordnetab.hcp.main.model;
  * <p/>
  * 枚举错误
  */
-public enum HcpError {
+public enum HCPError {
 
     NONE(0, ""),
 
@@ -42,7 +42,7 @@ public enum HcpError {
     private int errorCode;
     private String errorDescription;
 
-    HcpError(int errorCode, String errorDescription) {
+    HCPError(int errorCode, String errorDescription) {
         this.errorCode = errorCode;
         this.errorDescription = errorDescription;
     }

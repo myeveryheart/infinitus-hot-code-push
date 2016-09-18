@@ -1,7 +1,7 @@
 package com.nordnetab.hcp.main.events;
 
 import com.nordnetab.hcp.main.config.ApplicationConfig;
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 
 /**
  * Created by M on 16/9/9.
@@ -18,7 +18,7 @@ public class UpdateDownloadErrorEvent extends WorkerEvent {
      * @param error  错误
      * @param config 使用的config
      */
-    public UpdateDownloadErrorEvent(HcpError error, ApplicationConfig config) {
+    public UpdateDownloadErrorEvent(HCPError error, ApplicationConfig config) {
         super(EVENT_NAME, error, config);
     }
 }

@@ -1,6 +1,6 @@
 package com.nordnetab.hcp.main.events;
 
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ import java.util.Map;
  */
 class HCPEventImpl implements HCPEvent {
 
-    private final HcpError error;
+    private final HCPError error;
     private final String eventName;
     private final Map<String, Object>data;
 
@@ -26,9 +26,9 @@ class HCPEventImpl implements HCPEvent {
      * @param eventName string identifier of the event
      * @param error     error information
      *
-     * @see HcpError
+     * @see HCPError
      */
-    protected HCPEventImpl(String eventName, HcpError error) {
+    protected HCPEventImpl(String eventName, HCPError error) {
         this.eventName = eventName;
         this.error = error;
         this.data = new HashMap<String, Object>();
@@ -40,7 +40,7 @@ class HCPEventImpl implements HCPEvent {
     }
 
     @Override
-    public HcpError error() {
+    public HCPError error() {
         return error;
     }
 

@@ -1,7 +1,7 @@
 package com.nordnetab.hcp.main.events;
 
 import com.nordnetab.hcp.main.config.ApplicationConfig;
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 
 import java.util.Map;
 
@@ -24,10 +24,10 @@ public class WorkerEvent extends HCPEventImpl {
      * @param eventName string identifier of the event
      * @param error     error information
      * @param appConfig application config which this worker used
-     * @see HcpError
+     * @see HCPError
      * @see ApplicationConfig
      */
-    protected WorkerEvent(String eventName, HcpError error, ApplicationConfig appConfig) {
+    protected WorkerEvent(String eventName, HCPError error, ApplicationConfig appConfig) {
         super(eventName, error);
 
         if (appConfig != null) {

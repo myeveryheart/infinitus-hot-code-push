@@ -8,7 +8,7 @@ import com.nordnetab.hcp.main.events.NothingToInstallEvent;
 import com.nordnetab.hcp.main.events.UpdateInstallationErrorEvent;
 import com.nordnetab.hcp.main.events.UpdateInstalledEvent;
 import com.nordnetab.hcp.main.events.WorkerEvent;
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 import com.nordnetab.hcp.main.model.ManifestDiff;
 import com.nordnetab.hcp.main.model.ManifestFile;
 import com.nordnetab.hcp.main.model.HCPFilesStructure;
@@ -57,13 +57,13 @@ class InstallationWorker implements WorkerTask {
 
         // validate update
         if (!isUpdateValid(newReleaseFS.getDownloadFolder(), manifestDiff)) {
-            setResultForError(HcpError.UPDATE_IS_INVALID);
+            setResultForError(HCPError.UPDATE_IS_INVALID);
             return;
         }
 
         // copy content from the current release to the new release folder
         if (!copyFilesFromCurrentReleaseToNewRelease()) {
-            setResultForError(HcpError.FAILED_TO_COPY_FILES_FROM_PREVIOUS_RELEASE);
+            setResultForError(HCPError.FAILED_TO_COPY_FILES_FROM_PREVIOUS_RELEASE);
             return;
         }
 
@@ -74,7 +74,7 @@ class InstallationWorker implements WorkerTask {
         boolean isInstalled = moveFilesFromInstallationFolderToWwwFodler();
         if (!isInstalled) {
             cleanUpOnFailure();
-            setResultForError(HcpError.FAILED_TO_COPY_NEW_CONTENT_FILES);
+            setResultForError(HCPError.FAILED_TO_COPY_NEW_CONTENT_FILES);
             return;
         }
 
@@ -95,7 +95,7 @@ class InstallationWorker implements WorkerTask {
         IObjectFileStorage<ApplicationConfig> appConfigStorage = new ApplicationConfigStorage();
         newAppConfig = appConfigStorage.loadFromFolder(newReleaseFS.getDownloadFolder());
         if (newAppConfig == null) {
-            setResultForError(HcpError.LOADED_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND);
+            setResultForError(HCPError.LOADED_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND);
             return false;
         }
 
@@ -103,14 +103,14 @@ class InstallationWorker implements WorkerTask {
         IObjectFileStorage<ContentManifest> manifestStorage = new ContentManifestStorage();
         ContentManifest oldManifest = manifestStorage.loadFromFolder(currentReleaseFS.getWwwFolder());
         if (oldManifest == null) {
-            setResultForError(HcpError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND);
+            setResultForError(HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND);
             return false;
         }
 
         // loaded manifest file
         ContentManifest newManifest = manifestStorage.loadFromFolder(newReleaseFS.getDownloadFolder());
         if (newManifest == null) {
-            setResultForError(HcpError.LOADED_VERSION_OF_MANIFEST_NOT_FOUND);
+            setResultForError(HCPError.LOADED_VERSION_OF_MANIFEST_NOT_FOUND);
             return false;
         }
 
@@ -223,7 +223,7 @@ class InstallationWorker implements WorkerTask {
 
     // region Events
 
-    private void setResultForError(final HcpError error) {
+    private void setResultForError(final HCPError error) {
         resultEvent = new UpdateInstallationErrorEvent(error, newAppConfig);
     }
 

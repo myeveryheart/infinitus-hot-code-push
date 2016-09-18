@@ -10,7 +10,7 @@ import com.nordnetab.hcp.main.events.NothingToUpdateEvent;
 import com.nordnetab.hcp.main.events.UpdateDownloadErrorEvent;
 import com.nordnetab.hcp.main.events.UpdateIsReadyToInstallEvent;
 import com.nordnetab.hcp.main.events.WorkerEvent;
-import com.nordnetab.hcp.main.model.HcpError;
+import com.nordnetab.hcp.main.model.HCPError;
 import com.nordnetab.hcp.main.model.ManifestDiff;
 import com.nordnetab.hcp.main.model.ManifestFile;
 import com.nordnetab.hcp.main.model.HCPFilesStructure;
@@ -74,7 +74,7 @@ class UpdateLoaderWorker implements WorkerTask {
         // 下载新的config
         ApplicationConfig newAppConfig = downloadApplicationConfig();
         if (newAppConfig == null) {
-            setErrorResult(HcpError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
+            setErrorResult(HCPError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
             fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
@@ -88,7 +88,7 @@ class UpdateLoaderWorker implements WorkerTask {
 
         // 本地app版本是否支持新版本
         if (newAppConfig.getContentConfig().getMinimumNativeVersion() > appNativeVersion) {
-            setErrorResult(HcpError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
+            setErrorResult(HCPError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
             fetchUpdateCallback.fetchUpdateCallback(false, resultEvent.error());
             return;
         }
@@ -112,7 +112,7 @@ class UpdateLoaderWorker implements WorkerTask {
 //        // 下载新的config
 //        ApplicationConfig newAppConfig = downloadApplicationConfig();
 //        if (newAppConfig == null) {
-//            setErrorResult(HcpError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
+//            setErrorResult(HCPError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
 //            return;
 //        }
 //
@@ -125,7 +125,7 @@ class UpdateLoaderWorker implements WorkerTask {
 //
 //        // 本地app版本是否支持新版本
 //        if (newAppConfig.getContentConfig().getMinimumNativeVersion() > appNativeVersion) {
-//            setErrorResult(HcpError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
+//            setErrorResult(HCPError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
 //            return;
 //        }
 //
@@ -138,7 +138,7 @@ class UpdateLoaderWorker implements WorkerTask {
 //        // download new content manifest
 //        ContentManifest newContentManifest = downloadContentManifest(newAppConfig);
 //        if (newContentManifest == null) {
-//            setErrorResult(HcpError.FAILED_TO_DOWNLOAD_CONTENT_MANIFEST, newAppConfig);
+//            setErrorResult(HCPError.FAILED_TO_DOWNLOAD_CONTENT_MANIFEST, newAppConfig);
 //            return;
 //        }
 //
@@ -161,7 +161,7 @@ class UpdateLoaderWorker implements WorkerTask {
 //        boolean isDownloaded = downloadNewAndChangedFiles(newAppConfig, diff);
 //        if (!isDownloaded) {
 //            cleanUp();
-//            setErrorResult(HcpError.FAILED_TO_DOWNLOAD_UPDATE_FILES, newAppConfig);
+//            setErrorResult(HCPError.FAILED_TO_DOWNLOAD_UPDATE_FILES, newAppConfig);
 //            return;
 //        }
 //
@@ -187,14 +187,14 @@ class UpdateLoaderWorker implements WorkerTask {
         // load current application config
         oldAppConfig = appConfigStorage.loadFromFolder(filesStructure.getWwwFolder());
         if (oldAppConfig == null) {
-            setErrorResult(HcpError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND, null);
+            setErrorResult(HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND, null);
             return false;
         }
 
         // load current content manifest
         oldManifest = manifestStorage.loadFromFolder(filesStructure.getWwwFolder());
         if (oldManifest == null) {
-            setErrorResult(HcpError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND, null);
+            setErrorResult(HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND, null);
             return false;
         }
 
@@ -286,7 +286,7 @@ class UpdateLoaderWorker implements WorkerTask {
 
     // region Events
 
-    private void setErrorResult(HcpError error, ApplicationConfig newAppConfig) {
+    private void setErrorResult(HCPError error, ApplicationConfig newAppConfig) {
         resultEvent = new UpdateDownloadErrorEvent(error, newAppConfig);
     }
 
