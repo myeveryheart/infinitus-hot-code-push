@@ -13,6 +13,7 @@ import com.nordnetab.chcp.main.model.ChcpError;
 import com.nordnetab.chcp.main.model.ManifestDiff;
 import com.nordnetab.chcp.main.model.ManifestFile;
 import com.nordnetab.chcp.main.model.PluginFilesStructure;
+import com.nordnetab.chcp.main.model.UpdateTime;
 import com.nordnetab.chcp.main.network.ApplicationConfigDownloader;
 import com.nordnetab.chcp.main.network.ContentManifestDownloader;
 import com.nordnetab.chcp.main.network.DownloadResult;
@@ -85,7 +86,7 @@ class UpdateLoaderWorker implements WorkerTask {
             return;
         }
 
-        if (newAppConfig.getContentConfig().getUpdateTime() == FORCED)
+        if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
         {
             //强制更新
 

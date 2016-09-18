@@ -109,41 +109,6 @@ public class HCPHelper {
         appConfigStorage = new ApplicationConfigStorage();
     }
 
-//    /**
-//     *  初始化
-//     *
-//     *  @param webUrl 远程目录的url
-//     *
-//     *  @return HCPHelper
-//     */
-//    public HCPHelper initWithWebUrl(URL webUrl)
-//    {
-////        HCPHelper helper = new HCPHelper();
-//        helper.webUrl = webUrl;
-//        helper.context = ContextUtil.getInstance();
-//
-//        doLocalInit();
-//        Log.d("CHCP", "Currently running release version " + pluginInternalPrefs.getCurrentReleaseVersionName());
-//
-//        // clean up file system
-//        if (!TextUtils.isEmpty(pluginInternalPrefs.getCurrentReleaseVersionName())) {
-//            CleanUpHelper.removeReleaseFolders(context,
-//                    new String[]{pluginInternalPrefs.getCurrentReleaseVersionName(),
-//                            pluginInternalPrefs.getPreviousReleaseVersionName(),
-//                            pluginInternalPrefs.getReadyForInstallationReleaseVersionName()
-//                    }
-//            );
-//        }
-//
-//        handler = new Handler();
-//        fileStructure = new PluginFilesStructure(context, pluginInternalPrefs.getCurrentReleaseVersionName());
-//        appConfigStorage = new ApplicationConfigStorage();
-//
-//        return helper;
-//    }
-
-
-
     private void doLocalInit()
     {
         // 初始化config

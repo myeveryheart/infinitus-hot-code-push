@@ -58,7 +58,6 @@ public class MainActivity extends Activity implements HCPResult
     }
 
 
-
     @Override
     public void fetchUpdateResult(boolean needUpdate, ChcpError error) {
         Log.d("rrrrr","ddddd");

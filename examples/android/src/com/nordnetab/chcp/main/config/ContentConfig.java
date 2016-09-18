@@ -44,7 +44,7 @@ public class ContentConfig {
             if (node.has(JsonKeys.UPDATE)) {
                 config.setUpdateTime(UpdateTime.fromString(node.get(JsonKeys.UPDATE).asText()));
             } else {
-                config.setUpdateTime(UpdateTime.ON_START);
+                config.setUpdateTime(UpdateTime.SILENT);
             }
         } catch (Exception e) {
             e.printStackTrace();
