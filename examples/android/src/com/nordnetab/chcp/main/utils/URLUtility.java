@@ -5,16 +5,16 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 /**
- * Created by Nikolay Demyankov on 23.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Utility class to work with URL's.
+ * URL工具类
  */
 public class URLUtility {
 
     /**
-     * Convert string representation of the url into URL object.
+     * string转URL
      *
-     * @param urlString url to convert
+     * @param urlString string
      * @return url object
      * @see URL
      */

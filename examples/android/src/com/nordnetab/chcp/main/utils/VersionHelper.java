@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 
 /**
- * Created by Nikolay Demyankov on 30.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Small helper to extract applications build version.
+ * build version工具类
  */
 public class VersionHelper {
 
@@ -14,7 +14,7 @@ public class VersionHelper {
     }
 
     /**
-     * Getter for application build version.
+     * 获取build version.
      *
      * @param context application context
      * @return build version

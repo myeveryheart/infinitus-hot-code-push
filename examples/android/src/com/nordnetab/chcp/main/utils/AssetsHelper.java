@@ -14,9 +14,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Created by Nikolay Demyankov on 21.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Utility class to copy files from assets folder into the external storage.
+ * 把www文件夹安装到外部存储的工具类
  */
 public class AssetsHelper {
 
@@ -26,12 +26,11 @@ public class AssetsHelper {
     }
 
     /**
-     * Copy files from the assets folder into the specific folder on the external storage.
-     * Method runs asynchronously. Results are dispatched through events.
+     * 把bunlde的www文件夹安装到外部存储
      *
      * @param assetManager  assets manager
-     * @param fromDirectory which directory in assets we want to copy
-     * @param toDirectory   absolute path to the destination folder on the external storage
+     * @param fromDirectory fromDirectory
+     * @param toDirectory   toDirectory
      *
      * @see AssetsInstallationErrorEvent
      * @see AssetsInstalledEvent
@@ -83,7 +82,7 @@ public class AssetsHelper {
     }
 
     /**
-     * Copies asset file to destination path
+     * 拷贝本地www到外部www
      */
     private static void copyAssetFile(AssetManager assetManager, String assetFilePath, String destinationFilePath) throws IOException {
         InputStream in = assetManager.open(assetFilePath);

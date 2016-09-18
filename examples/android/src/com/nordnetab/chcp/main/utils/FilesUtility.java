@@ -14,27 +14,25 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Created by Nikolay Demyankov on 21.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Helper class to work with file system.
+ * 文件系统工具类
  */
 public class FilesUtility {
 
     /**
-     * Delete object at the given location.
-     * If it is a folder - it will be deleted recursively will all content.
+     * 删除
      *
-     * @param pathToFileOrDirectory absolute path to the file/directory.
+     * @param pathToFileOrDirectory 文件/目录的路径
      */
     public static void delete(String pathToFileOrDirectory) {
         delete(new File(pathToFileOrDirectory));
     }
 
     /**
-     * Delete file object.
-     * If it is a folder - it will be deleted recursively will all content.
+     * 删除
      *
-     * @param fileOrDirectory file/directory to delete
+     * @param fileOrDirectory 文件/目录 对象
      */
     public static void delete(File fileOrDirectory) {
         if (!fileOrDirectory.exists()) {
@@ -56,20 +54,18 @@ public class FilesUtility {
     }
 
     /**
-     * Check if folder exists at the given path.
-     * If not - it will be created with with all subdirectories.
+     * 创建文件夹
      *
-     * @param dirPath absolute path to the directory
+     * @param dirPath 路径
      */
     public static void ensureDirectoryExists(String dirPath) {
         ensureDirectoryExists(new File(dirPath));
     }
 
     /**
-     * Check if folder exists.
-     * If not - it will be created with with all subdirectories.
+     * 创建文件夹
      *
-     * @param dir file object
+     * @param dir 文件对象
      */
     public static void ensureDirectoryExists(File dir) {
         if (dir != null && (!dir.exists() || !dir.isDirectory())) {
@@ -78,11 +74,10 @@ public class FilesUtility {
     }
 
     /**
-     * Copy object from one place to another.
-     * Can be used to copy file to file, or folder to folder.
+     * 拷贝
      *
-     * @param src absolute path to source object
-     * @param dst absolute path to destination object
+     * @param src 源路径
+     * @param dst 目的路径
      * @throws IOException
      */
     public static void copy(String src, String dst) throws IOException {
@@ -90,11 +85,10 @@ public class FilesUtility {
     }
 
     /**
-     * Copy file object from one place to another.
-     * Can be used to copy file to file, or folder to folder.
+     * 拷贝
      *
-     * @param src source file
-     * @param dst destination file
+     * @param src 源文件
+     * @param dst 目标文件
      * @throws IOException
      */
     public static void copy(File src, File dst) throws IOException {
@@ -129,9 +123,9 @@ public class FilesUtility {
     }
 
     /**
-     * Read data as string from the provided file.
+     * 读取
      *
-     * @param filePath absolute path to the file
+     * @param filePath 文件路径
      * @return data from file
      * @throws IOException
      */
@@ -140,9 +134,9 @@ public class FilesUtility {
     }
 
     /**
-     * Read data as string from the provided file.
+     * 读取
      *
-     * @param file file to read from
+     * @param file 文件
      * @return data from file
      * @throws IOException
      */
@@ -161,10 +155,10 @@ public class FilesUtility {
     }
 
     /**
-     * Save string into the file
+     * 保存
      *
-     * @param content  data to store
-     * @param filePath absolute path to file
+     * @param content  需要保存的数据
+     * @param filePath 文件路径
      * @throws IOException
      */
     public static void writeToFile(String content, String filePath) throws IOException {
@@ -172,10 +166,10 @@ public class FilesUtility {
     }
 
     /**
-     * Save string into the file
+     * 保存
      *
-     * @param content data to store
-     * @param dstFile where to save
+     * @param content 需要保存的数据
+     * @param dstFile 目的
      * @throws IOException
      */
     public static void writeToFile(String content, File dstFile) throws IOException {
@@ -187,9 +181,9 @@ public class FilesUtility {
     }
 
     /**
-     * Calculate MD5 hash of the file at the given path
+     * 计算 MD5 hash
      *
-     * @param filePath absolute path to the file
+     * @param filePath 文件路径
      * @return calculated hash
      * @throws Exception
      * @see MD5
@@ -199,10 +193,10 @@ public class FilesUtility {
     }
 
     /**
-     * Calculate MD5 hash of the file
+     * 计算 MD5 hash
      *
-     * @param file file whose hash we need
-     * @return calculated hash
+     * @param file 文件
+     * @return hash
      * @throws Exception
      * @see MD5
      */

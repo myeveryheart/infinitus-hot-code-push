@@ -1,7 +1,7 @@
 package com.nordnetab.chcp.main.utils;
 
 /**
- * Created by Nikolay Demyankov on 21.07.15.
+ * Created by M on 16/9/9.
  * <p/>
  * Since Cordova doesn't support Java 7 (according to the gradle) - we have to use our own Paths class.
  * Once it moves to Java 7 - we can use java.nio.file.Path

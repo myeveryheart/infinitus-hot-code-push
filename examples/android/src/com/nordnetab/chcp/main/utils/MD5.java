@@ -5,9 +5,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by Nikolay Demyankov on 23.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Utility class to calculate MD5 hash.
+ * 计算 MD5 hash 工具类
  *
  * @see MessageDigest
  */

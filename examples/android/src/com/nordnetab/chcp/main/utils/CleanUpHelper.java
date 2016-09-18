@@ -9,9 +9,9 @@ import com.nordnetab.chcp.main.model.PluginFilesStructure;
 import java.io.File;
 
 /**
- * Created by Nikolay Demyankov on 29.12.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Helper class to clean up file system and remove old releases folders.
+ * 清理工具类
  */
 public class CleanUpHelper {
 
@@ -22,17 +22,17 @@ public class CleanUpHelper {
     /**
      * Constructor.
      *
-     * @param rootFolder root folder, where releases are stored
+     * @param rootFolder 根目录
      */
     private CleanUpHelper(final String rootFolder) {
         this.rootFolder = new File(rootFolder);
     }
 
     /**
-     * Remove release folders.
+     * 删除根目录
      *
      * @param context          application context
-     * @param excludedReleases which releases are leave alive.
+     * @param excludedReleases 排除版本
      */
     public static void removeReleaseFolders(final Context context, final String[] excludedReleases) {
         if (isExecuting) {
