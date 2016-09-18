@@ -27,12 +27,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Nikolay Demyankov on 28.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Worker, that implements update download logic.
- * During the download process events are dispatched to notify the subscribers about the progress.
- * <p/>
- * Used internally.
+ * 下载类
  */
 class UpdateLoaderWorker implements WorkerTask {
 
@@ -51,9 +48,9 @@ class UpdateLoaderWorker implements WorkerTask {
     /**
      * Constructor.
      *
-     * @param configUrl                   application config url
-     * @param currentReleaseFileStructure files structure of the current release
-     * @param currentNativeVersion        current native version of the
+     * @param configUrl                   config url
+     * @param currentReleaseFileStructure 当前版本的文件结构
+     * @param currentNativeVersion        当前app版本
      */
     public UpdateLoaderWorker(final String configUrl, final PluginFilesStructure currentReleaseFileStructure, final int currentNativeVersion) {
         filesStructure = currentReleaseFileStructure;
@@ -129,9 +126,9 @@ class UpdateLoaderWorker implements WorkerTask {
     }
 
     /**
-     * Initialize all required variables before running the update.
+     * 初始化
      *
-     * @return <code>true</code> if we are good to go, <code>false</code> - failed to initialize
+     * @return <code>true</code> 成功, <code>false</code> - failed to initialize
      */
     private boolean init() {
         manifestStorage = new ContentManifestStorage();
@@ -155,9 +152,9 @@ class UpdateLoaderWorker implements WorkerTask {
     }
 
     /**
-     * Download application config from server.
+     * 从服务器下载config文件
      *
-     * @return new application config
+     * @return 新config
      */
     private ApplicationConfig downloadApplicationConfig() {
         DownloadResult<ApplicationConfig> downloadResult = new ApplicationConfigDownloader(applicationConfigUrl).download();
@@ -171,7 +168,7 @@ class UpdateLoaderWorker implements WorkerTask {
     }
 
     /**
-     * Download new content manifest from server.
+     * 从服务器下载新的manifest文件
      *
      * @param config new application config from which we will take content url
      * @return new content manifest
@@ -194,9 +191,9 @@ class UpdateLoaderWorker implements WorkerTask {
     }
 
     /**
-     * Remove old version of download folder and create a new one.
+     * 删除旧的下载文件夹，创建新的
      *
-     * @param folder absolute path to download folder
+     * @param folder 下载文件夹的路径
      */
     private void recreateDownloadFolder(final String folder) {
         FilesUtility.delete(folder);
@@ -204,11 +201,11 @@ class UpdateLoaderWorker implements WorkerTask {
     }
 
     /**
-     * Download from server new and update files.
+     * 下载新的和更新的文件
      *
-     * @param newAppConfig new application config, from which we will use content url
-     * @param diff         manifest difference from which we will know, what files to download
-     * @return <code>true</code> if files are loaded; <code>false</code> - otherwise
+     * @param newAppConfig 新的config
+     * @param diff         manifest diff
+     * @return <code>true</code> 下载成功; <code>false</code> - otherwise
      */
     private boolean downloadNewAndChangedFiles(ApplicationConfig newAppConfig, ManifestDiff diff) {
         final String contentUrl = newAppConfig.getContentConfig().getContentUrl();
@@ -231,7 +228,7 @@ class UpdateLoaderWorker implements WorkerTask {
     }
 
     /**
-     * Remove temporary files
+     * 删除临时文件
      */
     private void cleanUp() {
         FilesUtility.delete(filesStructure.getContentFolder());

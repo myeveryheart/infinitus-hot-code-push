@@ -6,33 +6,30 @@ import com.nordnetab.chcp.main.model.PluginFilesStructure;
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * Created by Nikolay Demyankov on 24.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Utility class to perform update download.
- * It only schedules the download and executes it as soon as possible.
- * <p/>
+ * 下载更新工具类
  */
 public class UpdatesLoader {
 
     private static boolean isExecuting;
 
     /**
-     * Check if download currently in progress
+     * 是否正在下载
      *
-     * @return <code>true</code> if download in progress; <code>false</code> otherwise
+     * @return <code>true</code> 正在下载; <code>false</code> otherwise
      */
     public static boolean isExecuting() {
         return isExecuting;
     }
 
     /**
-     * Request update download.
-     * Download performed in background. Events are dispatched to notify us about the result.
+     * 启动下载
      *
-     * @param configURL                   url from which we should download application config
-     * @param currentReleaseFileStructure files structure of the current release
-     * @param currentNativeVersion        current native interface version
-     * @return <code>ChcpError.NONE</code> if download has started; otherwise - error details
+     * @param configURL                   服务器上的configUrl
+     * @param currentReleaseFileStructure 当前版本的文件结构
+     * @param currentNativeVersion        当前本地版本
+     * @return <code>ChcpError.NONE</code> 启动成功; otherwise - error details
      */
     public static ChcpError downloadUpdate(final String configURL, final PluginFilesStructure currentReleaseFileStructure, final int currentNativeVersion) {
         // if download already in progress - exit

@@ -11,31 +11,30 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 
 /**
- * Created by Nikolay Demyankov on 22.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Utility class to perform update installation.
+ * 安装更新的工具类
  */
 public class UpdatesInstaller {
 
     private static boolean isInstalling;
 
     /**
-     * Check if we are currently doing some installation.
+     * 是否正在安装
      *
-     * @return <code>true</code> - installation is in progress; <code>false</code> - otherwise
+     * @return <code>true</code> - 正在安装; <code>false</code> - otherwise
      */
     public static boolean isInstalling() {
         return isInstalling;
     }
 
     /**
-     * Request update installation.
-     * Installation performed in background. Events are dispatched to notify us about the result.
+     * 启动安装
      *
-     * @param context        application context
-     * @param newVersion     version to install
-     * @param currentVersion current content version
-     * @return <code>ChcpError.NONE</code> if installation started; otherwise - error details
+     * @param context        context
+     * @param newVersion     需要安装的版本
+     * @param currentVersion 当前版本
+     * @return <code>ChcpError.NONE</code> 启动成功; otherwise - error details
      * @see NothingToInstallEvent
      * @see com.nordnetab.chcp.main.events.UpdateInstallationErrorEvent
      * @see com.nordnetab.chcp.main.events.UpdateInstalledEvent

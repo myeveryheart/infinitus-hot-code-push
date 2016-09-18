@@ -3,9 +3,9 @@ package com.nordnetab.chcp.main.updater;
 import com.nordnetab.chcp.main.events.WorkerEvent;
 
 /**
- * Created by Nikolay Demyankov on 29.12.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Interface describes update tasks.
+ * update Interface
  */
 interface WorkerTask extends Runnable {
 

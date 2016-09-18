@@ -22,12 +22,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by Nikolay Demyankov on 28.07.15.
+ * Created by M on 16/9/9.
  * <p/>
- * Worker, that implements installation logic.
- * During the installation process events are dispatched to notify the subscribers about the progress.
- * <p/>
- * Used internally.
+ * 安装类
  */
 class InstallationWorker implements WorkerTask {
 
@@ -43,8 +40,8 @@ class InstallationWorker implements WorkerTask {
      * Constructor.
      *
      * @param context        application context
-     * @param newVersion     version to install
-     * @param currentVersion current content version
+     * @param newVersion     新版版本号
+     * @param currentVersion 现在版本号
      */
     public InstallationWorker(final Context context, final String newVersion, final String currentVersion) {
         newReleaseFS = new PluginFilesStructure(context, newVersion);
@@ -89,9 +86,9 @@ class InstallationWorker implements WorkerTask {
     }
 
     /**
-     * Initialize variables and other pre-work stuff.
+     * 初始化
      *
-     * @return <code>true</code> if all initialized and ready; <code>false</code> - otherwise
+     * @return <code>true</code> 成功; <code>false</code> - otherwise
      */
     private boolean init() {
         // loaded application config
@@ -124,9 +121,9 @@ class InstallationWorker implements WorkerTask {
     }
 
     /**
-     * Copy all files from the previous release folder to the new release folder.
+     * 拷贝旧版文件到新版文件夹
      *
-     * @return <code>true</code> if files are copied; <code>false</code> - otherwise.
+     * @return <code>true</code> 拷贝成; <code>false</code> - otherwise.
      */
     private boolean copyFilesFromCurrentReleaseToNewRelease() {
         boolean result = true;
@@ -148,21 +145,21 @@ class InstallationWorker implements WorkerTask {
     }
 
     /**
-     * Perform cleaning when we failed to install the update.
+     * 安装更新失败时清除
      */
     private void cleanUpOnFailure() {
         FilesUtility.delete(newReleaseFS.getContentFolder());
     }
 
     /**
-     * Perform cleaning when update is installed.
+     * 安装更新成功时清除
      */
     private void cleanUpOnSuccess() {
         FilesUtility.delete(newReleaseFS.getDownloadFolder());
     }
 
     /**
-     * Delete from project unused files
+     * 删除无用文件
      */
     private void deleteUnusedFiles() {
         final List<ManifestFile> files = manifestDiff.deletedFiles();
@@ -173,9 +170,9 @@ class InstallationWorker implements WorkerTask {
     }
 
     /**
-     * Copy downloaded files into www folder
+     * 拷贝更新文件到www
      *
-     * @return <code>true</code> if files are copied; <code>false</code> - otherwise
+     * @return <code>true</code> 拷贝成功; <code>false</code> - otherwise
      */
     private boolean moveFilesFromInstallationFolderToWwwFodler() {
         try {
@@ -190,12 +187,11 @@ class InstallationWorker implements WorkerTask {
     }
 
     /**
-     * Check if update is ready for installation.
-     * We will check, if all files are loaded and their hashes are correct.
+     * 检查更新文件是否已准备好
      *
-     * @param downloadFolderPath folder, where our files are situated
-     * @param manifestDiff       difference between old and the new manifest. Holds information about updated files.
-     * @return <code>true</code> update is valid and we are good to go; <code>false</code> - otherwise
+     * @param downloadFolderPath 更新文件夹路径
+     * @param manifestDiff       manifest差异
+     * @return <code>true</code> 准备好了; <code>false</code> - otherwise
      */
     private boolean isUpdateValid(String downloadFolderPath, ManifestDiff manifestDiff) {
         File downloadFolder = new File(downloadFolderPath);
