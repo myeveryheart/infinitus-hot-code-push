@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
+
 /**
  * Created by M on 16/9/9.
  * <p/>
@@ -13,18 +15,18 @@ import org.json.JSONObject;
  */
 public class ChcpXmlConfig {
 
+    private static final String CONFIG_FILE = "hcp.json";
+
     private String configUrl;
     private String webUrl;
-//    private boolean allowUpdatesAutoDownload;
-//    private boolean allowUpdatesAutoInstall;
     private int nativeInterfaceVersion;
 
-    private ChcpXmlConfig() {
-        configUrl = "";
-        webUrl = "";
-//        allowUpdatesAutoDownload = true;
-//        allowUpdatesAutoInstall = true;
-        nativeInterfaceVersion = 1;
+    public static ChcpXmlConfig getDefaultConfig() {
+        ChcpXmlConfig chcpXmlConfig = new ChcpXmlConfig();
+        chcpXmlConfig.configUrl = "";
+        chcpXmlConfig.webUrl = "";
+        chcpXmlConfig.nativeInterfaceVersion = 1;
+        return chcpXmlConfig;
     }
 
     /**
@@ -36,14 +38,14 @@ public class ChcpXmlConfig {
         return configUrl;
     }
 
-    /**
-     * 设置服务器chcp.json url
-     *
-     * @param configUrl url
-     */
-    public void setConfigUrl(String configUrl) {
-        this.configUrl = configUrl;
-    }
+//    /**
+//     * 设置服务器chcp.json url
+//     *
+//     * @param configUrl url
+//     */
+//    public void setConfigUrl(String configUrl) {
+//        this.configUrl = configUrl;
+//    }
 
     /**
      * 设置服务器文件夹 url
@@ -52,6 +54,7 @@ public class ChcpXmlConfig {
      */
     public void setWebUrl(String webUrl) {
         this.webUrl = webUrl;
+        configUrl = webUrl + CONFIG_FILE;
     }
 
 //    /**

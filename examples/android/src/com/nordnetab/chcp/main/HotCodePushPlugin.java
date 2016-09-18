@@ -58,7 +58,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 
 /**
- * Created by Nikolay Demyankov on 23.07.15.
+ * Created by M on 16/9/9.
  * <p/>
  * Plugin main class.
  */

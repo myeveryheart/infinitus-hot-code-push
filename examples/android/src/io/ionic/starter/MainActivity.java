@@ -25,6 +25,7 @@ import android.util.Log;
 
 import com.nordnetab.chcp.main.HCPHelper;
 import com.nordnetab.chcp.main.HCPResult;
+import com.nordnetab.chcp.main.model.ChcpError;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -56,8 +57,10 @@ public class MainActivity extends Activity implements HCPResult
 
     }
 
+
+
     @Override
-    public void fetchUpdateResult(boolean needUpdate, Error error) {
+    public void fetchUpdateResult(boolean needUpdate, ChcpError error) {
         Log.d("rrrrr","ddddd");
     }
 }

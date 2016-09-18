@@ -61,28 +61,34 @@ class UpdateLoaderWorker implements WorkerTask {
     @Override
     public void run() {
         Log.d("CHCP", "Starting loader worker ");
-        // initialize before running
         if (!init()) {
             return;
         }
 
-        // download new application config
+        // 下载新的config
         ApplicationConfig newAppConfig = downloadApplicationConfig();
         if (newAppConfig == null) {
             setErrorResult(ChcpError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
             return;
         }
 
-        // check if there is a new content version available
-        if (newAppConfig.getContentConfig().getReleaseVersion().equals(oldAppConfig.getContentConfig().getReleaseVersion())) {
+        // 新版本号比旧版大才更新
+        if (newAppConfig.getContentConfig().getReleaseVersion().compareTo(oldAppConfig.getContentConfig().getReleaseVersion()) <= 0) {
             setNothingToUpdateResult(newAppConfig);
+
             return;
         }
 
-        // check if current native version supports new content
+        // 本地app版本是否支持新版本
         if (newAppConfig.getContentConfig().getMinimumNativeVersion() > appNativeVersion) {
             setErrorResult(ChcpError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
             return;
+        }
+
+        if (newAppConfig.getContentConfig().getUpdateTime() == FORCED)
+        {
+            //强制更新
+
         }
 
         // download new content manifest

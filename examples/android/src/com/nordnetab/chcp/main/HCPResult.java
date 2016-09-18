@@ -3,9 +3,9 @@ package com.nordnetab.chcp.main;
 import com.nordnetab.chcp.main.model.ChcpError;
 
 /**
- * Created by M on 16/9/13.
+ * Created by M on 16/9/9.
  */
-public interface HCPResult {
+abstract class HCPResult {
 
-    void fetchUpdateResult(boolean needUpdate, ChcpError error);
+    public abstract void fetchUpdateResult(boolean needUpdate, ChcpError error);
 }
