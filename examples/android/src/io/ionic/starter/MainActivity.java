@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.nordnetab.chcp.main.HCPHelper;
-import com.nordnetab.chcp.main.HCPResult;
-import com.nordnetab.chcp.main.model.ChcpError;
+import com.nordnetab.hcp.main.HCPHelper;
+import com.nordnetab.hcp.main.HCPResult;
+import com.nordnetab.hcp.main.model.HcpError;
 
 
 
@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallb
     }
 
     @Override
-    public void fetchUpdateCallback(boolean needUpdate, ChcpError error) {
+    public void fetchUpdateCallback(boolean needUpdate, HcpError error) {
 
     }
 }
