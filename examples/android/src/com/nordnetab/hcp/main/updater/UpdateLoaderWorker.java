@@ -8,6 +8,7 @@ import com.nordnetab.hcp.main.config.ContentManifest;
 import com.nordnetab.hcp.main.events.FetchUpdateCompletedEvent;
 import com.nordnetab.hcp.main.events.FetchUpdateErrorEvent;
 import com.nordnetab.hcp.main.events.NothingToUpdateEvent;
+import com.nordnetab.hcp.main.events.UpdateDownloadErrorEvent;
 import com.nordnetab.hcp.main.events.UpdateIsReadyToInstallEvent;
 import com.nordnetab.hcp.main.events.WorkerEvent;
 import com.nordnetab.hcp.main.model.HCPError;
@@ -48,6 +49,7 @@ class UpdateLoaderWorker implements WorkerTask {
     private ContentManifest oldManifest;
 
     private WorkerEvent resultEvent;
+    private ApplicationConfig newAppConfig;
 
     /**
      * Constructor.
@@ -64,15 +66,15 @@ class UpdateLoaderWorker implements WorkerTask {
 
     public void fetch()
     {
-        Log.d("HCP", "Starting loader worker ");
+        Log.d("HCP", "Starting fetch worker");
         if (!init()) {
             return;
         }
 
         // 下载新的config
-        ApplicationConfig newAppConfig = downloadApplicationConfig();
+        newAppConfig = downloadApplicationConfig();
         if (newAppConfig == null) {
-            setErrorResult(HCPError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
+            setFetchErrorResult(HCPError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
             return;
         }
 
@@ -84,95 +86,62 @@ class UpdateLoaderWorker implements WorkerTask {
 
         // 本地app版本是否支持新版本
         if (newAppConfig.getContentConfig().getMinimumNativeVersion() > appNativeVersion) {
-            setErrorResult(HCPError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
+            setFetchErrorResult(HCPError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
             return;
         }
 
         if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
         {
             //强制更新
-            resultEvent = new FetchUpdateCompletedEvent(newAppConfig);
+            setFetchSuccessResult(newAppConfig);
         }
         else
         {
             //静默更新
         }
+        Log.d("HCP", "Fetch worker has finished");
     }
 
-//    @Override
-//    public void run() {
-//        fetch();
-//
-//        Log.d("HCP", "Starting loader worker ");
-//        if (!init()) {
-//            return;
-//        }
-//
-//        // 下载新的config
-//        ApplicationConfig newAppConfig = downloadApplicationConfig();
-//        if (newAppConfig == null) {
-//            setErrorResult(HCPError.FAILED_TO_DOWNLOAD_APPLICATION_CONFIG, null);
-//            return;
-//        }
-//
-//        // 新版本号比旧版大才更新
-//        if (newAppConfig.getContentConfig().getReleaseVersion().compareTo(oldAppConfig.getContentConfig().getReleaseVersion()) <= 0) {
-//            setNothingToUpdateResult(newAppConfig);
-//
-//            return;
-//        }
-//
-//        // 本地app版本是否支持新版本
-//        if (newAppConfig.getContentConfig().getMinimumNativeVersion() > appNativeVersion) {
-//            setErrorResult(HCPError.APPLICATION_BUILD_VERSION_TOO_LOW, newAppConfig);
-//            return;
-//        }
-//
-//        if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
-//        {
-//            //强制更新
-//
-//        }
-//
-//        // download new content manifest
-//        ContentManifest newContentManifest = downloadContentManifest(newAppConfig);
-//        if (newContentManifest == null) {
-//            setErrorResult(HCPError.FAILED_TO_DOWNLOAD_CONTENT_MANIFEST, newAppConfig);
-//            return;
-//        }
-//
-//        // find files that were updated
-//        ManifestDiff diff = oldManifest.calculateDifference(newContentManifest);
-//        if (diff.isEmpty()) {
-//            manifestStorage.storeInFolder(newContentManifest, filesStructure.getWwwFolder());
-//            appConfigStorage.storeInFolder(newAppConfig, filesStructure.getWwwFolder());
-//            setNothingToUpdateResult(newAppConfig);
-//
-//            return;
-//        }
-//
-//        // switch file structure to new release
-//        filesStructure.switchToRelease(newAppConfig.getContentConfig().getReleaseVersion());
-//
-//        recreateDownloadFolder(filesStructure.getDownloadFolder());
-//
-//        // download files
-//        boolean isDownloaded = downloadNewAndChangedFiles(newAppConfig, diff);
-//        if (!isDownloaded) {
-//            cleanUp();
-//            setErrorResult(HCPError.FAILED_TO_DOWNLOAD_UPDATE_FILES, newAppConfig);
-//            return;
-//        }
-//
-//        // store configs
-//        manifestStorage.storeInFolder(newContentManifest, filesStructure.getDownloadFolder());
-//        appConfigStorage.storeInFolder(newAppConfig, filesStructure.getDownloadFolder());
-//
-//        // notify that we are done
-//        setSuccessResult(newAppConfig);
-//
-//        Log.d("HCP", "Loader worker has finished");
-//    }
+    public void download()
+    {
+        // 下载新的manifest
+        ContentManifest newContentManifest = downloadContentManifest(newAppConfig);
+        if (newContentManifest == null) {
+            setDownloadErrorResult(HCPError.FAILED_TO_DOWNLOAD_CONTENT_MANIFEST, newAppConfig);
+            return;
+        }
+
+        // 比较manifest
+        ManifestDiff diff = oldManifest.calculateDifference(newContentManifest);
+        if (diff.isEmpty()) {
+            manifestStorage.storeInFolder(newContentManifest, filesStructure.getWwwFolder());
+            appConfigStorage.storeInFolder(newAppConfig, filesStructure.getWwwFolder());
+            setNothingToUpdateResult(newAppConfig);
+
+            return;
+        }
+
+        // 新版文件
+        filesStructure.switchToRelease(newAppConfig.getContentConfig().getReleaseVersion());
+
+        recreateDownloadFolder(filesStructure.getDownloadFolder());
+
+        // 下载更新文件
+        boolean isDownloaded = downloadNewAndChangedFiles(newAppConfig, diff);
+        if (!isDownloaded) {
+            cleanUp();
+            setDownloadErrorResult(HCPError.FAILED_TO_DOWNLOAD_UPDATE_FILES, newAppConfig);
+            return;
+        }
+
+        // 保存manifest和config
+        manifestStorage.storeInFolder(newContentManifest, filesStructure.getDownloadFolder());
+        appConfigStorage.storeInFolder(newAppConfig, filesStructure.getDownloadFolder());
+
+        setDownloadSuccessResult(newAppConfig);
+
+        Log.d("HCP", "Loader worker has finished");
+    }
 
     /**
      * 初始化
@@ -285,11 +254,19 @@ class UpdateLoaderWorker implements WorkerTask {
 
     // region Events
 
-    private void setErrorResult(HCPError error, ApplicationConfig newAppConfig) {
+    private void setFetchErrorResult(HCPError error, ApplicationConfig newAppConfig) {
         resultEvent = new FetchUpdateErrorEvent(error, newAppConfig);
     }
 
-    private void setSuccessResult(ApplicationConfig newAppConfig) {
+    private void setFetchSuccessResult(ApplicationConfig newAppConfig){
+        resultEvent = new FetchUpdateCompletedEvent(newAppConfig);
+    }
+
+    private void setDownloadErrorResult(HCPError error, ApplicationConfig newAppConfig) {
+        resultEvent = new UpdateDownloadErrorEvent(error, newAppConfig);
+    }
+
+    private void setDownloadSuccessResult(ApplicationConfig newAppConfig) {
         resultEvent = new UpdateIsReadyToInstallEvent(newAppConfig);
     }
 

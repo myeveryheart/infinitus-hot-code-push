@@ -1,10 +1,13 @@
 package com.nordnetab.hcp.main.updater;
 
 import com.nordnetab.hcp.main.events.FetchUpdateErrorEvent;
+import com.nordnetab.hcp.main.events.UpdateDownloadErrorEvent;
 import com.nordnetab.hcp.main.model.HCPError;
 import com.nordnetab.hcp.main.model.HCPFilesStructure;
+import com.nordnetab.hcp.main.utils.AssetsHelper;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Created by M on 16/9/9.
@@ -14,6 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 public class UpdatesLoader {
 
     private static boolean isExecuting;
+    private static UpdateLoaderWorker task;
 
     /**
      * 是否正在下载
@@ -45,27 +49,62 @@ public class UpdatesLoader {
 
         isExecuting = true;
 
-        final UpdateLoaderWorker task = new UpdateLoaderWorker(configURL, currentReleaseFileStructure, currentNativeVersion);
+        task = new UpdateLoaderWorker(configURL, currentReleaseFileStructure, currentNativeVersion);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 task.fetch();
                 isExecuting = false;
-
                 EventBus.getDefault().post(task.result());
             }
         }).start();
     }
 
-//    private static void executeTask(final WorkerTask task) {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                task.run();
-//                isExecuting = false;
-//
-//                EventBus.getDefault().post(task.result());
-//            }
-//        }).start();
-//    }
+    public static void downloadUpdate()
+    {
+        final EventBus eventBus = EventBus.getDefault();
+        if (!eventBus.isRegistered(UpdatesLoader.class)) {
+            eventBus.register(UpdatesLoader.class);
+        }
+
+        if (isExecuting) {
+            EventBus.getDefault().post(new UpdateDownloadErrorEvent(HCPError.DOWNLOAD_ALREADY_IN_PROGRESS, null));
+            return;
+        }
+
+        if (UpdatesInstaller.isInstalling()) {
+            EventBus.getDefault().post(new UpdateDownloadErrorEvent(HCPError.CANT_DOWNLOAD_UPDATE_WHILE_INSTALLATION_IN_PROGRESS, null));
+            return;
+        }
+
+        isExecuting = true;
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                task.download();
+                isExecuting = false;
+                EventBus.getDefault().post(task.result());
+            }
+        }).start();
+    }
+
+    /**
+     * 检查更新错误
+     *
+     * @param event event details
+     * @see FetchUpdateErrorEvent
+     * @see AssetsHelper
+     * @see EventBus
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(final FetchUpdateErrorEvent event) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                fetchUpdateCallback.fetchUpdateCallback(false, event.error());
+            }
+        });
+    }
 }

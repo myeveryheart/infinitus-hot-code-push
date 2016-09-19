@@ -60,6 +60,10 @@ public class HCPHelper {
     {
         void fetchUpdateCallback(boolean needUpdate, HCPError error);
     }
+    public interface DownloadUpdateCallback
+    {
+        void downloadUpdateCallback(boolean success, int totalFiles, int fileDownloaded, HCPError error);
+    }
 
     private static final String WWW_FOLDER = "www";
     private static final String LOCAL_ASSETS_FOLDER = "file:///android_asset/www";
@@ -77,6 +81,7 @@ public class HCPHelper {
     private static HCPHelper helper;
 //    private HCPResult hcpResult;
     private FetchUpdateCallback fetchUpdateCallback;
+    private DownloadUpdateCallback downloadUpdateCallback;
 
     private static final int FETCH_UPDATE_ERROR_EVENT = 1;
     private static final int FETCH_UPDATE = 2;
@@ -203,14 +208,7 @@ public class HCPHelper {
      */
     public void downloadUpdate()
     {
-        final HCPFilesStructure currentReleaseFS = new HCPFilesStructure(context, hcpInternalPrefs.getCurrentReleaseVersionName());
-//        final HCPError error = UpdatesLoader.downloadUpdate(config.getConfigUrl(), currentReleaseFS, config.getNativeInterfaceVersion());
-//        if (error != HCPError.NONE) {
-//            hcpResult.fetchUpdateResult(false, error);
-//        }
-//        else {
-//            hcpResult.fetchUpdateResult(true, null);
-//        }
+        UpdatesLoader.downloadUpdate();
     }
 
     /**
@@ -300,6 +298,7 @@ public class HCPHelper {
     }
 
 
+
     /**
      * www文件夹安装到外部成功
      *
@@ -348,6 +347,12 @@ public class HCPHelper {
 
         hcpInternalPrefs.setReadyForInstallationReleaseVersionName(newContentConfig.getReleaseVersion());
         hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                downloadUpdateCallback.downloadUpdateCallback();
+            }
+        });
     }
 
     /**
