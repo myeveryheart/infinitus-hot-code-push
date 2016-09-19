@@ -31,30 +31,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HCPHelper.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HCPHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="270" column="0" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
+            <state vertical-scroll-proportion="6.026786">
+              <caret line="296" column="66" selection-start-line="296" selection-start-column="66" selection-end-line="296" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7622#7623#0" expanded="true" />
-                <element signature="e#7692#7693#0" expanded="true" />
-                <element signature="e#8908#9071#0" expanded="true" />
-                <element signature="e#9070#9071#0" expanded="true" />
-                <element signature="e#10888#10889#0" expanded="true" />
-                <element signature="e#10937#10938#0" expanded="true" />
-                <element signature="e#15657#15658#0" expanded="true" />
-                <element signature="e#15707#15708#0" expanded="true" />
+                <element signature="method#getInstance#0;class#HCPHelper#0" expanded="false" />
+                <element signature="method#setWebUrl#0;class#HCPHelper#0" expanded="false" />
+                <element signature="method#doLocalInit#0;class#HCPHelper#0" expanded="false" />
+                <element signature="docComment;method#loadFromExternalStorageFolder#0;class#HCPHelper#0" expanded="false" />
+                <element signature="method#loadFromExternalStorageFolder#0;class#HCPHelper#0" expanded="false" />
+                <element signature="docComment;method#fetchUpdate#0;class#HCPHelper#0" expanded="false" />
+                <element signature="method#fetchUpdate#0;class#HCPHelper#0" expanded="false" />
+                <element signature="docComment;method#downloadUpdate#0;class#HCPHelper#0" expanded="false" />
+                <element signature="method#downloadUpdate#0;class#HCPHelper#0" expanded="false" />
+                <element signature="docComment;method#installUpdate#0;class#HCPHelper#0" expanded="false" />
+                <element signature="method#installUpdate#0;class#HCPHelper#0" expanded="false" />
+                <element signature="docComment;method#isWWwFolderNeedsToBeInstalled#0;class#HCPHelper#0" expanded="false" />
+                <element signature="method#isWWwFolderNeedsToBeInstalled#0;class#HCPHelper#0" expanded="false" />
+                <element signature="e#8628#8629#0" expanded="true" />
+                <element signature="e#8698#8699#0" expanded="true" />
+                <element signature="method#installWwwFolder#0;class#HCPHelper#0" expanded="false" />
+                <element signature="e#9548#9721#0" expanded="true" />
+                <element signature="e#9720#9721#0" expanded="true" />
+                <element signature="e#10019#10182#0" expanded="true" />
+                <element signature="e#10181#10182#0" expanded="true" />
+                <element signature="e#11999#12000#0" expanded="true" />
+                <element signature="e#12048#12049#0" expanded="true" />
+                <element signature="e#16768#16769#0" expanded="true" />
+                <element signature="e#16818#16819#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdatesLoader.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FetchUpdateErrorEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/FetchUpdateErrorEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="54" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdatesLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdatesLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6681416">
+            <state vertical-scroll-proportion="0.0">
               <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -65,63 +91,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateLoaderWorker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdateLoaderWorker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#init#0;class#UpdateLoaderWorker#0" expanded="false" />
-                <element signature="method#downloadApplicationConfig#0;class#UpdateLoaderWorker#0" expanded="false" />
-                <element signature="method#downloadContentManifest#0;class#UpdateLoaderWorker#0" expanded="false" />
-                <element signature="e#10206#10207#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorkerTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/WorkerTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/io/ionic/starter/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1108#1109#0" expanded="true" />
                 <element signature="e#1144#1145#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InstallationWorker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/InstallationWorker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UpdatesInstaller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdatesInstaller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="76" column="21" selection-start-line="66" selection-start-column="10" selection-end-line="76" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1937,8 +1914,8 @@
         <option value="$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/InstallationWorker.java" />
         <option value="$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdatesInstaller.java" />
         <option value="$PROJECT_DIR$/src/io/ionic/starter/MainActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java" />
         <option value="$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdateLoaderWorker.java" />
+        <option value="$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java" />
       </list>
     </option>
   </component>
@@ -2326,7 +2303,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2335,7 +2312,7 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32577905" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32577905" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39943343" sideWeight="0.49676898" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39943343" sideWeight="0.503231" order="7" side_tool="true" content_ui="tabs" />
@@ -2358,6 +2335,14 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -2370,31 +2355,37 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java</url>
-          <line>165</line>
-          <properties />
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java</url>
-          <line>270</line>
-          <properties />
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdatesLoader.java</url>
           <line>54</line>
           <properties />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdateLoaderWorker.java</url>
-          <line>301</line>
+          <url>file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java</url>
+          <line>98</line>
           <properties />
-          <option name="timeStamp" value="31" />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java</url>
+          <line>102</line>
+          <properties />
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/io/ionic/starter/MainActivity.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="32" />
+      <option name="time" value="39" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2586,24 +2577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/HCPEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19911504">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/HCPEventImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/777f0a941d3dd0f9988d4f22b42b36ce2fe64ea4/eventbus-3.0.0-sources.jar!/org/greenrobot/eventbus/EventBus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3318584">
@@ -2686,22 +2659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/WorkerEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8333333">
-          <caret line="25" column="65" selection-start-line="25" selection-start-column="65" selection-end-line="25" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/FetchUpdateErrorEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3409091">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/FetchUpdateCompletedEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6818182">
@@ -2709,34 +2666,6 @@
           <folding>
             <element signature="e#426#427#0" expanded="true" />
             <element signature="e#473#474#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/InstallationWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/WorkerTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/ionic/starter/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1108#1109#0" expanded="true" />
-            <element signature="e#1144#1145#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2749,9 +2678,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/HCPEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19911504">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/HCPEventImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28761062">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/WorkerEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28761062">
+          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdateLoaderWorker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="2.5530303">
           <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2763,32 +2716,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/WorkerTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="270" column="0" selection-start-line="270" selection-start-column="0" selection-end-line="270" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7622#7623#0" expanded="true" />
-            <element signature="e#7692#7693#0" expanded="true" />
-            <element signature="e#8908#9071#0" expanded="true" />
-            <element signature="e#9070#9071#0" expanded="true" />
-            <element signature="e#10888#10889#0" expanded="true" />
-            <element signature="e#10937#10938#0" expanded="true" />
-            <element signature="e#15657#15658#0" expanded="true" />
-            <element signature="e#15707#15708#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.3409091">
+          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/InstallationWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.1969697">
+          <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/updater/UpdatesLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6681416">
+        <state vertical-scroll-proportion="0.0">
           <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1449#1670#0" expanded="true" />
             <element signature="e#1669#1670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/ionic/starter/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1144#1145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/events/FetchUpdateErrorEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="54" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/nordnetab/hcp/main/HCPHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.026786">
+          <caret line="296" column="66" selection-start-line="296" selection-start-column="66" selection-end-line="296" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getInstance#0;class#HCPHelper#0" expanded="false" />
+            <element signature="method#setWebUrl#0;class#HCPHelper#0" expanded="false" />
+            <element signature="method#doLocalInit#0;class#HCPHelper#0" expanded="false" />
+            <element signature="docComment;method#loadFromExternalStorageFolder#0;class#HCPHelper#0" expanded="false" />
+            <element signature="method#loadFromExternalStorageFolder#0;class#HCPHelper#0" expanded="false" />
+            <element signature="docComment;method#fetchUpdate#0;class#HCPHelper#0" expanded="false" />
+            <element signature="method#fetchUpdate#0;class#HCPHelper#0" expanded="false" />
+            <element signature="docComment;method#downloadUpdate#0;class#HCPHelper#0" expanded="false" />
+            <element signature="method#downloadUpdate#0;class#HCPHelper#0" expanded="false" />
+            <element signature="docComment;method#installUpdate#0;class#HCPHelper#0" expanded="false" />
+            <element signature="method#installUpdate#0;class#HCPHelper#0" expanded="false" />
+            <element signature="docComment;method#isWWwFolderNeedsToBeInstalled#0;class#HCPHelper#0" expanded="false" />
+            <element signature="method#isWWwFolderNeedsToBeInstalled#0;class#HCPHelper#0" expanded="false" />
+            <element signature="e#8628#8629#0" expanded="true" />
+            <element signature="e#8698#8699#0" expanded="true" />
+            <element signature="method#installWwwFolder#0;class#HCPHelper#0" expanded="false" />
+            <element signature="e#9548#9721#0" expanded="true" />
+            <element signature="e#9720#9721#0" expanded="true" />
+            <element signature="e#10019#10182#0" expanded="true" />
+            <element signature="e#10181#10182#0" expanded="true" />
+            <element signature="e#11999#12000#0" expanded="true" />
+            <element signature="e#12048#12049#0" expanded="true" />
+            <element signature="e#16768#16769#0" expanded="true" />
+            <element signature="e#16818#16819#0" expanded="true" />
           </folding>
         </state>
       </provider>

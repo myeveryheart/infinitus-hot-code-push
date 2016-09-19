@@ -3,6 +3,7 @@ package com.nordnetab.hcp.main;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -22,6 +23,7 @@ import com.nordnetab.hcp.main.events.UpdateDownloadErrorEvent;
 import com.nordnetab.hcp.main.events.UpdateInstallationErrorEvent;
 import com.nordnetab.hcp.main.events.UpdateInstalledEvent;
 import com.nordnetab.hcp.main.events.UpdateIsReadyToInstallEvent;
+import com.nordnetab.hcp.main.events.WorkerEvent;
 import com.nordnetab.hcp.main.model.HCPError;
 import com.nordnetab.hcp.main.model.HCPFilesStructure;
 import com.nordnetab.hcp.main.model.UpdateTime;
@@ -68,7 +70,7 @@ public class HCPHelper {
     private Config config;
     private HCPFilesStructure fileStructure;
 
-    private Handler handler;
+//    private Handler handler;
 
     private String webUrl;
     private static Context context;
@@ -76,6 +78,32 @@ public class HCPHelper {
 //    private HCPResult hcpResult;
     private FetchUpdateCallback fetchUpdateCallback;
 
+    private static final int FETCH_UPDATE_ERROR_EVENT = 1;
+    private static final int FETCH_UPDATE = 2;
+    private static Handler handler = new Handler();
+
+//    private Handler handler = new Handler() {
+//
+//        // 处理子线程给我们发送的消息。
+//        @Override
+//        public void handleMessage(Message message) {
+////            byte[] data = (byte[])msg.obj;
+////            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+////            imageView.setImageBitmap(bitmap);
+////            if(msg.what == DOWNLOAD_IMG){
+////                dialog.dismiss();
+////            }
+//            WorkerEvent event = (WorkerEvent)message.obj;
+//            if (FetchUpdateErrorEvent.class.isInstance(event))
+//            {
+//                fetchUpdateCallback.fetchUpdateCallback(false, event.error());
+//            }
+//            if (FetchUpdateCompletedEvent.class.isInstance(event))
+//            {
+//                fetchUpdateCallback.fetchUpdateCallback(true, null);
+//            }
+//        }
+//    };
 
 
     public static HCPHelper getInstance(Context ctx)
@@ -92,13 +120,6 @@ public class HCPHelper {
 
         return helper;
     }
-
-
-
-//    public void setListener(HCPResult listener)
-//    {
-//        hcpResult = listener;
-//    }
 
     public void setWebUrl(String webUrl)
     {
@@ -251,7 +272,12 @@ public class HCPHelper {
     @SuppressWarnings("unused")
     @Subscribe
     public void onEvent(final FetchUpdateErrorEvent event) {
-        fetchUpdateCallback.fetchUpdateCallback(false, event.error());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                fetchUpdateCallback.fetchUpdateCallback(false, event.error());
+            }
+        });
     }
 
     /**
@@ -265,7 +291,7 @@ public class HCPHelper {
     @SuppressWarnings("unused")
     @Subscribe
     public void onEvent(final FetchUpdateCompletedEvent event) {
-        ((Activity)context).runOnUiThread(new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
                 fetchUpdateCallback.fetchUpdateCallback(true, null);
