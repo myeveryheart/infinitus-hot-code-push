@@ -63,9 +63,9 @@ public class UpdatesLoader {
     public static void downloadUpdate()
     {
         final EventBus eventBus = EventBus.getDefault();
-        if (!eventBus.isRegistered(UpdatesLoader.class)) {
-            eventBus.register(UpdatesLoader.class);
-        }
+//        if (!eventBus.isRegistered(UpdatesLoader.class)) {
+//            eventBus.register(UpdatesLoader.class);
+//        }
 
         if (isExecuting) {
             EventBus.getDefault().post(new UpdateDownloadErrorEvent(HCPError.DOWNLOAD_ALREADY_IN_PROGRESS, null));
@@ -89,22 +89,22 @@ public class UpdatesLoader {
         }).start();
     }
 
-    /**
-     * 检查更新错误
-     *
-     * @param event event details
-     * @see FetchUpdateErrorEvent
-     * @see AssetsHelper
-     * @see EventBus
-     */
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onEvent(final FetchUpdateErrorEvent event) {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                fetchUpdateCallback.fetchUpdateCallback(false, event.error());
-            }
-        });
-    }
+//    /**
+//     * 检查更新错误
+//     *
+//     * @param event event details
+//     * @see FetchUpdateErrorEvent
+//     * @see AssetsHelper
+//     * @see EventBus
+//     */
+//    @SuppressWarnings("unused")
+//    @Subscribe
+//    public void onEvent(final FetchUpdateErrorEvent event) {
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                fetchUpdateCallback.fetchUpdateCallback(false, event.error());
+//            }
+//        });
+//    }
 }

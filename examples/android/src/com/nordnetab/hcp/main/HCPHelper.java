@@ -15,6 +15,7 @@ import com.nordnetab.hcp.main.events.AssetsInstallationErrorEvent;
 import com.nordnetab.hcp.main.events.AssetsInstalledEvent;
 import com.nordnetab.hcp.main.events.BeforeAssetsInstalledEvent;
 import com.nordnetab.hcp.main.events.BeforeInstallEvent;
+import com.nordnetab.hcp.main.events.DownloadProgressEvent;
 import com.nordnetab.hcp.main.events.FetchUpdateCompletedEvent;
 import com.nordnetab.hcp.main.events.FetchUpdateErrorEvent;
 import com.nordnetab.hcp.main.events.NothingToInstallEvent;
@@ -83,32 +84,11 @@ public class HCPHelper {
     private FetchUpdateCallback fetchUpdateCallback;
     private DownloadUpdateCallback downloadUpdateCallback;
 
-    private static final int FETCH_UPDATE_ERROR_EVENT = 1;
-    private static final int FETCH_UPDATE = 2;
     private static Handler handler = new Handler();
+    private static int totalFiles;
+    private static int fileDownloaded;
 
-//    private Handler handler = new Handler() {
-//
-//        // 处理子线程给我们发送的消息。
-//        @Override
-//        public void handleMessage(Message message) {
-////            byte[] data = (byte[])msg.obj;
-////            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-////            imageView.setImageBitmap(bitmap);
-////            if(msg.what == DOWNLOAD_IMG){
-////                dialog.dismiss();
-////            }
-//            WorkerEvent event = (WorkerEvent)message.obj;
-//            if (FetchUpdateErrorEvent.class.isInstance(event))
-//            {
-//                fetchUpdateCallback.fetchUpdateCallback(false, event.error());
-//            }
-//            if (FetchUpdateCompletedEvent.class.isInstance(event))
-//            {
-//                fetchUpdateCallback.fetchUpdateCallback(true, null);
-//            }
-//        }
-//    };
+
 
 
     public static HCPHelper getInstance(Context ctx)
@@ -208,6 +188,8 @@ public class HCPHelper {
      */
     public void downloadUpdate()
     {
+        totalFiles = 0;
+        fileDownloaded = 0;
         UpdatesLoader.downloadUpdate();
     }
 
@@ -350,9 +332,60 @@ public class HCPHelper {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                downloadUpdateCallback.downloadUpdateCallback();
+                downloadUpdateCallback.downloadUpdateCallback(true, totalFiles, fileDownloaded, null);
             }
         });
+    }
+
+    /**
+     * 下载进度
+     *
+     * @param event event information
+     * @see EventBus
+     * @see DownloadProgressEvent
+     * @see UpdatesLoader
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(DownloadProgressEvent event) {
+        totalFiles = event.totalFiles();
+        fileDownloaded = event.fileDownloaded();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, null);
+            }
+        });
+    }
+
+    /**
+     * 下载更新过程中出错
+     *
+     * @param event event information
+     * @see EventBus
+     * @see UpdateDownloadErrorEvent
+     * @see UpdatesLoader
+     */
+    @SuppressWarnings("unused")
+    @Subscribe
+    public void onEvent(UpdateDownloadErrorEvent event) {
+        Log.d("HCP", "Failed to update");
+
+        final HCPError error = event.error();
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, error);
+            }
+        });
+
+//        if (error == HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
+//            Log.d("HCP", "Can't load application config from installation folder. Reinstalling external folder");
+//            installWwwFolder();
+//        }
+//
+//        rollbackIfCorrupted(event.error());
     }
 
     /**
@@ -404,27 +437,7 @@ public class HCPHelper {
         Log.d("HCP", "Dispatching Before install event");
     }
 
-    /**
-     * 下载更新过程中出错
-     *
-     * @param event event information
-     * @see EventBus
-     * @see UpdateDownloadErrorEvent
-     * @see UpdatesLoader
-     */
-    @SuppressWarnings("unused")
-    @Subscribe
-    public void onEvent(UpdateDownloadErrorEvent event) {
-        Log.d("HCP", "Failed to update");
 
-        final HCPError error = event.error();
-        if (error == HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
-            Log.d("HCP", "Can't load application config from installation folder. Reinstalling external folder");
-            installWwwFolder();
-        }
-
-        rollbackIfCorrupted(event.error());
-    }
 
     /**
      * 安装更新成功

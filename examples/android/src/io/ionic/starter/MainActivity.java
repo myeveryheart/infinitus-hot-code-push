@@ -54,6 +54,15 @@ public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallb
 
     @Override
     public void downloadUpdateCallback(boolean success, int totalFiles, int fileDownloaded, HCPError error) {
+        String progressString = "正在加载第"+fileDownloaded+"个，共"+totalFiles+"个";
+        textView.setText(progressString);
+        if (success)
+        {
 
+        }
+        else if (error != null)
+        {
+            textView.setText(error.getErrorDescription());
+        }
     }
 }

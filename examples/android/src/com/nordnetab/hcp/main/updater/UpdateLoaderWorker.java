@@ -155,14 +155,14 @@ class UpdateLoaderWorker implements WorkerTask {
         // load current application config
         oldAppConfig = appConfigStorage.loadFromFolder(filesStructure.getWwwFolder());
         if (oldAppConfig == null) {
-            setErrorResult(HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND, null);
+            setFetchErrorResult(HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND, null);
             return false;
         }
 
         // load current content manifest
         oldManifest = manifestStorage.loadFromFolder(filesStructure.getWwwFolder());
         if (oldManifest == null) {
-            setErrorResult(HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND, null);
+            setFetchErrorResult(HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND, null);
             return false;
         }
 

@@ -2,11 +2,14 @@ package com.nordnetab.hcp.main.network;
 
 import android.util.Log;
 
+import com.nordnetab.hcp.main.events.DownloadProgressEvent;
 import com.nordnetab.hcp.main.model.ManifestFile;
 import com.nordnetab.hcp.main.utils.FilesUtility;
 import com.nordnetab.hcp.main.utils.MD5;
 import com.nordnetab.hcp.main.utils.Paths;
 import com.nordnetab.hcp.main.utils.URLUtility;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -32,6 +35,9 @@ public class FileDownloader {
     // data read timeout in milliseconds
     private static final int READ_TIMEOUT = 30000;
 
+    private static int fileDownloaded = 0;
+    private static int totalFiles = 0;
+
     /**
      * 异步下载文件
      *
@@ -42,10 +48,15 @@ public class FileDownloader {
      * @see ManifestFile
      */
     public static void downloadFiles(final String downloadFolder, final String contentFolderUrl, List<ManifestFile> files) throws IOException {
+        fileDownloaded = 0;
+        totalFiles = files.size();
         for (ManifestFile file : files) {
             String fileUrl = URLUtility.construct(contentFolderUrl, file.name);
             String filePath = Paths.get(downloadFolder, file.name);
             download(fileUrl, filePath, file.hash);
+
+            //发送下载进度
+            setProgress();
         }
     }
 
@@ -97,4 +108,10 @@ public class FileDownloader {
             throw new IOException("File is corrupted: checksum " + checkSum + " doesn't match hash " + downloadedFileHash + " of the downloaded file");
         }
     }
+
+    private static void setProgress()
+    {
+        EventBus.getDefault().post(new DownloadProgressEvent(totalFiles, fileDownloaded));
+    }
 }
+
