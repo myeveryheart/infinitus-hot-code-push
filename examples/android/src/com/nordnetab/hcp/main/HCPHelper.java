@@ -41,6 +41,7 @@ import com.nordnetab.hcp.main.utils.VersionHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,8 +76,6 @@ public class HCPHelper {
     private Config config;
     private HCPFilesStructure fileStructure;
 
-//    private Handler handler;
-
     private String webUrl;
     private static Context context;
     private static HCPHelper helper;
@@ -84,7 +83,7 @@ public class HCPHelper {
     private FetchUpdateCallback fetchUpdateCallback;
     private DownloadUpdateCallback downloadUpdateCallback;
 
-    private static Handler handler = new Handler();
+//    private static Handler handler = new Handler();
     private static int totalFiles;
     private static int fileDownloaded;
 
@@ -122,7 +121,7 @@ public class HCPHelper {
             );
         }
 
-        handler = new Handler();
+//        handler = new Handler();
         fileStructure = new HCPFilesStructure(context, hcpInternalPrefs.getCurrentReleaseVersionName());
         appConfigStorage = new ApplicationConfigStorage();
     }
@@ -249,15 +248,9 @@ public class HCPHelper {
      * @see AssetsHelper
      * @see EventBus
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(final FetchUpdateErrorEvent event) {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                fetchUpdateCallback.fetchUpdateCallback(false, event.error());
-            }
-        });
+        fetchUpdateCallback.fetchUpdateCallback(false, event.error());
     }
 
     /**
@@ -268,15 +261,9 @@ public class HCPHelper {
      * @see AssetsHelper
      * @see EventBus
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(final FetchUpdateCompletedEvent event) {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                fetchUpdateCallback.fetchUpdateCallback(true, null);
-            }
-        });
+        fetchUpdateCallback.fetchUpdateCallback(true, null);
     }
 
 
@@ -289,8 +276,7 @@ public class HCPHelper {
      * @see AssetsHelper
      * @see EventBus
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(final AssetsInstalledEvent event) {
         // update stored application version
         hcpInternalPrefs.setAppBuildVersion(VersionHelper.applicationVersionCode(context));
@@ -306,11 +292,9 @@ public class HCPHelper {
      * @see AssetsHelper
      * @see EventBus
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(AssetsInstallationErrorEvent event) {
         Log.d("HCP", "Can't install assets on device. Continue to work with default bundle");
-
     }
 
     /**
@@ -321,20 +305,14 @@ public class HCPHelper {
      * @see UpdateIsReadyToInstallEvent
      * @see UpdatesLoader
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(UpdateIsReadyToInstallEvent event) {
         final ContentConfig newContentConfig = event.applicationConfig().getContentConfig();
         Log.d("HCP", "Update is ready for installation: " + newContentConfig.getReleaseVersion());
 
         hcpInternalPrefs.setReadyForInstallationReleaseVersionName(newContentConfig.getReleaseVersion());
         hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                downloadUpdateCallback.downloadUpdateCallback(true, totalFiles, fileDownloaded, null);
-            }
-        });
+        downloadUpdateCallback.downloadUpdateCallback(true, totalFiles, fileDownloaded, null);
     }
 
     /**
@@ -345,17 +323,11 @@ public class HCPHelper {
      * @see DownloadProgressEvent
      * @see UpdatesLoader
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(DownloadProgressEvent event) {
         totalFiles = event.totalFiles();
         fileDownloaded = event.fileDownloaded();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, null);
-            }
-        });
+        downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, null);
     }
 
     /**
@@ -366,19 +338,11 @@ public class HCPHelper {
      * @see UpdateDownloadErrorEvent
      * @see UpdatesLoader
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(UpdateDownloadErrorEvent event) {
         Log.d("HCP", "Failed to update");
-
         final HCPError error = event.error();
-
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, error);
-            }
-        });
+        downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, error);
 
 //        if (error == HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
 //            Log.d("HCP", "Can't load application config from installation folder. Reinstalling external folder");
@@ -396,8 +360,7 @@ public class HCPHelper {
      * @see NothingToUpdateEvent
      * @see UpdatesLoader
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NothingToUpdateEvent event) {
         Log.d("HCP", "Nothing to update");
     }
@@ -431,8 +394,7 @@ public class HCPHelper {
      * @see BeforeInstallEvent
      * @see UpdatesLoader
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(BeforeInstallEvent event) {
         Log.d("HCP", "Dispatching Before install event");
     }
@@ -447,8 +409,7 @@ public class HCPHelper {
      * @see UpdateInstalledEvent
      * @see UpdatesInstaller
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(UpdateInstalledEvent event) {
         Log.d("HCP", "Update is installed");
 
@@ -503,8 +464,7 @@ public class HCPHelper {
      * @see EventBus
      * @see UpdatesInstaller
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(UpdateInstallationErrorEvent event) {
         Log.d("HCP", "Failed to install");
 
@@ -519,8 +479,7 @@ public class HCPHelper {
      * @see UpdatesInstaller
      * @see EventBus
      */
-    @SuppressWarnings("unused")
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(NothingToInstallEvent event) {
         Log.d("HCP", "Nothing to install");
     }
