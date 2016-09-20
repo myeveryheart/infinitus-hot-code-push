@@ -49,7 +49,11 @@
  */
 -(void)installUpdate:(InstallUpdateBlock)block;
 
-
+/**
+ *  获取加载www的路径
+ *
+ *  @return 加载www的路径
+ */
 -(NSURL *)pathToWww;
 
 //

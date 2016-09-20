@@ -22,8 +22,7 @@ public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallb
         setContentView(R.layout.activity_main);
         textView = (TextView)findViewById(R.id.textView);
 
-        helper = HCPHelper.getInstance(this);
-        helper.setWebUrl("http://172.20.70.80/poc/");
+        helper = HCPHelper.getInstance(this, "http://172.20.70.80/poc/");
 
         String pathToWww = helper.pathToWww();
         Log.d("HCP", "pathToWww is " + pathToWww);
@@ -40,10 +39,6 @@ public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallb
         {
             textView.setText("从内部加载");
         }
-
-
-
-
     }
 
     @Override

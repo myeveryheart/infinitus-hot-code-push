@@ -87,15 +87,18 @@ class UpdateLoaderWorker implements WorkerTask {
             return;
         }
 
-        if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
-        {
-            //强制更新
-            setFetchSuccessResult(newAppConfig);
-        }
-        else
-        {
-            //静默更新
-        }
+        setFetchSuccessResult(newAppConfig);
+
+//        if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
+//        {
+//            //强制更新
+//            setFetchSuccessResult(newAppConfig);
+//        }
+//        else
+//        {
+//            //静默更新
+//
+//        }
         Log.d("HCP", "Fetch worker has finished");
     }
 

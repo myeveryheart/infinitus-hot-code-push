@@ -22,6 +22,7 @@ import com.infinitus.hcp.events.UpdateInstalledEvent;
 import com.infinitus.hcp.events.UpdateIsReadyToInstallEvent;
 import com.infinitus.hcp.model.HCPError;
 import com.infinitus.hcp.model.HCPFilesStructure;
+import com.infinitus.hcp.model.UpdateTime;
 import com.infinitus.hcp.storage.ApplicationConfigStorage;
 import com.infinitus.hcp.storage.IObjectFileStorage;
 import com.infinitus.hcp.storage.IObjectPreferenceStorage;
@@ -30,6 +31,7 @@ import com.infinitus.hcp.updater.UpdatesInstaller;
 import com.infinitus.hcp.updater.UpdatesLoader;
 import com.infinitus.hcp.utils.AssetsHelper;
 import com.infinitus.hcp.utils.CleanUpHelper;
+import com.infinitus.hcp.utils.Paths;
 import com.infinitus.hcp.utils.VersionHelper;
 
 import org.greenrobot.eventbus.EventBus;
@@ -67,7 +69,7 @@ public class HCPHelper {
     private Config config;
     private HCPFilesStructure fileStructure;
     private String webUrl;
-    private static Context context;
+    private Context context;
     private static HCPHelper helper;
     private FetchUpdateCallback fetchUpdateCallback;
     private DownloadUpdateCallback downloadUpdateCallback;
@@ -75,12 +77,13 @@ public class HCPHelper {
     private static int totalFiles;
     private static int fileDownloaded;
 
-    public static HCPHelper getInstance(Context ctx)
+    public static HCPHelper getInstance(Context context, String webUrl)
     {
         if (helper == null)
         {
             helper = new HCPHelper();
-            context = ctx;
+            helper.context = context;
+            helper.setWebUrl(webUrl);
             final EventBus eventBus = EventBus.getDefault();
             if (!eventBus.isRegistered(helper)) {
                 eventBus.register(helper);
@@ -90,7 +93,7 @@ public class HCPHelper {
         return helper;
     }
 
-    public void setWebUrl(String webUrl)
+    private void setWebUrl(String webUrl)
     {
         this.webUrl = webUrl;
         doLocalInit();
@@ -106,7 +109,6 @@ public class HCPHelper {
             );
         }
 
-//        handler = new Handler();
         fileStructure = new HCPFilesStructure(context, hcpInternalPrefs.getCurrentReleaseVersionName());
         appConfigStorage = new ApplicationConfigStorage();
     }
@@ -148,6 +150,11 @@ public class HCPHelper {
         return true;
     }
 
+    /**
+     *  获取加载www的路径
+     *
+     *  @return 加载www的路径
+     */
     public String pathToWww()
     {
         if (isWWwFolderNeedsToBeInstalled())
@@ -249,7 +256,20 @@ public class HCPHelper {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(final FetchUpdateCompletedEvent event) {
-        fetchUpdateCallback.fetchUpdateCallback(true, null);
+        ApplicationConfig newAppConfig = event.applicationConfig();
+        if (newAppConfig.getContentConfig().getUpdateTime() == UpdateTime.FORCED)
+        {
+            //强制更新
+            fetchUpdateCallback.fetchUpdateCallback(true, null);
+        }
+        else
+        {
+            //静默更新
+            fetchUpdateCallback.fetchUpdateCallback(false, null);
+            downloadUpdateCallback = null;
+            installUpdateCallback = null;
+            downloadUpdate(null);
+        }
     }
 
     /**
@@ -296,7 +316,16 @@ public class HCPHelper {
 
         hcpInternalPrefs.setReadyForInstallationReleaseVersionName(newContentConfig.getReleaseVersion());
         hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
-        downloadUpdateCallback.downloadUpdateCallback(true, totalFiles, fileDownloaded, null);
+
+        if (downloadUpdateCallback != null)
+        {
+            downloadUpdateCallback.downloadUpdateCallback(true, totalFiles, fileDownloaded, null);
+        }
+        else
+        {
+            installUpdateCallback = null;
+            installUpdate(null);
+        }
     }
 
     /**
@@ -311,7 +340,10 @@ public class HCPHelper {
     public void onEvent(DownloadProgressEvent event) {
         totalFiles = event.totalFiles();
         fileDownloaded = event.fileDownloaded();
-        downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, null);
+        if (downloadUpdateCallback != null)
+        {
+            downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, null);
+        }
     }
 
     /**
@@ -326,7 +358,11 @@ public class HCPHelper {
     public void onEvent(UpdateDownloadErrorEvent event) {
         Log.d("HCP", "Failed to update");
         final HCPError error = event.error();
-        downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, error);
+        if (downloadUpdateCallback != null)
+        {
+            downloadUpdateCallback.downloadUpdateCallback(false, totalFiles, fileDownloaded, error);
+        }
+
 
 //        if (error == HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
 //            Log.d("HCP", "Can't load application config from installation folder. Reinstalling external folder");
@@ -406,7 +442,10 @@ public class HCPHelper {
 
         fileStructure = new HCPFilesStructure(context, newContentConfig.getReleaseVersion());
 
-        installUpdateCallback.installUpdateCallback(true, null);
+        if (installUpdateCallback != null)
+        {
+            installUpdateCallback.installUpdateCallback(true, null);
+        }
     }
 
     /**
