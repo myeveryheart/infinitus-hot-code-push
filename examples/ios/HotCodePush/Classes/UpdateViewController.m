@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSURL *webUrl = [NSURL URLWithString:@"http://172.20.70.80/poc"];
+    NSURL *webUrl = [NSURL URLWithString:@"http://172.20.70.80/poc/"];
     HCPHelper *hcpHelper = [[HCPHelper alloc] initWithWebUrl:webUrl];
     
     NSLog(@"加载路径 %@",[hcpHelper pathToWww].absoluteString);

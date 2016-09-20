@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.nordnetab.hcp.main.HCPHelper;
-import com.nordnetab.hcp.main.HCPResult;
-import com.nordnetab.hcp.main.model.HCPError;
+import com.infinitus.hcp.HCPHelper;
+import com.infinitus.hcp.model.HCPError;
 
 
 
@@ -24,10 +23,11 @@ public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallb
         textView = (TextView)findViewById(R.id.textView);
 
         helper = HCPHelper.getInstance(this);
-//        helper.setListener(this);
+        helper.setWebUrl("http://172.20.70.80/poc/");
 
+        String pathToWww = helper.pathToWww();
+        Log.d("HCP", "pathToWww is " + pathToWww);
 
-            helper.setWebUrl("http://172.20.70.80/poc/");
 
         if (helper.loadFromExternalStorageFolder())
         {
