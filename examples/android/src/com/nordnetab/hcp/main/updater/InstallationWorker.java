@@ -48,29 +48,28 @@ class InstallationWorker implements WorkerTask {
         currentReleaseFS = new HCPFilesStructure(context, currentVersion);
     }
 
-//    @Override
-    public void run() {
-        // try to initialize before run
+    public void install()
+    {
         if (!init()) {
             return;
         }
 
-        // validate update
+        // 验证更新
         if (!isUpdateValid(newReleaseFS.getDownloadFolder(), manifestDiff)) {
             setResultForError(HCPError.UPDATE_IS_INVALID);
             return;
         }
 
-        // copy content from the current release to the new release folder
+        // 拷贝旧的到新的
         if (!copyFilesFromCurrentReleaseToNewRelease()) {
             setResultForError(HCPError.FAILED_TO_COPY_FILES_FROM_PREVIOUS_RELEASE);
             return;
         }
 
-        // remove old manifest files
+        // 删除旧的 manifest 文件
         deleteUnusedFiles();
 
-        // install the update
+        // 安装更新文件
         boolean isInstalled = moveFilesFromInstallationFolderToWwwFodler();
         if (!isInstalled) {
             cleanUpOnFailure();
@@ -78,10 +77,10 @@ class InstallationWorker implements WorkerTask {
             return;
         }
 
-        // perform cleaning
+        // 清理
         cleanUpOnSuccess();
 
-        // send notification, that we finished
+        // 发送成功消息
         setSuccessResult();
     }
 

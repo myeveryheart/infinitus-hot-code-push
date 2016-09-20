@@ -62,7 +62,7 @@ public class UpdatesLoader {
 
     public static void downloadUpdate()
     {
-        final EventBus eventBus = EventBus.getDefault();
+//        final EventBus eventBus = EventBus.getDefault();
 //        if (!eventBus.isRegistered(UpdatesLoader.class)) {
 //            eventBus.register(UpdatesLoader.class);
 //        }

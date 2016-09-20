@@ -54,7 +54,7 @@ public class FileDownloader {
             String fileUrl = URLUtility.construct(contentFolderUrl, file.name);
             String filePath = Paths.get(downloadFolder, file.name);
             download(fileUrl, filePath, file.hash);
-
+            fileDownloaded++;
             //发送下载进度
             setProgress();
         }

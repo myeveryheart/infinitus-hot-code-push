@@ -66,6 +66,10 @@ public class HCPHelper {
     {
         void downloadUpdateCallback(boolean success, int totalFiles, int fileDownloaded, HCPError error);
     }
+    public interface InstallUpdateCallback
+    {
+        void installUpdateCallback(boolean success, HCPError error);
+    }
 
     private static final String WWW_FOLDER = "www";
     private static final String LOCAL_ASSETS_FOLDER = "file:///android_asset/www";
@@ -82,7 +86,7 @@ public class HCPHelper {
 //    private HCPResult hcpResult;
     private FetchUpdateCallback fetchUpdateCallback;
     private DownloadUpdateCallback downloadUpdateCallback;
-
+    private InstallUpdateCallback installUpdateCallback;
 //    private static Handler handler = new Handler();
     private static int totalFiles;
     private static int fileDownloaded;
@@ -185,27 +189,25 @@ public class HCPHelper {
     /**
      *  下载更新
      */
-    public void downloadUpdate()
+    public void downloadUpdate(DownloadUpdateCallback downloadUpdateCallback)
     {
+        this.downloadUpdateCallback = downloadUpdateCallback;
         totalFiles = 0;
         fileDownloaded = 0;
         UpdatesLoader.downloadUpdate();
     }
 
     /**
-     * 安装更新
+     *  安装更新
      */
-    private void installUpdate()
+    public void installUpdate(InstallUpdateCallback installUpdateCallback)
     {
-        HCPError error = UpdatesInstaller.install(context, hcpInternalPrefs.getReadyForInstallationReleaseVersionName(), hcpInternalPrefs.getCurrentReleaseVersionName());
-//        if (error != HCPError.NONE)
-//        {
-//            hcpResult.fetchUpdateResult(false, error);
-//        }
-//        else {
-//            hcpResult.fetchUpdateResult(true, null);
-//        }
+        this.installUpdateCallback = installUpdateCallback;
+        UpdatesInstaller.install(context, hcpInternalPrefs.getReadyForInstallationReleaseVersionName(), hcpInternalPrefs.getCurrentReleaseVersionName());
     }
+
+
+
 
     /**
      * 是否需要安装www文件夹
@@ -265,8 +267,6 @@ public class HCPHelper {
     public void onEvent(final FetchUpdateCompletedEvent event) {
         fetchUpdateCallback.fetchUpdateCallback(true, null);
     }
-
-
 
     /**
      * www文件夹安装到外部成功
@@ -400,7 +400,6 @@ public class HCPHelper {
     }
 
 
-
     /**
      * 安装更新成功
      *
@@ -422,39 +421,9 @@ public class HCPHelper {
         hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
 
         fileStructure = new HCPFilesStructure(context, newContentConfig.getReleaseVersion());
+
+        installUpdateCallback.installUpdateCallback(true, null);
     }
-
-//    private void onUpdateDownloadErrorEvent(UpdateDownloadErrorEvent event)
-//    {
-//        Log.d("HCP", "Failed to update");
-//
-//        final HCPError error = event.error();
-//        if (error == HCPError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == HCPError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
-//            Log.d("HCP", "Can't load application config from installation folder. Reinstalling external folder");
-//            installWwwFolder();
-//        }
-//        rollbackIfCorrupted(event.error());
-//    }
-
-//    private void onUpdateInstalledEvent(ApplicationConfig applicationConfig)
-//    {
-//        Log.d("HCP", "Update is installed");
-//
-//        final ContentConfig newContentConfig = applicationConfig.getContentConfig();
-//
-//        // update preferences
-//        hcpInternalPrefs.setPreviousReleaseVersionName(hcpInternalPrefs.getCurrentReleaseVersionName());
-//        hcpInternalPrefs.setCurrentReleaseVersionName(newContentConfig.getReleaseVersion());
-//        hcpInternalPrefs.setReadyForInstallationReleaseVersionName("");
-//        hcpInternalPrefsStorage.storeInPreference(hcpInternalPrefs);
-//
-//        fileStructure = new HCPFilesStructure(context, newContentConfig.getReleaseVersion());
-//    }
-
-//    private void onUpdateInstallationErrorEvent()
-//    {
-//
-//    }
 
     /**
      * 安装更新出错
@@ -467,7 +436,7 @@ public class HCPHelper {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(UpdateInstallationErrorEvent event) {
         Log.d("HCP", "Failed to install");
-
+        installUpdateCallback.installUpdateCallback(false, event.error());
         rollbackIfCorrupted(event.error());
     }
 

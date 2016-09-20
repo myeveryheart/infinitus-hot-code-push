@@ -11,7 +11,7 @@ import com.nordnetab.hcp.main.model.HCPError;
 
 
 
-public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallback,HCPHelper.DownloadUpdateCallback
+public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallback,HCPHelper.DownloadUpdateCallback,HCPHelper.InstallUpdateCallback
 {
     HCPHelper helper;
     TextView textView;
@@ -48,17 +48,37 @@ public class MainActivity extends Activity implements HCPHelper.FetchUpdateCallb
 
     @Override
     public void fetchUpdateCallback(boolean needUpdate, HCPError error) {
-        Log.d("HCP", "强制更新");
-        helper.downloadUpdate();
+        if (needUpdate)
+        {
+            Log.d("HCP", "强制更新");
+            helper.downloadUpdate(this);
+        }
+        else
+        {
+            Log.d("HCP", "没有强制更新");
+            textView.setText("没有强制更新");
+        }
     }
 
     @Override
     public void downloadUpdateCallback(boolean success, int totalFiles, int fileDownloaded, HCPError error) {
-        String progressString = "正在加载第"+fileDownloaded+"个，共"+totalFiles+"个";
+        String progressString = "正在下载第"+fileDownloaded+"个，共"+totalFiles+"个";
         textView.setText(progressString);
         if (success)
         {
+            helper.installUpdate(this);
+        }
+        else if (error != null)
+        {
+            textView.setText(error.getErrorDescription());
+        }
+    }
 
+    @Override
+    public void installUpdateCallback(boolean success, HCPError error) {
+        if (success)
+        {
+            textView.setText("更新成功");
         }
         else if (error != null)
         {

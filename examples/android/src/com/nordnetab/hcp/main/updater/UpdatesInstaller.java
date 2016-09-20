@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.nordnetab.hcp.main.events.BeforeInstallEvent;
 import com.nordnetab.hcp.main.events.NothingToInstallEvent;
+import com.nordnetab.hcp.main.events.UpdateDownloadErrorEvent;
+import com.nordnetab.hcp.main.events.UpdateInstallationErrorEvent;
 import com.nordnetab.hcp.main.model.HCPError;
 import com.nordnetab.hcp.main.model.HCPFilesStructure;
 
@@ -39,43 +41,42 @@ public class UpdatesInstaller {
      * @see com.nordnetab.hcp.main.events.UpdateInstallationErrorEvent
      * @see com.nordnetab.hcp.main.events.UpdateInstalledEvent
      */
-    public static HCPError install(final Context context, final String newVersion, final String currentVersion) {
-        // if we already installing - exit
+    public static void install(final Context context, final String newVersion, final String currentVersion) {
+
         if (isInstalling) {
-            return HCPError.INSTALLATION_ALREADY_IN_PROGRESS;
+            EventBus.getDefault().post(new UpdateInstallationErrorEvent(HCPError.INSTALLATION_ALREADY_IN_PROGRESS, null));
+            return;
         }
 
-        // if we are loading update - exit
         if (UpdatesLoader.isExecuting()) {
-            return HCPError.CANT_INSTALL_WHILE_DOWNLOAD_IN_PROGRESS;
+            EventBus.getDefault().post(new UpdateInstallationErrorEvent(HCPError.CANT_INSTALL_WHILE_DOWNLOAD_IN_PROGRESS, null));
+            return;
         }
 
         final HCPFilesStructure newReleaseFS = new HCPFilesStructure(context, newVersion);
         if (!new File(newReleaseFS.getDownloadFolder()).exists()) {
-            return HCPError.NOTHING_TO_INSTALL;
+            EventBus.getDefault().post(new UpdateInstallationErrorEvent(HCPError.NOTHING_TO_INSTALL, null));
+            return;
         }
 
         dispatchBeforeInstallEvent();
 
-        final WorkerTask task = new InstallationWorker(context, newVersion, currentVersion);
-        execute(task);
+        final InstallationWorker task = new InstallationWorker(context, newVersion, currentVersion);
 
-        return HCPError.NONE;
+        isInstalling = true;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                task.install();
+                isInstalling = false;
+
+                // dispatch resulting event
+                EventBus.getDefault().post(task.result());
+            }
+        }).start();
     }
 
-    private static void execute(final WorkerTask task) {
-//        isInstalling = true;
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                task.run();
-//                isInstalling = false;
-//
-//                // dispatch resulting event
-//                EventBus.getDefault().post(task.result());
-//            }
-//        }).start();
-    }
+
 
     private static void dispatchBeforeInstallEvent() {
         EventBus.getDefault().post(new BeforeInstallEvent());

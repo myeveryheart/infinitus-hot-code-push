@@ -80,7 +80,7 @@ class UpdateLoaderWorker implements WorkerTask {
 
         // 新版本号比旧版大才更新
         if (newAppConfig.getContentConfig().getReleaseVersion().compareTo(oldAppConfig.getContentConfig().getReleaseVersion()) <= 0) {
-            setNothingToUpdateResult(newAppConfig);
+            setFetchErrorResult(HCPError.NOTHING_TO_UPDATE, newAppConfig);
             return;
         }
 
@@ -116,7 +116,7 @@ class UpdateLoaderWorker implements WorkerTask {
         if (diff.isEmpty()) {
             manifestStorage.storeInFolder(newContentManifest, filesStructure.getWwwFolder());
             appConfigStorage.storeInFolder(newAppConfig, filesStructure.getWwwFolder());
-            setNothingToUpdateResult(newAppConfig);
+            setDownloadErrorResult(HCPError.NOTHING_TO_INSTALL, newAppConfig);
 
             return;
         }
@@ -270,9 +270,9 @@ class UpdateLoaderWorker implements WorkerTask {
         resultEvent = new UpdateIsReadyToInstallEvent(newAppConfig);
     }
 
-    private void setNothingToUpdateResult(ApplicationConfig newAppConfig) {
-        resultEvent = new NothingToUpdateEvent(newAppConfig);
-    }
+//    private void setNothingToUpdateResult(ApplicationConfig newAppConfig) {
+//        resultEvent = new NothingToUpdateEvent(newAppConfig);
+//    }
 
     @Override
     public WorkerEvent result() {
